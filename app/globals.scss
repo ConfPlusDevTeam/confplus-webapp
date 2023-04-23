@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Sulphur+Point:wght@300;400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  font-family: "Poppins", "Sulphur Point", Arial, sans-serif;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+body {
+  background-color: #6636ef;
+  width: auto;
+  height: 100vh;
+
+  #overlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.33) 4.53%,
+      rgba(0, 0, 0, 0.1386) 38.84%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  #illustration {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url("../public/assets/main.svg") no-repeat;
+    background-size: 100vw, 50%;
+    object-fit: cover;
+  }
+
+  #shape1 {
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    // #shape1 {
+    right: -15vw;
+    top: 12vh;
+    background: url("../public/assets/bg-shapes/shape1.svg") no-repeat;
+    transform: rotate(-0.4deg);
+    // }
+  }
+}
