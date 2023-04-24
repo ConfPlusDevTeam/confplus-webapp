@@ -1,14 +1,16 @@
+import React from 'react';
+
 export default function RootLayout({ children }) {
-    return (
-      <div>
-        <nav id = "sidebar-landingpage">
-            <ul id = "sidebar-list">
-                <li><button class="button-landingpage" onclick="">WELCOME</button></li>
-                <li><button class= "button-landingpage" onclick="">SCHEDULE</button></li>
-                <li><button class= "button-landingpage" onclick="">ABOUT</button></li>
-            </ul>
-        </nav>
-      </div>
-    );
-  }
-  
+  return (
+    <div>
+      <nav id="sidebar-landingpage">
+        <ul id="sidebar-list">
+          <li><button className="button-landingpage" onClick={() => {}}>WELCOME</button></li>
+          <li><button className="button-landingpage" onClick={() => {}}>SCHEDULE</button></li>
+          <li><button className="button-landingpage" onClick={() => {}}>ABOUT</button></li>
+        </ul>
+      </nav>
+      {children}
+    </div>
+  );
+}
