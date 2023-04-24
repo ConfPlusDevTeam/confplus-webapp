@@ -20,6 +20,12 @@ export default function RootLayout({ children }) {
 
       link: "/testPage",
     },
+
+    {
+      name: "Sign In",
+
+      link: "/signin",
+    },
   ];
   return (
     <html lang="en">
