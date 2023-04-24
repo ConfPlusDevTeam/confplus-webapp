@@ -1,0 +1,23 @@
+#sidebar-list{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.button-landingpage{
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    width: 166px;
+}
+
+
+.button-landingpage-selected{
+    border: none;
+    background-color: #fff;
+    border: none;
+    color: #5A1499;
+    width: 166px;
+}
