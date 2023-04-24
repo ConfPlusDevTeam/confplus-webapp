@@ -1,0 +1,26 @@
+.link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  position: relative;
+  top: 0;
+  &:hover {
+    transition: 0.3s;
+    border-bottom: #fff solid 0.1rem;
+    padding-bottom: 0;
+    top: 0;
+  }
+}
+
+.active {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  position: relative;
+  border-bottom: #fff solid 0.2rem;
+  transition: all 0.3s ease-in-out;
+  top: -0.15rem;
+  padding-bottom: 0.3rem;
+}
