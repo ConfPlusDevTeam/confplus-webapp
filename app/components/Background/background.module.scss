@@ -1,0 +1,88 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+
+  object-fit: fill;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.33) 4.53%,
+    rgba(0, 0, 0, 0.1386) 38.84%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.illustration {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("../../../public/assets/main.svg") no-repeat;
+  background-size: 100vw, 50%;
+  object-fit: cover;
+  z-index: -1000;
+}
+
+.shape1 {
+  width: 20%;
+  height: 100%;
+  background: url("../../../public/assets/bg-shapes/shape4.svg") no-repeat;
+  transform: rotate(-0.4deg);
+  margin: 6rem 1rem 0rem 5rem;
+}
+
+.shape2 {
+  width: 500px;
+  height: 350px;
+  margin: 1rem 1rem 0rem 5rem;
+  background: url("../../../public/assets/bg-shapes/shape2.svg") no-repeat;
+  transform: rotate(-0.4deg);
+}
+
+.shape3 {
+  width: 30%;
+  height: 20%;
+  top: 50vh;
+  margin: 4rem 1rem 0rem 5rem;
+  background: url("../../../public/assets/bg-shapes/shape3.svg") no-repeat;
+  transform: rotate(-0.4deg);
+}
+.shape4 {
+  width: 350px;
+  height: 100%;
+  margin: 6rem 1rem 1rem 1rem;
+  background: url("../../../public/assets/bg-shapes/shape1.svg") no-repeat;
+  transform: rotate(-0.4deg);
+}
+.shape5 {
+  width: 350px;
+  height: 100%;
+  top: 80vh;
+  left: 55vh;
+  margin: 1rem 0rem 1rem 1rem;
+  background: url("../../../public/assets/bg-shapes/shape5.svg") no-repeat;
+  transform: rotate(-0.4deg);
+}
+.shapeContainerBottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 30%;
+  width: 100%;
+}
+.shapeContainerTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40%;
+  width: 100%;
+}
+.shapeContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1000;
+}
