@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     {
       name: "About",
 
-      link: "/",
+      link: "/testPage",
     },
   ];
   return (

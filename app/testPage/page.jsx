@@ -14,5 +14,5 @@ export default function page() {
       link: "/testPage",
     },
   ];
-  return <Navbar links={links} />;
+  // return <Navbar links={links} />;
 }
