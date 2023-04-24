@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './sidebar.css';
 
 export default function RootLayout({ children }) {
   return (
