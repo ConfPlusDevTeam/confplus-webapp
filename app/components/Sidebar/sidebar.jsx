@@ -6,9 +6,9 @@ export default function RootLayout({ children }) {
     <div>
       <nav id="sidebar-landingpage">
         <ul id="sidebar-list">
-          <li><button className="button-landingpage" onClick={() => {}}>WELCOME</button></li>
-          <li><button className="button-landingpage" onClick={() => {}}>SCHEDULE</button></li>
-          <li><button className="button-landingpage" onClick={() => {}}>ABOUT</button></li>
+          <li><button className={styles.button-landingpage} onClick={() => {}}>WELCOME</button></li>
+          <li><button className={styles.button-landingpage} onClick={() => {}}>SCHEDULE</button></li>
+          <li><button className={styles.button-landingpage} onClick={() => {}}>ABOUT</button></li>
         </ul>
       </nav>
       {children}
