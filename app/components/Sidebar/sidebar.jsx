@@ -1,17 +1,28 @@
-import React from 'react';
-import styles from './sidebar.css';
+import React from "react";
+import styles from "./sidebar.module.scss";
 
-export default function RootLayout({ children }) {
+export default function sidebar() {
   return (
     <div>
-      <nav id="sidebar-landingpage">
-        <ul id="sidebar-list">
-          <li><button className={styles.button-landingpage} onClick={() => {}}>WELCOME</button></li>
-          <li><button className={styles.button-landingpage} onClick={() => {}}>SCHEDULE</button></li>
-          <li><button className={styles.button-landingpage} onClick={() => {}}>ABOUT</button></li>
+      <nav className={styles.sidebarLandingpage}>
+        <ul className={styles.sidebaList}>
+          <li>
+            <button className={styles.buttonLandingpage} onclick="">
+              WELCOME
+            </button>
+          </li>
+          <li>
+            <button className={styles.buttonLandingpage} onclick="">
+              SCHEDULE
+            </button>
+          </li>
+          <li>
+            <button className={styles.buttonLandingpage} onclick="">
+              ABOUT
+            </button>
+          </li>
         </ul>
       </nav>
-      {children}
     </div>
   );
 }
