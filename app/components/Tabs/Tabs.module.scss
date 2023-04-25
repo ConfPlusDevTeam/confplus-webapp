@@ -1,23 +1,19 @@
 .tabsContainer {
-  width: 695.99px;
-  height: 36.17px;
+  width: 40%;
+  height: 3.5vh;
   position: absolute;
   top: 50vh;
   left: 50vh;
   background: radial-gradient(
-      90.16% 143.01% at 15.32% 21.04%,
-      rgba(72, 38, 168, 0.2) 0%,
-      rgba(111, 68, 189, 0.2) 77.08%,
-      rgba(70, 144, 213, 0) 100%
-    )
-    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-  background-blend-mode: overlay, normal;
+    90.16% 143.01% at 15.32% 21.04%,
+    rgba(72, 38, 168, 0.2) 0%,
+    rgba(111, 68, 189, 0.2) 77.08%,
+    rgba(70, 144, 213, 0) 100%
+  );
   backdrop-filter: blur(50px);
-  /* Note: backdrop-filter has minimal browser support */
-  border-radius: 59px;
+  border-radius: 60px;
   border-style: solid;
   border-color: rgba(255, 255, 255, 0.2);
-  border-width: 0.2rem;
 }
 .links {
   list-style-type: none;
