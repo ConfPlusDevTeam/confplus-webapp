@@ -28,3 +28,22 @@
     top: 0;
   }
 }
+.active {
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  top: -0.15rem;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 15%;
+    bottom: -0.3rem;
+    width: 70%;
+    padding-bottom: 0.3rem;
+    border-bottom: #fff solid 0.1rem;
+  }
+}
