@@ -1,11 +1,14 @@
-// colors
-$background-color: #fff;
+.homeContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
 
-//sizes
-$size-xs: 1rem;
-$size-s: 2rem;
-$size-m: 5rem;
-$size-l: 7rem;
-$size-xl: 9rem;
-
-
+.card {
+  width: 60%;
+  height: 60%;
+  align-self: start;
+  margin-top: 5%;
+}
