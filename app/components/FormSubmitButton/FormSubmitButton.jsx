@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function FormSubmitButton() {
+export default function FormSubmitButton({text}) {
   return (
-    <button type="submit">Submit</button>
+    <button type="submit">{text}</button>
   );
 }
