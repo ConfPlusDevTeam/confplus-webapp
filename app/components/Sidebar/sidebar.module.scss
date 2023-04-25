@@ -21,3 +21,28 @@
     color: #5A1499;
     width: 166px;
 }
+
+.sidebarMenu {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .tabButton {
+    color: white;
+    background-color: transparent;
+    border: none;
+    padding: 8px;
+    width: 166px;
+    font-size: 16px;
+    cursor: pointer;
+  
+    &:hover {
+      color: purple;
+    }
+  }
+  
+  .active {
+    color: purple;
+    background-color: white;
+  }
+  
