@@ -1,9 +1,9 @@
 import React from 'react';
-import './FormField.scss';
+import Styles from'./FormField.module.scss';
 
 export default function FormField({ label, type, placeholder }) {
   return (
-    <div className="form-field">
+    <div className={Styles.formField}>
       <label htmlFor="formInputField">{label}</label>
       <input type={type} id="formInputField" placeholder={placeholder} />
     </div>
