@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+"use client"
+
+import React from 'react';
 import styles from './sidebar.module.scss';
 
 export default function SidebarMenu() {
-  const [activeTab, setActiveTab] = useState('');
+  const [activeTab, setActiveTab] = React.useState(0);
 
   return (
     <div className={styles.sidebarMenu}>

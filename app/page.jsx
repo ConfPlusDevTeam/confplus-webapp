@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "./page.module.scss";
+import SidebarMenu from "./components/Sidebar/SidebarMenu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,6 +40,7 @@ export default function Home() {
           </form>
         </section>
       </div>
+      <SidebarMenu></SidebarMenu>
 
       <footer id="scroll">
         <p></p>
