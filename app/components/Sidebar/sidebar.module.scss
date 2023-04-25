@@ -1,27 +1,3 @@
-#sidebar-list{
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.button-landingpage{
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    width: 166px;
-}
-
-
-.button-landingpage-selected{
-    border: none;
-    background-color: #fff;
-    border: none;
-    color: #5A1499;
-    width: 166px;
-}
-
 .sidebarMenu {
     display: flex;
     flex-direction: column;
@@ -37,12 +13,12 @@
     cursor: pointer;
   
     &:hover {
-      color: purple;
+      color: #5A1499;
     }
   }
   
   .active {
-    color: purple;
+    color: #5A1499;
     background-color: white;
   }
   

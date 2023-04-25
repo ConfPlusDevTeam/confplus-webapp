@@ -6,28 +6,16 @@ export default function SidebarMenu() {
 
   return (
     <div className={styles.sidebarMenu}>
-      <button
-        className={`${styles.tabButton} ${
-          activeTab === 'welcome' ? styles.active : ''
-        }`}
-        onClick={() => setActiveTab('welcome')}
-      >
+      <button className={`${styles.tabButton} ${ activeTab === 'welcome' ? styles.active : ''}`}
+        onClick={() => setActiveTab('welcome')}>
         Welcome
       </button>
-      <button
-        className={`${styles.tabButton} ${
-          activeTab === 'schedule' ? styles.active : ''
-        }`}
-        onClick={() => setActiveTab('schedule')}
-      >
+      <button className={`${styles.tabButton} ${activeTab === 'schedule' ? styles.active : ''}`}
+        onClick={() => setActiveTab('schedule')} >
         Schedule
       </button>
-      <button
-        className={`${styles.tabButton} ${
-          activeTab === 'about' ? styles.active : ''
-        }`}
-        onClick={() => setActiveTab('about')}
-      >
+      <button className={`${styles.tabButton} ${activeTab === 'about' ? styles.active : ''}`}
+        onClick={() => setActiveTab('about')}>
         About
       </button>
     </div>
