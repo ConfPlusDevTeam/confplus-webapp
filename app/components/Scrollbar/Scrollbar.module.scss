@@ -1,13 +1,14 @@
 .scrollBar {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
-    font-weight: 410;
-    font-size: 1.2rem;
-    color: #E4E4F0;
-  }
-  
-  .scroll-bar svg {
-    margin-left: 0.5rem;
-  }
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #e4e4f0;
+  margin-top: 1rem;
+}
+
+.scroll-bar svg {
+  margin-left: 0.5rem;
+}

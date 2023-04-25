@@ -5,6 +5,7 @@ import styles from "./page.module.scss";
 import Sidebar from "./components/Sidebar/Sidebar";
 import ContentContainer from "./components/ContentContainer/ContentContainer";
 import { useState } from "react";
+import Scrollbar from "./components/Scrollbar/Scrollbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,8 +24,8 @@ export default function Home() {
           veniam eveniet blanditiis ex, voluptas fugiat laboriosam assumenda
           illo illum debitis fuga?
         </ContentContainer>
+        <Scrollbar />
       </div>
     </div>
-    
   );
 }
