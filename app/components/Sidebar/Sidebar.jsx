@@ -13,7 +13,7 @@ export default function Sidebar() {
         className={`${styles.tabButton} ${
           activeTab === "welcome" ? styles.active : ""
         }`}
-        onClick={() => setActiveTab("welcome")}
+        onClick={setActiveTab("welcome")}
       >
         Welcome
       </button>
@@ -21,7 +21,7 @@ export default function Sidebar() {
         className={`${styles.tabButton} ${
           activeTab === "schedule" ? styles.active : ""
         }`}
-        onClick={() => setActiveTab("schedule")}
+        onClick={setActiveTab("schedule")}
       >
         Schedule
       </button>
@@ -29,7 +29,7 @@ export default function Sidebar() {
         className={`${styles.tabButton} ${
           activeTab === "about" ? styles.active : ""
         }`}
-        onClick={() => setActiveTab("about")}
+        onClick={setActiveTab("about")}
       >
         About
       </button>

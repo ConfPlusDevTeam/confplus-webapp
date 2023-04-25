@@ -6,5 +6,5 @@ import Sidebar from "./components/Sidebar/Sidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  return <Sidebar />;
+  return <h1>working!</h1>
 }
