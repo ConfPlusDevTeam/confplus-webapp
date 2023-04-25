@@ -1,0 +1,20 @@
+.signInButton {
+  margin: 0 auto;
+  background-color: #3a1078;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+
+  &:hover {
+    background-color: darken(#3a1078, 10%);
+  }
+
+  &:active {
+    background-color: darken(#3a1078, 20%);
+  }
+}
+.button {
+}

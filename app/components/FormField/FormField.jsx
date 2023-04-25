@@ -1,11 +1,15 @@
-import React from 'react';
-import Styles from'./FormField.module.scss';
+import React from "react";
+import Styles from "./FormField.module.scss";
 
-export default function FormField({ label, type, placeholder }) {
+export default function FormField({ label, type, placeholder, variant }) {
   return (
-    <div className={Styles.formField}>
-      <label htmlFor="formInputField">{label}</label>
-      <input type={type} id="formInputField" placeholder={placeholder} />
+    <div
+      className={`${
+        variant == 1 ? Styles.signInForm : variant == 2 ? Styles.formField : ""
+      }`}
+    >
+      <label htmlFor={label}>{label}</label>
+      <input type={type} id={label} placeholder={placeholder} />
     </div>
   );
 }
