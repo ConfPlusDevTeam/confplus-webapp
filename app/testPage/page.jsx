@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import ContentContainer from "../components/ContentContainer/ContentContainer";
 import Tabs from "../components/Tabs/Tabs";
 import WelcomeMessage from "../components/WelcomeMessage/WelcomeMessage";
+import UploadField from "../components/UploadField/UploadField";
 export default function page() {
   const links = [
     {
@@ -27,6 +28,7 @@ export default function page() {
     <div>
       <WelcomeMessage props={"Aly"} />
       <Tabs links={links} />
+      <UploadField />
     </div>
   );
 }
