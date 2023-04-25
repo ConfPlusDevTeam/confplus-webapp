@@ -4,8 +4,8 @@ import React from "react";
 import styles from "./Sidebar.module.scss";
 import { useState } from "react";
 
-export default function Sidebar() {
-  const [activeTab, setActiveTab] = useState("welcome");
+export default function Sidebar({ onclick, activeElement }) {
+  const [activeTab, setActiveTab] = useState(activeElement);
 
   return (
     <div className={styles.sidebarMenu}>
@@ -13,7 +13,10 @@ export default function Sidebar() {
         className={`${styles.tabButton} ${
           activeTab === "welcome" ? styles.active : ""
         }`}
-        onClick={() => setActiveTab("welcome")}
+        onClick={() => {
+          onclick("welcome");
+          setActiveTab("welcome");
+        }}
       >
         Welcome
       </button>
@@ -21,7 +24,10 @@ export default function Sidebar() {
         className={`${styles.tabButton} ${
           activeTab === "schedule" ? styles.active : ""
         }`}
-        onClick={() => setActiveTab("schedule")}
+        onClick={() => {
+          onclick("schedule");
+          setActiveTab("schedule");
+        }}
       >
         Schedule
       </button>
@@ -29,7 +35,10 @@ export default function Sidebar() {
         className={`${styles.tabButton} ${
           activeTab === "about" ? styles.active : ""
         }`}
-        onClick={() => setActiveTab("about")}
+        onClick={() => {
+          onclick("about");
+          setActiveTab("about");
+        }}
       >
         About
       </button>
