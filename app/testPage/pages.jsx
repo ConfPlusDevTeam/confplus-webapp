@@ -1,6 +1,6 @@
 import React from "react";
-import sidebar from "../components/Sidebar/sidebar";
+import SidebarMenu from "../components/Sidebar/SidebarMenu";
 
 export default function pages() {
-  return <div>djk</div>;
+  return <SidebarMenu></SidebarMenu>
 }
