@@ -1,18 +1,15 @@
 "use client";
-
 import React from "react";
+import styles from "./Tabs.module.scss";
+import NavLink from "../NavLink/NavLink";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
-import Logo from "../Logo/Logo";
-import NavLink from "../NavLink/NavLink";
-import styles from "./NavBar.module.scss";
 
-export default function Navbar({ links }) {
+export default function Tabs({ links }) {
   const [selected, setSelected] = useState();
   const segment = useSelectedLayoutSegment();
   return (
-    <div className={styles.navbar}>
-      <Logo />
+    <div className={styles.tabsContainer}>
       <ul className={styles.links}>
         {links.map((link, key) => (
           <NavLink
