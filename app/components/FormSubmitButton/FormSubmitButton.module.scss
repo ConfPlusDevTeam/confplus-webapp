@@ -1,5 +1,4 @@
 .button {
-    width: 340px;
     margin: 0 auto;
     background-color: #3A1078;
     color: white;
@@ -7,6 +6,7 @@
     padding: 10px 20px;
     font-size: 1rem;
     cursor: pointer;
+    border: none;
   
     &:hover {
       background-color: darken(#3A1078, 10%);
