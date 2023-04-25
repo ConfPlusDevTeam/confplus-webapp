@@ -1,0 +1,26 @@
+.file-input {
+    align-items: center;
+
+    label{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+    }
+  
+    .file-input-icon {
+      width: 90px;
+      height: 90px;
+      fill: #2c2c2c;
+    }
+  
+    .file-input-label {
+      color: #fff;
+      font-size: 14px;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+  }
+  
+  
