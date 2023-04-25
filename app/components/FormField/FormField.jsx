@@ -9,7 +9,7 @@ export default function FormField({ label, type, placeholder, variant }) {
       }`}
     >
       <label htmlFor={label}>{label}</label>
-      <input type={type} id={label} placeholder={placeholder} />
+      <input required type={type} id={label} placeholder={placeholder} />
     </div>
   );
 }

@@ -10,7 +10,7 @@ export default function Button({ variant, type, text, onClick }) {
       className={`${
         variant == 1 ? Styles.signInButton : variant == 2 ? Styles.button : ""
       }`}
-      onClick={onClick}
+      onSubmit={onClick}
     >
       {text}
     </button>

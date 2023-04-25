@@ -10,25 +10,25 @@ export default function SignInForm() {
   return (
     <form className={Styles.form}>
       <h2>
-        Hi, There Welcome to <Logo />
+        Hi There, Welcome to <Logo />
       </h2>
       <FormField
         label="Email"
         type="email"
-        placeholder="Enter your email"
+        placeholder="Enter your email here"
         variant={1}
       />
       <FormField
         label="Password"
         type="password"
-        placeholder="Enter your password"
+        placeholder="Enter your password here"
         variant={1}
       />
       <Button
         variant={1}
         type="submit"
         text="Sign In"
-        onClick={() => console.log("submitted")}
+        onClick={(e) => console.log("submitted")}
       />
     </form>
   );
