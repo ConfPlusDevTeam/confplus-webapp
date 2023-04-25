@@ -1,0 +1,33 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4rem;
+  width: min(75vw, 40rem);
+  height: 70vh;
+  margin: auto;
+  margin-top: 10vh;
+  padding: 3rem;
+  background-color: #ffffff;
+  border-radius: 2.5rem;
+  color: #3a1078;
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #3a1078;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #3a1078;
+  }
+  Button {
+    margin-top: 2.5rem;
+    font-family: "Poppins";
+  }
+}

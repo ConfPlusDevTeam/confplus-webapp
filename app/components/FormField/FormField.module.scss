@@ -1,0 +1,28 @@
+.signInForm {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    color: #3a1078;
+    font-size: 0.9rem;
+    text-align: left;
+    width: 100%;
+  }
+
+  input {
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid #eeeeee;
+    border-radius: 0.4rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    width: min(60vw, 25rem);
+    color: #393737;
+    &::placeholder {
+      color: #646060;
+      font-weight: 500;
+    }
+  }
+}
+
+.formField {
+}
