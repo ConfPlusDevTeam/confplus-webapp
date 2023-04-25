@@ -1,0 +1,31 @@
+.sidebarMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20vw;
+  height: 65%;
+}
+
+.tabButton {
+  color: white;
+  background-color: transparent;
+  border: none;
+  padding: 8px;
+  width: 166px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-family: "Sulphur Point";
+  margin: 0.4rem;
+  margin-left: 2rem;
+  height: 1.5rem;
+  padding: 0.2rem 0.2rem;
+  font-weight: 500;
+}
+
+.active {
+  color: #5a1499;
+  background-color: white;
+}
