@@ -10,7 +10,7 @@ export default function WelcomeMessage({ props }) {
         width={40}
         height={40}
       />
-      <h2>Hi, {props}</h2>
+      <h2>Hi, {props}!</h2>
     </div>
   );
 }
