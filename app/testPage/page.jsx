@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import ContentContainer from "../components/ContentContainer/ContentContainer";
 import Tabs from "../components/Tabs/Tabs";
+import WelcomeMessage from "../components/WelcomeMessage/WelcomeMessage";
 export default function page() {
   const links = [
     {
@@ -22,5 +23,10 @@ export default function page() {
       link: "/testPage",
     },
   ];
-  return <Tabs links={links} />;
+  return (
+    <div>
+      <WelcomeMessage props={"Aly"} />
+      <Tabs links={links} />
+    </div>
+  );
 }
