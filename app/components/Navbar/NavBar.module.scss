@@ -4,11 +4,13 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  margin: 2vh 2vw;
+  margin: 3vh 2vw;
+  padding-left: 2rem;
 }
 .links {
   list-style-type: none;
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 2rem;
+  padding-right: 2rem;
 }
