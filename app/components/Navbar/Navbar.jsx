@@ -24,6 +24,7 @@ export default function Navbar({ links }) {
             }
             onclick={() => setSelected(key)}
             key={key}
+            className={styles.link}
           />
         ))}
       </ul>
