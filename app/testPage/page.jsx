@@ -7,7 +7,7 @@ export default function page() {
   const links = [
     {
       name: "Home",
-      link: "/",
+      link: "/testPage",
     },
 
     {
@@ -19,7 +19,7 @@ export default function page() {
     {
       name: "Sign In",
 
-      link: "/signin",
+      link: "/testPage",
     },
   ];
   return <Tabs links={links} />;

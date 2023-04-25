@@ -21,7 +21,7 @@ export default function Tabs({ links }) {
             }
             onclick={() => setSelected(key)}
             key={key}
-            className={styles.link}
+            className={styles}
           />
         ))}
       </ul>

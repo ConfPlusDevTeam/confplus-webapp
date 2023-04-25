@@ -25,13 +25,15 @@
   flex-direction: row;
   justify-content: space-between;
   padding-top: 0.25rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 .link {
   color: #fff;
   text-decoration: none;
   font-family: poppins;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 500;
   position: relative;
   top: 0;
   padding: 1rem 0.5rem 0.5rem 0.5rem;
@@ -39,5 +41,24 @@
     transition: 0.3s;
     padding-bottom: 0;
     top: 0;
+  }
+}
+
+.active {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  top: -0.15rem;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 15%;
+    bottom: -0.3rem;
+    width: 70%;
+    padding-bottom: 0.3rem;
+    border-bottom: #fff solid 0.1rem;
   }
 }
