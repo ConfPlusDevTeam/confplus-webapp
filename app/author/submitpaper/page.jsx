@@ -4,6 +4,7 @@ import styles from "./page.module.scss";
 import WelcomeMessage from "../../components/WelcomeMessage/WelcomeMessage";
 import ContentContainer from "../../components/ContentContainer/ContentContainer";
 import Tabs from "../../components/Tabs/Tabs";
+import SubmitPaperForm from "../../components/SubmitPaperForm/SubmitPaperForm";
 
 export default function SubmitPaper() {
   const links = [
@@ -21,6 +22,7 @@ export default function SubmitPaper() {
       <WelcomeMessage props="Aly" />
       <ContentContainer variant={2} className={styles}>
         <Tabs links={links} className={styles} />
+        <SubmitPaperForm />
       </ContentContainer>
     </div>
   );
