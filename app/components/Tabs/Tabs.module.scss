@@ -1,9 +1,6 @@
 .tabsContainer {
-  width: 40%;
+  width: min(40%, 60rem);
   height: 3.5vh;
-  position: absolute;
-  top: 50vh;
-  left: 50vh;
   background: radial-gradient(
     90.16% 143.01% at 15.32% 21.04%,
     rgba(72, 38, 168, 0.2) 0%,
