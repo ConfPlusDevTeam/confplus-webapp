@@ -14,15 +14,14 @@ export default function Home() {
   const [active, setActive] = useState("welcome");
   return (
     <>
-      <head>
-        {" "}
-        <style>{`
+      {" "}
+      <div className={styles.homeContainer}>
+          <style>{`
         body {
           overflow:hidden
         }
 `}</style>
-      </head>
-      <div className={styles.homeContainer}>
+
         <Sidebar
           onclick={(activeTab) => setActive(activeTab)}
           activeElement={active}
