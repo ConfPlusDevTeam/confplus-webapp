@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
     },
 
     {
-      name: "Schdeule",
+      name: "Schedule",
 
       link: "/schedule",
     },

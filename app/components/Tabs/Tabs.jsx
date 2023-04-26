@@ -5,11 +5,11 @@ import NavLink from "../NavLink/NavLink";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
 
-export default function Tabs({ links }) {
+export default function Tabs({ links, className }) {
   const [selected, setSelected] = useState();
   const segment = useSelectedLayoutSegment();
   return (
-    <div className={styles.tabsContainer}>
+    <div className={className.tabsContainer}>
       <ul className={styles.links}>
         {links.map((link, key) => (
           <NavLink
