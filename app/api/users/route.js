@@ -1,0 +1,1 @@
+//get users - returns all users if no query string parameters are passed else return users matching query of role type
