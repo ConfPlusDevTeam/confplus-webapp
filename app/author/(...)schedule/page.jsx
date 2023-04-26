@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./page.module.scss";
-import FullSchedule from "../components/FullSchedule/FullSchedule";
+import FullSchedule from "../../components/FullSchedule/FullSchedule";
+import Authors from "../page";
 
 export default function Schdeule() {
   const schedule = [
@@ -95,6 +96,12 @@ export default function Schdeule() {
       ],
     },
   ];
-
-  return <FullSchedule schedule={schedule} />;
+  return (
+    <>
+      <Authors />
+      <div className={styles.container}>
+        <FullSchedule schedule={schedule} />
+      </div>
+    </>
+  );
 }
