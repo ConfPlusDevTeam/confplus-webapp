@@ -22,6 +22,12 @@ export default function RootLayout({ children }) {
     },
 
     {
+      name: "Schdeule",
+
+      link: "/schedule",
+    },
+
+    {
       name: "Sign In",
 
       link: "/signin",
