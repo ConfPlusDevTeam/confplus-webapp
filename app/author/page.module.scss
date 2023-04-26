@@ -1,0 +1,55 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  margin-top: 7rem;
+}
+
+.tabsContainer {
+  width: 70%;
+  height: 3.5vh;
+  background: radial-gradient(
+    90.16% 143.01% at 15.32% 21.04%,
+    rgba(72, 38, 168, 0.2) 0%,
+    rgba(111, 68, 189, 0.2) 77.08%,
+    rgba(70, 144, 213, 0) 100%
+  );
+  backdrop-filter: blur(50px);
+  border-radius: 60px;
+  border: 0.2rem solid rgba(255, 242, 242, 0.354);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 2rem;
+  width: min(80%, 70rem);
+
+  background: radial-gradient(
+    90.16% 143.01% at 15.32% 21.04%,
+    rgba(165, 239, 255, 0.2) 0%,
+    rgba(110, 191, 244, 0.0447917) 77.08%,
+    rgba(70, 144, 213, 0) 100%
+  );
+  background-blend-mode: overlay, normal;
+  backdrop-filter: blur(40px);
+
+  border-radius: 5rem;
+  transform: rotate(0.12deg);
+
+  border: 0.3rem solid rgba(255, 242, 242, 0.354);
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
