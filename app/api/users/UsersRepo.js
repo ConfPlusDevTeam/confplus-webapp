@@ -1,18 +1,19 @@
-import {promises as fs} from 'fs';
+const fs = require('fs').promises;
 
 const path = "app/data/users.json";
 
-export async function getUsers() {
+async function getUsers() {
     return JSON.parse(await fs.readFile(path));
 }
 
-export async function getUsersByRole(role) {
-    return getUsers().filter(user => user.role === role);
+async function getUsersByRole(role) {
+    const users = await getUsers();
+    return users.filter(user => user.role === role);
 }
 
-export async function validateUser(email, password) {
-    return getUsers().find(user => user.email === email && user.password === password);
+async function validateUser(email, password) {
+    const users = await getUsers();
+    return users.find(user => user.email === email && user.password === password);
 }
-
 
 console.log(getUsers());
