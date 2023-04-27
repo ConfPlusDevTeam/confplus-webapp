@@ -2,10 +2,15 @@
 
 import * as repo from "./UsersRepo.js";
 export async function GET (request , {params}) {
-    const role = new URL (request.url).searchParams.get("role").toLowerCase;
-    if (role) {
-        return repo.getUsersByRole(role);
+    try{
+        const role = new URL (request.url).searchParams.get("role").toLowerCase;
+        if (role) {
+            return Response.Json(repo.getUsersByRole(role),{status: 200})
+        }
+        return (repo.getUsers(),{status: 200});
     }
-    return repo.getUsers();
+    catch (e) {
+        return ({message: "internal server error"}, {status: 500});
+    }
 }
 
