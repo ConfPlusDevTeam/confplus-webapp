@@ -52,6 +52,30 @@
     }
   }
 }
+
+.dropdown {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+
+  select {
+    color: #3a1078;
+    appearance: none;
+    outline: 0;
+    background: rgb(254, 254, 254);
+    height: 100%;
+    width: auto;
+    cursor: pointer;
+    border: 0.1rem solid #3a1078;
+    border-radius: 0.15rem;
+    padding: 0.2rem;
+    font-weight: 800;
+  }
+}
+
 .daySchedule {
   margin-top: 1rem;
 }
