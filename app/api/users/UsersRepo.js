@@ -8,6 +8,7 @@ export async function getUsers() {
 
 export async function getUsersByRole(role) {
     return getUsers().filter(user => user.role === role);
+}
 
 export async function validateUser(email, password) {
     return getUsers().find(user => user.email === email && user.password === password);
