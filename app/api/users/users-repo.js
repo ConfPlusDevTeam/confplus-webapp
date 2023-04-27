@@ -16,7 +16,7 @@ export default class UsersRepo {
 
   async validateUser(email, password) {
     return (await this.getUsers()).find(
-      (user) => user.email === email && user.password === password
+      (user) => user.email == email && user.password == password
     );
   }
 }
