@@ -1,7 +1,6 @@
 //Get -returns all institutions
 
-import InstituionsRepo from "./institutions-repo";
-const institutionsRepo = new InstituionsRepo();
+import * as institutionsRepo from "./institutions-repo";
 
 export async function GET(request, { params }) {
     try {
@@ -12,3 +11,4 @@ export async function GET(request, { params }) {
         return Response.json({ message: "Internal server error" }, { status: 500 });
     }
 }
+

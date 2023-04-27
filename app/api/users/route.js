@@ -1,6 +1,6 @@
 //get users - returns all users if no query string parameters are passed else return users matching query of role type
-import UsersRepo from "./users-repo";
-const repo = new UsersRepo();
+
+import * as repo from "./users-repo";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
