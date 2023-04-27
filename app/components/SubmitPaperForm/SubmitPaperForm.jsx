@@ -3,6 +3,7 @@ import React from "react";
 import Button from "../Button/Button";
 import styles from "./SubmitPaperForm.module.scss";
 import { useState } from "react";
+import dangerouslySetInnerHTML from "react-dom/server";
 
 export default function SubmitPaperForm({ affiliations }) {
   const [coAuthors, setCoAuthors] = useState([]);
@@ -10,7 +11,71 @@ export default function SubmitPaperForm({ affiliations }) {
   const [email, setEmail] = useState("");
   const [affiliation, setAffiliation] = useState("");
   const [markPresenter, setMarkPresenter] = useState(false);
-  const [toggle, setToggle] = useState(false);
+
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount(count + 1);
+  };
+
+  const renderHTML = () => {
+    const elements = [];
+    for (let i = 0; i < count; i++) {
+      elements.push(
+        <div className={styles.coAuthorForm}>
+          <h4 className={styles.paperDetails}> CO-AUTHOR</h4>
+          <div>
+            <label for="name" className={styles.label}>
+              NAME:
+            </label>
+            <input
+              id="name"
+              className={styles.input}
+              type="text"
+              placeholder="Enter Name"
+            />
+          </div>
+          <div>
+            <label for="email" className={styles.label}>
+              EMAIL:
+            </label>
+            <input
+              id="email"
+              className={styles.input}
+              type="email"
+              placeholder="Enter Email"
+            />
+          </div>
+          <div>
+            <label for="affiliation" className={styles.label}>
+              AFFILIATION:
+            </label>
+            <select
+              id="affiliation"
+              name="affiliation"
+              className={styles.affiliations}
+            >
+              {affiliations?.map((affiliation) => (
+                <option value={affiliation}>{affiliation}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label for="mark-presenter" className={styles.label}>
+              Mark as Presenter:
+            </label>
+            <input
+              type={"checkbox"}
+              id="mark-presenter"
+              className={styles.checkbox}
+            />
+          </div>
+          <input type={"button"} value="save" onClick={handleSubmit}></input>
+        </div>
+      );
+    }
+    return elements;
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,62 +115,10 @@ export default function SubmitPaperForm({ affiliations }) {
         />
       </div>
       <div>
-        {toggle && (
-          <form className={styles.coAuthorForm}>
-            <h4 className={styles.paperDetails}> CO-AUTHOR</h4>
-            <div>
-              <label for="name" className={styles.label}>
-                NAME:
-              </label>
-              <input
-                id="name"
-                className={styles.input}
-                type="text"
-                placeholder="Enter Name"
-              />
-            </div>
-            <div>
-              <label for="email" className={styles.label}>
-                EMAIL:
-              </label>
-              <input
-                id="email"
-                className={styles.input}
-                type="email"
-                placeholder="Enter Email"
-              />
-            </div>
-            <div>
-              <label for="affiliation" className={styles.label}>
-                AFFILIATION:
-              </label>
-              <select
-                id="affiliation"
-                name="affiliation"
-                className={styles.affiliations}
-              >
-                {affiliations?.map((affiliation) => (
-                  <option value={affiliation}>{affiliation}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label for="mark-presenter" className={styles.label}>
-                Mark as Presenter:
-              </label>
-              <input
-                type={"checkbox"}
-                id="mark-presenter"
-                className={styles.checkbox}
-              />
-            </div>
-            <input type={"button"} value="save" onClick={handleSubmit}></input>
-          </form>
-        )}
         <div>
           <input
             type={"button"}
-            onClick={() => setToggle(!toggle)}
+            onClick={handleClick}
             value="+"
             id="add-coauthor"
             className={styles.addCoAuthorBtn}
@@ -114,6 +127,7 @@ export default function SubmitPaperForm({ affiliations }) {
             {" "}
             ADD CO-AUTHOR
           </label>
+          {renderHTML()}
         </div>
       </div>
     </form>
