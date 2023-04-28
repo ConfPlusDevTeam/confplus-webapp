@@ -14,8 +14,13 @@ export default function FullSchedule({ schedule }) {
       </h1>
       <div className={styles.dropdown}>
         <label htmlFor="filter">Filter by day: </label>
-        <select id="filter" name="filter" className={styles.dropdown}>
-          <option value="" disabled selected hidden>
+        <select
+          defaultValue=""
+          id="filter"
+          name="filter"
+          className={styles.dropdown}
+        >
+          <option value="" disabled hidden>
             Choose a day
           </option>
           <option value="all" onClick={() => setChosenDay("all")}>

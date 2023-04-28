@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import styles from "./page.module.scss";
 import WelcomeMessage from "../components/WelcomeMessage/WelcomeMessage";
@@ -17,7 +18,9 @@ export default function Authors() {
   ];
   return (
     <div className={styles.profile}>
-      <WelcomeMessage props="Aly" />
+      <WelcomeMessage
+        props={JSON.parse(localStorage.getItem("user")).first_name}
+      />
       <ContentContainer variant={2} className={styles}>
         <Tabs links={links} className={styles} />
         <h1>Test Card</h1>
