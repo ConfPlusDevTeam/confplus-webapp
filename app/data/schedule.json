@@ -1,1 +1,39 @@
-[]
+[{
+    "date": "2023-04-02",
+    "presentations": [
+        {
+            "paperTitle": "Presentation 1",
+            "presenter": "Presenter 1",
+            "from": "10:00",
+            "to": "11:00"
+            
+        },
+        {
+            "paperTitle": "Presentation 2",
+            "presenter": "Presenter 2",
+            "from": "11:00",
+            "to": "12:00"
+        }
+    ]
+
+},
+
+{
+    "date": "2023-05-02",
+    "presentations": [
+        {
+            "paperTitle": "Presentation 3",
+            "presenter": "Presenter 3",
+            "from": "10:00",
+            "to": "11:00"
+            
+        },
+        {
+            "paperTitle": "Presentation 4",
+            "presenter": "Presenter 4",
+            "from": "11:00",
+            "to": "12:00"
+        }
+    ]
+
+}]
