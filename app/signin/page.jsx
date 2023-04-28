@@ -8,6 +8,7 @@ import Styles from "./page.module.scss";
 import useRouter from "next/router";
 import { useEffect } from "react";
 import Link from "next/link";
+import { redirect } from "next/dist/server/api-utils";
 export default function SignInForm() {
   const [message, setMessage] = React.useState("");
   const [loggedIn, setLoggedIn] = React.useState(
@@ -38,6 +39,7 @@ export default function SignInForm() {
       localStorage.setItem("user", JSON.stringify(data));
       const user = JSON.parse(localStorage.getItem("user"));
       setLoggedIn(true);
+      // redirect(307, "/author");
     } else setMessage("Error: " + "invalid email or password");
   };
 
