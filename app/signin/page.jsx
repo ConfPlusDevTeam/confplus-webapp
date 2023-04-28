@@ -10,7 +10,7 @@ export default function SignInForm() {
   return (
     <form className={Styles.form}>
       <h2>
-        Hi There, Welcome to <Logo />
+        Hi There, Welcome to <Logo />!
       </h2>
       <FormField
         label="Email"
