@@ -1,15 +1,12 @@
 //get institutions
-import fs from "fs";
-const institutionsPath = "app/data/users.json";
+import fs from "fs-extra";
+import path from "path";
 
-export default function getInstitutions(){
-    try {
-        const institutions = JSON.parse(fs.readFileSync(institutionsPath));
-        return institutions;
-    }
-    catch (e) {
-        throw e;
-    }
+export default class InstituionsRepo {
+  constructor() {
+    this.path = path.join(process.cwd(), "app/data/institutions.json");
+  }
+  async getInstitutions() {
+    return JSON.parse(await fs.readFile(this.path));
+  }
 }
-
-console.log(getInstitutions());
