@@ -20,3 +20,27 @@
 }
 .button {
 }
+.link {
+  margin: 0 auto;
+  background-color: #3a1078;
+  color: white;
+  border-radius: 0.6rem;
+  padding: 0.4rem min(15vw, 5rem);
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  box-shadow: #000000;
+  filter: drop-shadow(0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25));
+
+  &:hover {
+    background-color: darken(#3a1078, 10%);
+  }
+
+  &:active {
+    background-color: darken(#3a1078, 20%);
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
