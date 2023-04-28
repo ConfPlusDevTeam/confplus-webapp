@@ -81,5 +81,11 @@ export default class PapersRepo {
         }
         return paper.reviews[1];
     }
+
+    async getAcceptedPapers(){
+        const allPapers = JSON.parse(await fs.readFile(this.path));
+        const papers = allPapers.filter(paper => paper.status == "accepted");
+        return papers;
+    }
 }
 
