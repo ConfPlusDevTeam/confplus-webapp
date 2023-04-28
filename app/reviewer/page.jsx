@@ -3,6 +3,7 @@ import ContentContainer from "@/app/components/ContentContainer/ContentContainer
 import Tabs from "@/app/components/Tabs/Tabs";
 import WelcomeMessage from "@/app/components/WelcomeMessage/WelcomeMessage";
 import styles from "./page.module.scss";
+import PaperCards from "../components/PaperCards/PaperCards";
 
 export default function Reviewer() {
   const links = [
@@ -20,6 +21,7 @@ export default function Reviewer() {
       <WelcomeMessage props="Aly" />
       <ContentContainer variant={2} className={styles}>
         <Tabs links={links} className={styles} />
+        <PaperCards />
       </ContentContainer>
     </div>
   );
