@@ -98,7 +98,7 @@ export default function Schdeule() {
   ];
   return (
     <>
-      <Authors />
+      {/* <Authors /> */}
       <div className={styles.container}>
         <FullSchedule schedule={schedule} />
       </div>
