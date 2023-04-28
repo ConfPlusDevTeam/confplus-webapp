@@ -1,17 +1,17 @@
-// "use client";
+"use client";
 import Link from "next/link";
 import "./globals.scss";
 import Background from "./components/Background/background";
 import Navbar from "./components/Navbar/Navbar";
-// import { useState } from "react";
+import { useState } from "react";
 
-export const metadata = {
-  title: "ConfPlus",
-  description: "WebProject",
-};
+// export const metadata = {
+//   title: "ConfPlus",
+//   description: "WebProject",
+// };
 
 export default function RootLayout({ children }) {
-  const links = [
+  let links = [
     {
       name: "Home",
       link: "/",
@@ -35,13 +35,37 @@ export default function RootLayout({ children }) {
       link: "/signin",
     },
   ];
+  const [isSignedIn, setIsSignedIn] = useState(
+    localStorage.getItem("user") == null ? false : true
+  );
 
-  // const [isSignedIn, setIsSignedIn] = useState();
-  // setIsSignedIn(from localStorage);
-  // if (isSignedIn) {
-  //   links[3].name = "Account";
-  //   links[3].link = "/author"; // get the role from the local storage
-  // }
+  if (isSignedIn) {
+    const SignedInLinks = [
+      {
+        name: "Home",
+        link: "/",
+      },
+
+      {
+        name: "Schedule",
+
+        link: "/schedule",
+      },
+
+      {
+        name: "Account",
+
+        link: `/${JSON.parse(localStorage.getItem("user")).role}`,
+      },
+      {
+        name: "Log Out",
+
+        link: `/signin`,
+      },
+    ];
+
+    links = SignedInLinks;
+  }
 
   return (
     <html lang="en">
