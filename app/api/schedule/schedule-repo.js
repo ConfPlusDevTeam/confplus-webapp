@@ -14,7 +14,7 @@ export default class ScheduleRepo {
     async addScheduleItem (scheduleItem) {
         const schedule = JSON.parse(await fs.readFile(this.path))
         schedule.push(scheduleItem)
-        fs.writeFile(this.path, JSON.stringify(schedule))
+        await fs.writeFile(this.path, JSON.stringify(schedule))
         return scheduleItem
     }
 }

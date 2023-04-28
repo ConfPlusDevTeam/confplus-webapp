@@ -12,8 +12,8 @@ export default class PapersRepo {
         const papers = JSON.parse(await fs.readFile(this.path));
         papers.push(paper);
         const paperReviewers = UsersRepo.getUsersByRole("reviewer");
-        paperReviewers.sort(() => Math.random() - 0.5).slice(0, 2);
-        paper.reviewers =  paperReviewers.map(reviewer => reviewer.email);
+        const selectedReviewers = paperReviewers.sort(() => Math.random() - 0.5).slice(0, 2);
+        paper.reviewers = selectedReviewers.map(reviewer => reviewer.email);
 
         paper.reviews = [
             {
@@ -38,7 +38,7 @@ export default class PapersRepo {
 
         paper.status = "pending";
         
-        fs.writeFile(this.path, JSON.stringify(papers));
+        await fs.writeFile(this.path, JSON.stringify(papers));
         return paper;
     }
 
@@ -71,7 +71,7 @@ export default class PapersRepo {
             paper.status = "pending";
         }
 
-        fs.writeFile(this.path, JSON.stringify(paper));
+        await fs.writeFile(this.path, JSON.stringify(paper));
     }
 
     async loadReview(paperTitle, reviewerEmail) {
@@ -86,6 +86,11 @@ export default class PapersRepo {
         const allPapers = JSON.parse(await fs.readFile(this.path));
         const papers = allPapers.filter(paper => paper.status == "accepted");
         return papers;
+    }
+    
+    async loadReviewsForPaper(paperTitle) {
+        const paper = JSON.parse(await fs.readFile(this.path)).filter(paper => paper.paperTitle == paperTitle)
+        return paper.reviews;
     }
 }
 
