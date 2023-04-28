@@ -5,19 +5,23 @@ import Logo from "../components/Logo/Logo";
 import Button from "../components/Button/Button";
 import FormField from "../components/FormField/FormField";
 import Styles from "./page.module.scss";
-import useRouter from "next/router";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Link from "next/link";
+
 export default function SignInForm() {
   const [message, setMessage] = React.useState("");
   const [loggedIn, setLoggedIn] = React.useState(
     localStorage.getItem("user") == null ? false : true
   );
-  // const router = useRouter;
-  // useEffect(() => {
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   typeof window !== "undefined" && router.push(`/${user.role}`);
-  // }, []);
+  const router = useRouter();
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      router.push("/authors");
+    }
+  }, [router]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = {
@@ -36,9 +40,11 @@ export default function SignInForm() {
 
     if (res.status == 200) {
       localStorage.setItem("user", JSON.stringify(data));
-      const user = JSON.parse(localStorage.getItem("user"));
       setLoggedIn(true);
-    } else setMessage("Error: " + "invalid email or password");
+      router.push("/authors");
+    } else {
+      setMessage("Error: " + "invalid email or password");
+    }
   };
 
   return (
@@ -67,9 +73,7 @@ export default function SignInForm() {
       {loggedIn == true && (
         <div className={Styles.form}>
           <Button variant={3} type="submit">
-            <Link href={`/${JSON.parse(localStorage.getItem("user")).role}`}>
-              My Account
-            </Link>
+            <Link href={`/authors`}>My Account</Link>
           </Button>
           <Button
             variant={1}
