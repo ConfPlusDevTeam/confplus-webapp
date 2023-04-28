@@ -17,4 +17,7 @@ export default class ScheduleRepo {
         await fs.writeFile(this.path, JSON.stringify(schedule))
         return scheduleItem
     }
-}
+    async getScheduleDates () {
+        return JSON.parse(await fs.readFile(path.join(process.cwd(), "app/data/conference-dates.json")));
+    }
+}   
