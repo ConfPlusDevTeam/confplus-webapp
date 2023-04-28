@@ -8,7 +8,7 @@ export default function Authors() {
   const links = [
     {
       name: "Submitted Papers",
-      link: "",
+      link: "/author",
     },
     {
       name: "Submit Paper",

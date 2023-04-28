@@ -68,11 +68,11 @@ export default function SignInForm() {
       )}
       {loggedIn == true && (
         <div className={Styles.form}>
-          <Button variant={3} type="submit">
+          {/* <Button variant={3} type="submit">
             <Link href={`/${JSON.parse(localStorage.getItem("user")).role}`}>
               My Account
             </Link>
-          </Button>
+          </Button> */}
           <Button
             variant={1}
             type="submit"
