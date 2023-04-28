@@ -10,6 +10,7 @@ export async function POST(request, { params }){
             return Response.json({ message: "Bad request" }, { status: 400 });
         }
             PapersRepo.submitReview(request.body);
+
             return Response.json({ message: "Review submitted" }, { status: 200 });
     } catch (e) {
         return Response.json({ message: "Internal server error" }, { status: 500 });
@@ -19,10 +20,11 @@ export async function POST(request, { params }){
 //returns reviews for a paper
 export async function GET(request, { params }){
     try{
-        const paperTitle = new URL(request.url).searchParams.get("paper");
+        const paperTitle = new URL(request.url).searchParams.get("paperTitle");
         if (!paperTitle) {
             return Response.json({ message: "Bad request" }, { status: 400 });
         }
+        
         const paperReviews = await papersRepo.loadReviewsForPaper(paperTitle);
         return Response.json(paperReviews, { status: 200 });
     } catch (e) {
