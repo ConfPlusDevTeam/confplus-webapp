@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./page.module.scss";
+// import styles from "./page.module.scss";
 import FullSchedule from "../components/FullSchedule/FullSchedule";
 
 export default function Schdeule() {
