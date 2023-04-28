@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Authors from "../page";
 import styles from "./page.module.scss";
@@ -19,7 +20,9 @@ export default function SubmitPaper() {
   ];
   return (
     <div className={styles.profile}>
-      <WelcomeMessage props="Aly" />
+      <WelcomeMessage
+        props={JSON.parse(localStorage.getItem("user")).first_name}
+      />
       <ContentContainer variant={2} className={styles}>
         <Tabs links={links} className={styles} />
         <SubmitPaperForm />

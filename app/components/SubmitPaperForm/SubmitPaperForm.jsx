@@ -22,11 +22,12 @@ export default function SubmitPaperForm({ affiliations }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const newCoAuthor = {
-      name: form.name.value,
-      email: form.email.value,
-      affiliation: form.affiliation.value,
-      markPresenter: form.markPresenter.value,
+      name: event.target[0].value,
+      email: event.target[1].value,
+      affiliation: event.target[2].value,
+      markPresenter: event.target[3].value,
     };
+    console.log(newCoAuthor);
     setCoAuthors([...coAuthors, newCoAuthor]);
   };
 
@@ -40,10 +41,10 @@ export default function SubmitPaperForm({ affiliations }) {
   const renderHTML = () => {
     for (let i = 0; i < count; i++) {
       elements.push(
-        <form className={styles.coAuthorForm}>
-          <h4 className={styles.paperDetails}> CO-AUTHOR</h4>
+        <div className={styles.coAuthorForm} onSubmit={handleSubmit}>
+          <h4 className={styles.paperDetails}>CO-AUTHOR {count}</h4>
           <div>
-            <label for="name" className={styles.label}>
+            <label htmlFor="name" className={styles.label}>
               NAME:
             </label>
             <input
@@ -54,7 +55,7 @@ export default function SubmitPaperForm({ affiliations }) {
             />
           </div>
           <div>
-            <label for="email" className={styles.label}>
+            <label htmlFor="email" className={styles.label}>
               EMAIL:
             </label>
             <input
@@ -65,7 +66,7 @@ export default function SubmitPaperForm({ affiliations }) {
             />
           </div>
           <div>
-            <label for="affiliation" className={styles.label}>
+            <label htmlFor="affiliation" className={styles.label}>
               AFFILIATION:
             </label>
             <select
@@ -79,19 +80,23 @@ export default function SubmitPaperForm({ affiliations }) {
             </select>
           </div>
           <div>
-            <label for="mark-presenter" className={styles.label}>
+            <label htmlFor="mark-presenter" className={styles.label}>
               Mark as Presenter:
             </label>
             <input
-              type={"checkbox"}
+              type="checkbox"
               id="mark-presenter"
               className={styles.checkbox}
             />
           </div>
-          <button type="submit" onClick={handleSubmit}>
-            save
-          </button>
-        </form>
+          <Button
+            className={styles.saveBtn}
+            variant={1}
+            type="submit"
+            text="Save"
+            onClick={handleSubmit}
+          ></Button>
+        </div>
       );
     }
     return elements;
@@ -102,7 +107,7 @@ export default function SubmitPaperForm({ affiliations }) {
       <h3 className={styles.submitForm}> SUBMIT FORM</h3>
       <h4 className={styles.paperDetails}>PAPER DETAILS:</h4>
       <div>
-        <label for="title" className={styles.label}>
+        <label htmlFor="title" className={styles.label}>
           TITLE:
         </label>
         <input
@@ -113,7 +118,7 @@ export default function SubmitPaperForm({ affiliations }) {
         />
       </div>
       <div>
-        <label for="abstract" className={styles.label}>
+        <label htmlFor="abstract" className={styles.label}>
           ABSTRACT:
         </label>
         <textarea
@@ -123,6 +128,21 @@ export default function SubmitPaperForm({ affiliations }) {
           placeholder="Enter Abstract"
         />
       </div>
+      <div className={styles.uploadField}>
+        <UploadField></UploadField>
+      </div>
+      <div>
+        <label htmlFor="title" className={styles.label}>
+          FILE LINK:
+        </label>
+        <input
+          id="title"
+          className={styles.input}
+          type="text"
+          placeholder="Enter Link"
+        />
+      </div>
+
       <div>
         <div>
           <input
@@ -132,13 +152,11 @@ export default function SubmitPaperForm({ affiliations }) {
             id="add-coauthor"
             className={styles.addCoAuthorBtn}
           ></input>
-          <label for="add-coauthor" className={styles.paperDetails}>
-            {" "}
+          <label htmlFor="add-coauthor" className={styles.paperDetails}>
             ADD CO-AUTHOR
           </label>
           {renderHTML().map((element) => element)}
         </div>
-        <UploadField className={styles.uploadField}></UploadField>
       </div>
     </form>
   );
