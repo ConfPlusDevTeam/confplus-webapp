@@ -24,7 +24,7 @@ export default function FullSchedule({ schedule }) {
           {schedule
             ?.map((day) => day.name)
             .map((name, key) => (
-              <option onClick={() => setChosenDay(name)} value={name}>
+              <option key={key} onClick={() => setChosenDay(name)} value={name}>
                 {"Day " + (key + 1)}
               </option>
             ))}
