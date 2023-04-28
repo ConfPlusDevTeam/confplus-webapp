@@ -79,5 +79,10 @@ export default class PapersRepo {
         return papers.filter(paper => (paper.reviews[0].evaluation + paper.reviews[1].evaluation >= 2));;
     }
 
+    async loadReviewsForPaper(paperTitle) {
+        const allPapers = JSON.parse(await fs.readFile(this.path));
+        const paper = allPapers.filter(paper => paper.paperTitle == paperTitle);
+        return paper.reviews;
+    }
 }
 
