@@ -17,7 +17,7 @@ export default class PapersRepo {
 
         paper.reviews = [
             {
-                "paperTitle": paper.paperTitle,
+              "paperTitle": paper.paperTitle,
               "reviewerEmail": paper.reviewers[0] ,
               "status": "pending",
               "evaluation": "",
@@ -26,7 +26,7 @@ export default class PapersRepo {
               "weaknesses": ""
             },
             {
-                paperTitle: paper.paperTitle,
+              "paperTitle": paper.paperTitle,
               "reviewerEmail": paper.reviewers[1],   
               "status": "pending",
               "evaluation": "",
