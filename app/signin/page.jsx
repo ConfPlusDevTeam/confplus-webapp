@@ -5,20 +5,18 @@ import Logo from "../components/Logo/Logo";
 import Button from "../components/Button/Button";
 import FormField from "../components/FormField/FormField";
 import Styles from "./page.module.scss";
-import useRouter from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Link from "next/link";
 import { redirect } from "next/dist/server/api-utils";
 export default function SignInForm() {
+  const router = useRouter();
+
   const [message, setMessage] = React.useState("");
   const [loggedIn, setLoggedIn] = React.useState(
     localStorage.getItem("user") == null ? false : true
   );
-  // const router = useRouter;
-  // useEffect(() => {
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   typeof window !== "undefined" && router.push(`/${user.role}`);
-  // }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = {
@@ -39,7 +37,7 @@ export default function SignInForm() {
       localStorage.setItem("user", JSON.stringify(data));
       const user = JSON.parse(localStorage.getItem("user"));
       setLoggedIn(true);
-      // redirect(307, "/author");
+      router.push(`/${user.role}`);
     } else setMessage("Error: " + "invalid email or password");
   };
 
@@ -80,6 +78,7 @@ export default function SignInForm() {
             onClick={(e) => {
               localStorage.removeItem("user");
               setLoggedIn(false);
+              router.push(`/signin`);
             }}
           />
         </div>
