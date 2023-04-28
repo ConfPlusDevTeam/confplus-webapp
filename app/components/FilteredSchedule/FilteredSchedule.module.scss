@@ -1,29 +1,32 @@
 .ScheduleContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  row-gap: 0.3rem;
+  align-items: flex-start;
+  row-gap: 3rem;
+  width: 100%;
+  height: min(70vh, fit-content);
+  margin: none;
+  background-color: transparent;
+  border-radius: 2.5rem;
+  color: #ffffff;
 
   h2 {
-    color: #3a1078;
+    color: #ffffff;
     display: inline-flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 0.3rem;
-    svg {
-      width: 2rem;
-      fill: #3a1078;
-    }
   }
 
   h3 {
-    color: #000000;
+    color: #ce68d3;
     font-size: 1.2rem;
+    margin-right: 1rem;
   }
 
   p {
     font-size: 0.9rem;
     font-weight: 500;
-    color: #000000;
+    color: #f1f1f1;
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
@@ -31,18 +34,46 @@
     justify-content: center;
     svg {
       width: 1.2rem;
-      fill: #3a1078;
+      fill: #ffffff;
     }
+    margin-right: 1rem;
   }
 }
+
+.dropdown {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+
+  select {
+    color: #000000;
+    appearance: none;
+    outline: 0;
+    background: rgb(254, 254, 254);
+    height: 100%;
+    width: auto;
+    cursor: pointer;
+    border: 0.1rem solid #ffffff;
+    border-radius: 0.15rem;
+    padding: 0.2rem;
+    font-weight: 500;
+  }
+}
+
 .daySchedule {
   margin-top: 1rem;
 }
 
 .sessionContainer {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  row-gap: 0.5rem;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
   margin-top: 1rem;
+  width: 70%;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
 }
