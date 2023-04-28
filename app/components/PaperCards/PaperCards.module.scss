@@ -1,11 +1,11 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  // align-items: center;
   padding: 1rem;
   margin: 1rem;
-  min-width: 60rem;
+  width: 100%;
   background: radial-gradient(
     90.16% 143.01% at 15.32% 21.04%,
     rgba(165, 239, 255, 0.2) 0%,
@@ -22,9 +22,10 @@
 .cards {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
+  width: 80%;
 }
 .paperDetails {
   margin-left: 2rem;

@@ -4,6 +4,7 @@ import styles from "./page.module.scss";
 import WelcomeMessage from "../components/WelcomeMessage/WelcomeMessage";
 import ContentContainer from "../components/ContentContainer/ContentContainer";
 import Tabs from "../components/Tabs/Tabs";
+import PaperCards from "../components/PaperCards/PaperCards";
 
 export default function Authors() {
   const links = [
@@ -23,9 +24,10 @@ export default function Authors() {
       />
       <ContentContainer variant={2} className={styles}>
         <Tabs links={links} className={styles} />
-        <h1>Test Card</h1>
-        <h1>Test Card</h1>
-        <h1>Test Card</h1>
+        <PaperCards />
+        <PaperCards />
+        <PaperCards />
+        <PaperCards />
       </ContentContainer>
     </div>
   );
