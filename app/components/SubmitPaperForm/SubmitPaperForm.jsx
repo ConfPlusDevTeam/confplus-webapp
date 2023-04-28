@@ -2,27 +2,45 @@
 import React from "react";
 import Button from "../Button/Button";
 import styles from "./SubmitPaperForm.module.scss";
+import UploadField from "../UploadField/UploadField";
 import { useState } from "react";
-import dangerouslySetInnerHTML from "react-dom/server";
 
 export default function SubmitPaperForm({ affiliations }) {
   const [coAuthors, setCoAuthors] = useState([]);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [affiliation, setAffiliation] = useState("");
-  const [markPresenter, setMarkPresenter] = useState(false);
-
+  const [showButton, setShowButton] = useState(true);
+  const elements = [];
   const [count, setCount] = useState(0);
+
+  const handleShowButton = () => {
+    setShowButton(!showButton);
+  };
 
   const handleClick = () => {
     setCount(count + 1);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newCoAuthor = {
+      name: form.name.value,
+      email: form.email.value,
+      affiliation: form.affiliation.value,
+      markPresenter: form.markPresenter.value,
+    };
+    setCoAuthors([...coAuthors, newCoAuthor]);
+  };
+
+  const handleDelete = (index) => {
+    const newCoAuthors = [...coAuthors];
+    newCoAuthors.splice(index, 1);
+    setCoAuthors(newCoAuthors);
+    elements.splice(index, 1);
+  };
+
   const renderHTML = () => {
-    const elements = [];
     for (let i = 0; i < count; i++) {
       elements.push(
-        <div className={styles.coAuthorForm}>
+        <form className={styles.coAuthorForm}>
           <h4 className={styles.paperDetails}> CO-AUTHOR</h4>
           <div>
             <label for="name" className={styles.label}>
@@ -70,24 +88,15 @@ export default function SubmitPaperForm({ affiliations }) {
               className={styles.checkbox}
             />
           </div>
-          <input type={"button"} value="save" onClick={handleSubmit}></input>
-        </div>
+          <button type="submit" onClick={handleSubmit}>
+            save
+          </button>
+        </form>
       );
     }
     return elements;
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newCoAuthor = { name: name, email: email };
-    setCoAuthors([...coAuthors, newCoAuthor]);
-  };
-
-  const handleDelete = (index) => {
-    const newCoAuthors = [...coAuthors];
-    newCoAuthors.splice(index, 1);
-    setCoAuthors(newCoAuthors);
-  };
   return (
     <form className={styles.form}>
       <h3 className={styles.submitForm}> SUBMIT FORM</h3>
@@ -127,8 +136,9 @@ export default function SubmitPaperForm({ affiliations }) {
             {" "}
             ADD CO-AUTHOR
           </label>
-          {renderHTML()}
+          {renderHTML().map((element) => element)}
         </div>
+        <UploadField className={styles.uploadField}></UploadField>
       </div>
     </form>
   );
