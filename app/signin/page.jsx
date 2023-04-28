@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Logo from "../components/Logo/Logo";
 import Button from "../components/Button/Button";
@@ -15,12 +13,13 @@ export default function SignInForm() {
     localStorage.getItem("user") == null ? false : true
   );
   const router = useRouter();
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      router.push("/authors");
+    if (loggedIn && user) {
+      router.push(`/${user.role}`);
     }
-  }, [router]);
+  }, [loggedIn]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,15 +40,12 @@ export default function SignInForm() {
     if (res.status == 200) {
       localStorage.setItem("user", JSON.stringify(data));
       setLoggedIn(true);
-      router.push("/authors");
-    } else {
-      setMessage("Error: " + "invalid email or password");
-    }
+    } else setMessage("Error: " + "invalid email or password");
   };
 
   return (
     <>
-      {loggedIn == false && (
+      {!loggedIn && (
         <form className={Styles.form} onSubmit={handleSubmit}>
           <h2>
             Hi There, Welcome to <Logo />!
@@ -70,10 +66,12 @@ export default function SignInForm() {
           <Button variant={1} type="submit" text="Sign In" />
         </form>
       )}
-      {loggedIn == true && (
+      {loggedIn && (
         <div className={Styles.form}>
           <Button variant={3} type="submit">
-            <Link href={`/authors`}>My Account</Link>
+            <Link href={`/${JSON.parse(localStorage.getItem("user")).role}`}>
+              My Account
+            </Link>
           </Button>
           <Button
             variant={1}
