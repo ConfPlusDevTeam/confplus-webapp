@@ -11,11 +11,20 @@ export default class ScheduleRepo {
         const schedule = JSON.parse(await fs.readFile(this.path));
         return schedule;
     }
-    async addScheduleItem (scheduleItem) {
-        const schedule = JSON.parse(await fs.readFile(this.path))
-        schedule.push(scheduleItem)
-        await fs.writeFile(this.path, JSON.stringify(schedule))
-        return scheduleItem
+    async addScheduleItem (session) {
+        const allSessions = await this.getSchedule();
+
+        const matchingSession = allSessions.find(item => item.date === session.date);
+        if (matchingSession) {
+            matchingSession.presentations = session.presentations;
+        }
+        else {
+            allSessions.push(session);
+        }
+
+        await fs.writeFile(this.path, JSON.stringify(allSessions));
+        return session;
+
     }
     async getScheduleDates () {
         return JSON.parse(await fs.readFile(path.join(process.cwd(), "app/data/conference-dates.json")));
