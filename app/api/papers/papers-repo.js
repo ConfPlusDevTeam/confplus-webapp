@@ -79,7 +79,8 @@ export default class PapersRepo {
   //   return paper;}
 
   async addReview(review) {
-    const paper = JSON.parse(await fs.readFile(this.path)).filter(paper => paper.paperTitle == review.paperTitle)[0];
+    const allPapers = JSON.parse(await fs.readFile(this.path));
+    const paper = allPapers.filter(paper => paper.paperTitle == review.paperTitle)[0];
     if (review.reviewerEmail == paper.reviews[0].reviewerEmail) {
       paper.reviews[0] = review;
       paper.reviews[0].status = "submitted";
@@ -89,7 +90,7 @@ export default class PapersRepo {
       paper.reviews[1] = review;
       paper.reviews[1].status = "submitted";
     }
-    await fs.writeFile(this.path, JSON.stringify(paper));
+    await fs.writeFile(this.path, JSON.stringify(allPapers));
   }
 
   async loadReview(paperTitle, reviewerEmail) {
