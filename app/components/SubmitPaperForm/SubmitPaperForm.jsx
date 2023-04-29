@@ -13,6 +13,7 @@ export default function SubmitPaperForm({}) {
   const [affiliations, setAffiliations] = useState([]);
   const [emails, setEmails] = useState([]);
   const [users, setUsers] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const getAffiliations = async () => {
     const response = await fetch("/api/institutions").then((response) =>
@@ -74,22 +75,53 @@ export default function SubmitPaperForm({}) {
         affiliation: affiliation,
         presenter: markPresenter ? "yes" : "no",
       };
+      emails.splice(emails.indexOf(email), 1);
+      setErrorMessage("");
       setCoAuthors([...coAuthors, newCoAuthor]);
       setName("");
       setEmail("");
       setAffiliation("");
       setMarkPresenter(false);
-    }
+    } else setErrorMessage("Please fill all the fields");
   };
 
   const handleDelete = (index) => {
     const newCoAuthors = [...coAuthors];
+    emails.push(newCoAuthors[index].email);
+
     newCoAuthors.splice(index, 1);
     setCoAuthors(newCoAuthors);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const paper = {
+      paperTitle: event.target.title.value,
+      abstract: event.target.abstract.value,
+      fileLink: event.target.link.value,
+      author: JSON.parse(localStorage.getItem("user")).email,
+      coAuthors: coAuthors,
+    };
+    // fetch("/api/papers", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(paper),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log("Success:", data);
+    //     alert("Paper submitted successfully");
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //     alert("Error submitting paper");
+    //   });
+  };
+
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <h3 className={styles.submitForm}> SUBMIT FORM</h3>
       <h4 className={styles.paperDetails}>PAPER DETAILS:</h4>
       <div>
@@ -101,6 +133,7 @@ export default function SubmitPaperForm({}) {
           className={styles.input}
           type="text"
           placeholder="Enter Title"
+          required
         />
       </div>
       <div>
@@ -112,6 +145,7 @@ export default function SubmitPaperForm({}) {
           className={styles.textArea}
           type="text"
           placeholder="Enter Abstract"
+          required
         />
       </div>
       <div className={styles.uploadField}>
@@ -124,8 +158,9 @@ export default function SubmitPaperForm({}) {
         <input
           id="link"
           className={styles.input}
-          type="text"
+          type="url"
           placeholder="Enter Link"
+          required
         />
       </div>
       {coAuthors.length > 0 && (
@@ -165,19 +200,10 @@ export default function SubmitPaperForm({}) {
           {showForm && (
             <div className={styles.coAuthorForm}>
               <h4 className={styles.paperDetails}>CO-AUTHOR </h4>
-
+              <div className={styles.errorMessage}>
+                <p>{errorMessage}</p>
+              </div>
               <div>
-                {/* <label htmlFor="email" className={styles.label}>
-                  EMAIL:
-                </label>
-                <input
-                  id="email"
-                  className={styles.input}
-                  type="email"
-                  placeholder="Enter Email"
-                  onChange={handleEmailChange}
-                  value={email}
-                /> */}
                 <label htmlFor="email" className={styles.label}>
                   EMAIL:
                 </label>
@@ -187,7 +213,11 @@ export default function SubmitPaperForm({}) {
                   className={styles.affiliations}
                   value={email}
                   onChange={handleEmailChange}
+                  defaultValue=""
                 >
+                  <option disabled hidden value="">
+                    Choose Author Email
+                  </option>
                   {emails?.map((em, key) => (
                     <option key={key} onClick={handleEmailChange} value={em}>
                       {em}
@@ -217,7 +247,11 @@ export default function SubmitPaperForm({}) {
                   className={styles.affiliations}
                   value={affiliation}
                   onChange={handleAffiliationChange}
+                  defaultValue=""
                 >
+                  <option disabled hidden value="">
+                    Choose Affiliation
+                  </option>
                   {affiliations?.map((affil, key) => (
                     <option
                       key={key}
@@ -251,6 +285,9 @@ export default function SubmitPaperForm({}) {
             </div>
           )}
         </div>
+      </div>
+      <div className={styles.submitBtn}>
+        <Button variant={1} type="submit" text="Submit Paper"></Button>
       </div>
     </form>
   );

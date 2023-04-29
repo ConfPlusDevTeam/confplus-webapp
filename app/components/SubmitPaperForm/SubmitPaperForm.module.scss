@@ -31,8 +31,8 @@
   margin-bottom: 0.5rem;
   padding: 0.7rem;
   background-color: transparent;
-  border-style: none;
-  border-style: groove;
+  border: none;
+  border-bottom: 0.2rem solid #f4eafb;
   border-radius: 0.4rem;
   font-family: "Poppins";
   font-style: normal;
@@ -41,6 +41,7 @@
   font-size: 15px;
   line-height: 28px;
   height: 1.2rem;
+  outline: none;
 }
 
 .input::placeholder {
@@ -56,7 +57,7 @@
   padding: 0.4rem;
   background-color: transparent;
   border-style: none;
-  border-style: groove;
+  // border-style: groove;
   border-radius: 0.4rem;
   font-family: "Poppins";
   font-style: normal;
@@ -66,6 +67,10 @@
   // line-height: 28px;
   // width: 100%;
   // height: 10%;
+  border: none;
+  border-bottom: 0.2rem solid #f4eafb;
+  border-radius: 0.4rem;
+  outline: none;
 }
 
 .textArea::placeholder {
@@ -73,7 +78,7 @@
   font-style: normal;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.34);
-  font-size: 13px;
+  font-size: 15px;
   width: 100%;
   height: 10rem;
 }
@@ -108,8 +113,28 @@
   input {
     margin-bottom: 1rem;
   }
+
   select {
     margin-bottom: 1rem;
+
+    color: #3a1078;
+    appearance: none;
+    outline: 0;
+    background: rgb(254, 254, 254);
+    height: 100%;
+    width: auto;
+    cursor: pointer;
+    border: 0.1rem solid #ffffff;
+    border-radius: 0.15rem;
+    padding: 0.3rem;
+    font-weight: 500;
+  }
+
+  .errorMessage {
+    color: red;
+    font-size: 0.8rem;
+    margin: 1rem;
+    margin-left: 3rem;
   }
 }
 .saveBtn {
@@ -164,5 +189,18 @@
     font-size: 0.7rem;
     cursor: pointer;
     color: white;
+  }
+}
+
+.submitBtn {
+  align-self: center;
+
+  button {
+    margin: 2rem;
+    align-self: center;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    font-weight: 700;
+    font-family: "Poppins";
   }
 }
