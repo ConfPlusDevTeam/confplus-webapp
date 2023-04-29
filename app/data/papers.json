@@ -1,122 +1,40 @@
-[
-    {
-        "paperTitle": "paper1",
-        "abstract:": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
-        "fileLink": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-        "author": "zoeallen@author.com",
-        "coAuthors": [
-            {
-                "name": "john",
-                "email": "johnmdoe@gmail.com",
-                "affiliation": "QU",
-                "presenter": "yes"
-            },
-            {
-                "name": "john",
-                "email": "johnmdoe@gmail.com",
-                "affiliation": "QU",
-                "presenter": "yes"
-            }
-        ],
-        "reviews": [
-            {
-                "paperTitle": "paper1",
-                "reviewerEmail": "johndoe@organizer.com",
-                "status": "pending",
-                "evaluation": "",
-                "contribution": "",
-                "strengths": "",
-                "weaknesses": ""
-            },
-            {
-                "paperTitle": "paper1",
-                "reviewerEmail": "janedoe@organizer.com",
-                "status": "pending",
-                "evaluation": "",
-                "contribution": "",
-                "strengths": "",
-                "weaknesses": ""
-            }
-        ]
-    },
-    {
-        "paperTitle": "paper2",
-        "abstract:": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
-        "fileLink": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-        "author": "zoeallen@author.com",
-        "coAuthors": [
-            {
-                "name": "john",
-                "email": "johnmdoe@gmail.com",
-                "affiliation": "QU",
-                "presenter": "yes"
-            },
-            {
-                "name": "john",
-                "email": "johnmdoe@gmail.com",
-                "affiliation": "QU",
-                "presenter": "yes"
-            }
-        ],
-        "reviews": [
-            {
-                "paperTitle": "paper2",
-                "reviewerEmail": "johndoe@organizer.com",
-                "status": "pending",
-                "evaluation": 0,
-                "contribution": 2,
-                "strengths": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
-                "weaknesses": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud"
-            },
-            {
-                "paperTitle": "paper2",
-                "reviewerEmail": "janedoe@organizer.com",
-                "status": "pending",
-                "evaluation": 0,
-                "contribution": 3,
-                "strengths": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
-                "weaknesses": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud"
-            }
-        ]
-    },
-    {
-        "paperTitle": "omars love strory of web dev",
-        "abstract:": "omar hates love web dev",
-        "fileLink": "omarshenhaby.com",
-        "author": "johnmdoe@gmail.com",
-        "coAuthors": [
-            {
-                "name": "john",
-                "email": "johnmdoe@gmail.com",
-                "affiliation": "QU",
-                "presenter": "yes"
-            },
-            {
-                "name": "john",
-                "email": "johnmdoe@gmail.com",
-                "affiliation": "QU",
-                "presenter": "yes"
-            }
-        ],
-        "reviews": [
-            {
-                "paperTitle": "omars love strory of web dev",
-                "reviewerEmail": "miawilson@reviewer.com",
-                "status": "pending",
-                "evaluation": "",
-                "contribution": "",
-                "strengths": "",
-                "weaknesses": ""
-            },
-            {
-                "paperTitle": "omars love strory of web dev",
-                "reviewerEmail": "bobsmith@reviewer.com",
-                "status": "pending",
-                "evaluation": "",
-                "contribution": "",
-                "strengths": "",
-                "weaknesses": ""
-            }
-        ]
-    }
-]
+{
+    "paperTitle": "omars love strory of web dev",
+    "abstract:": "omar hates love web dev",
+    "fileLink": "omarshenhaby.com",
+    "author": "johnmdoe@gmail.com",
+    "coAuthors": [
+        {
+            "name": "john",
+            "email": "johnmdoe@gmail.com",
+            "affiliation": "QU",
+            "presenter": "yes"
+        },
+        {
+            "name": "john",
+            "email": "johnmdoe@gmail.com",
+            "affiliation": "QU",
+            "presenter": "yes"
+        }
+    ],
+    "reviews": [
+        {
+            "paperTitle": "omars love strory of web dev",
+            "reviewerEmail": "miawilson@reviewer.com",
+            "status": "pending",
+            "evaluation": "",
+            "contribution": "",
+            "strengths": "",
+            "weaknesses": ""
+        },
+        {
+            "paperTitle": "omars love strory of web dev",
+            "reviewerEmail": "bobsmith@reviewer.com",
+            "status": "submitted",
+            "evaluation": 0,
+            "contribution": 2,
+            "strengths": "lorem",
+            "weaknesses": "lorem"
+        }
+    ]
+}

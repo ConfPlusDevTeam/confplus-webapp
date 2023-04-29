@@ -8,10 +8,8 @@ export async function POST(request, { params }) {
         const paper = await request.json();
 
         if (!paper) return Response.json({ message: "Bad request" }, { status: 400 });
-
-
+        
         const response = await papersRepo.addPaper(paper);
-
         return Response.json(paper, { status: 200 });
 
     } catch (e) {
