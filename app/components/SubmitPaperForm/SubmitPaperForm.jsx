@@ -5,8 +5,11 @@ import styles from "./SubmitPaperForm.module.scss";
 import UploadField from "../UploadField/UploadField";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SubmitPaperForm({}) {
+  const router = useRouter();
+
   const [coAuthors, setCoAuthors] = useState([]);
   const [showButton, setShowButton] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -102,22 +105,23 @@ export default function SubmitPaperForm({}) {
       author: JSON.parse(localStorage.getItem("user")).email,
       coAuthors: coAuthors,
     };
-    // fetch("/api/papers", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(paper),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log("Success:", data);
-    //     alert("Paper submitted successfully");
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //     alert("Error submitting paper");
-    //   });
+    fetch("/api/papers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(paper),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        const user = JSON.parse(localStorage.getItem("user"));
+        router.push(`/${user.role}`);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Error submitting paper");
+      });
   };
 
   return (
