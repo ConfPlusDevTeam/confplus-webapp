@@ -3,6 +3,7 @@
         "paperTitle": "paper1",
         "abstract:": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
         "fileLink": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+        "author": "zoeallen@author.com",
         "coAuthors": [
             {
                 "name": "john",
@@ -42,6 +43,7 @@
         "paperTitle": "paper2",
         "abstract:": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
         "fileLink": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+        "author": "zoeallen@author.com",
         "coAuthors": [
             {
                 "name": "john",

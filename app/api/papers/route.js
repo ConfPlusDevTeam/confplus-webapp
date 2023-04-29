@@ -23,7 +23,12 @@ export async function POST(request, { params }) {
 export async function GET(request, { params }) {
     try {
         const reviewer = new URL(request.url).searchParams.get("reviewer");
+        const author = new URL(request.url).searchParams.get("author");
         if (!reviewer) {
+            if (author){
+                const papers = await papersRepo.getPapersForAuthor(author);
+                return Response.json(papers, { status: 200 });
+            }
             return Response.json({ message: "Bad request" }, { status: 400 });
         }
         const papers = await papersRepo.getPapersForReviewer(reviewer);
