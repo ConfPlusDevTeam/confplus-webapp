@@ -5,11 +5,15 @@ const papersRepo = new PapersRepo();
 
 export async function POST(request, { params }) {
     try {
-        if (!request.body) {
-            return Response.json({ message: "Bad request" }, { status: 400 });
-        }
-        const paper = await papersRepo.addPaper(request.body);
+        const paper = await request.json();
+
+        if (!paper) return Response.json({ message: "Bad request" }, { status: 400 });
+
+
+        const response = await papersRepo.addPaper(paper);
+
         return Response.json(paper, { status: 200 });
+
     } catch (e) {
         return Response.json({ message: "Internal server error" }, { status: 500 });
     }

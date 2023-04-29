@@ -7,41 +7,53 @@ import UsersRepo from "../users/users-repo";
 export default class PapersRepo {
     constructor() {
         this.path = path.join(process.cwd(), "app/data/papers.json");
+        this.usersRepo = new UsersRepo();
     }
-    async addPaper (paper) {
+    async addPaper(paper) {
         const papers = JSON.parse(await fs.readFile(this.path));
-        const paperReviewers = UsersRepo.getUsersByRole("reviewer");
-        const selectedReviewers = paperReviewers.sort(() => Math.random() - 0.5).slice(0, 2);
-
-        paper.reviews = [
-            {
-              "paperTitle": paper.paperTitle,
-              "reviewerEmail": selectedReviewers[0] ,
-              "status": "pending",
-              "evaluation": "",
-              "contribution": "",
-              "strengths": "",
-              "weaknesses": ""
-            },
-            {
-              "paperTitle": paper.paperTitle,
-              "reviewerEmail": selectedReviewers[1],   
-              "status": "pending",
-              "evaluation": "",
-              "contribution": "",
-              "strengths": "",
-              "weaknesses": ""
-            }
-        ];
+        let paperReviewers;
         
-        papers.push(paper);
-        await fs.writeFile(this.path, JSON.stringify(papers));
-        return paper;
-    }
+      
+        await this.usersRepo.getUsersByRole("reviewer")
+          .then((selectedReviewers) => {
+            const shuffledReviewers = selectedReviewers.sort(() => Math.random() - 0.5);
+            paperReviewers = shuffledReviewers.slice(0, 2);
+      
+            paper.reviews = [
+              {
+                paperTitle: paper.paperTitle,
+                reviewerEmail: paperReviewers[0].email,
+                status: "pending",
+                evaluation: "",
+                contribution: "",
+                strengths: "",
+                weaknesses: "",
+              },
+              {
+                paperTitle: paper.paperTitle,
+                reviewerEmail: paperReviewers[1].email,
+                status: "pending",
+                evaluation: "",
+                contribution: "",
+                strengths: "",
+                weaknesses: "",
+              },
+            ];
+      
+            papers.push(paper);
+            fs.writeFile(this.path, JSON.stringify(papers));
+            return paper;
+          })
+          .catch((error) => {
+            console.error(error);
+            throw new Error("Unable to add paper due to an internal error");
+          });
+      }
 
     async getPapersForReviewer(email) {
         const allPapers = JSON.parse(await fs.readFile(this.path));
-        const papers = allPapers.filter(paper => paper.reviews[0].reviewerEmail == email || paper.reviews[1].reviewerEmail == email);
+        const papers = allPapers.filter(paper => (paper.reviews[0].reviewerEmail == email || paper.reviews[1].reviewerEmail == email));
+        console.log(email)
         return papers;
     }
 
