@@ -21,6 +21,8 @@ export default function ReviewPaperForm() {
         />
         <h4 className={styles.downloadFile}>DOWNLOAD PAPER FILE</h4>
       </Link>
+      <label className={styles.label}>Overall Evaluation:</label>
+      <input className={styles.inputRange} type="range" min={-2} max={2} />
     </form>
   );
 }
