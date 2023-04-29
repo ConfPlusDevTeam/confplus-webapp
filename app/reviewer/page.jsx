@@ -16,6 +16,7 @@ export default function Reviewer() {
       link: "/reviewer/reviewpaper",
     },
   ];
+
   return (
     <div className={styles.profile}>
       <WelcomeMessage props="Aly" />
