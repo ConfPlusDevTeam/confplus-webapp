@@ -20,4 +20,8 @@ export default class ScheduleRepo {
     async getScheduleDates () {
         return JSON.parse(await fs.readFile(path.join(process.cwd(), "app/data/conference-dates.json")));
     }
+    async getScheduleItem (date) {
+        const schedule = JSON.parse(await fs.readFile(this.path))
+        return schedule.find(item => item.date === date)
+    }
 }   
