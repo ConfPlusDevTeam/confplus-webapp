@@ -1,0 +1,292 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 2rem;
+  height: 100%;
+  width: 100%;
+  @media screen and (max-width: 45rem) {
+    align-items: flex-start;
+    justify-content: center;
+    input,
+    label,
+    textarea,
+    h4 {
+      margin: 0;
+      margin-top: 1rem;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+    .uploadField {
+      display: none;
+    }
+  }
+}
+.paperDetails {
+  text-align: left;
+  margin-top: 2rem;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #f4eafb;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  color: #f4eafb;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 1rem;
+  margin-left: 3rem;
+}
+
+.input {
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0.7rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 0.2rem solid #f4eafb;
+  border-radius: 0.4rem;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  color: rgb(252, 252, 252);
+  font-size: 15px;
+  line-height: 28px;
+  height: 1.2rem;
+  outline: none;
+}
+
+.input::placeholder {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.34);
+  font-size: 15px;
+}
+.textArea {
+  margin-top: 0rem;
+  margin-left: 1rem;
+  padding: 0.4rem;
+  background-color: transparent;
+  border-style: none;
+  // border-style: groove;
+  border-radius: 0.4rem;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  color: rgb(252, 252, 252);
+  font-size: 13px;
+  // line-height: 28px;
+  // width: 100%;
+  // height: 10%;
+  border: none;
+  border-bottom: 0.2rem solid #f4eafb;
+  border-radius: 0.4rem;
+  outline: none;
+}
+
+.textArea::placeholder {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.34);
+  font-size: 15px;
+  width: 100%;
+  height: 10rem;
+}
+.submitForm {
+  align-self: center;
+}
+.affiliations {
+  margin-left: 1rem;
+}
+
+.addCoAuthorBtn {
+  margin-left: 3rem;
+  margin-top: 2rem;
+  padding: 0.1rem 0.2rem;
+  text-align: center;
+  font-size: large;
+  font-weight: 700;
+  background-color: #3a1078;
+  color: #f4eafb;
+  border-radius: 0.4rem;
+  border-color: transparent;
+  cursor: pointer;
+
+  @media screen and (max-width: 45rem) {
+    margin: 0;
+    margin-top: 2rem;
+  }
+}
+.checkbox {
+  margin-left: 1rem;
+}
+.coAuthorForm {
+  margin-left: 3rem;
+  button {
+    margin-left: 3rem;
+  }
+  input {
+    margin-bottom: 1rem;
+  }
+
+  select {
+    margin-bottom: 1rem;
+
+    color: #3a1078;
+    appearance: none;
+    outline: 0;
+    background: rgb(254, 254, 254);
+    height: 100%;
+    width: auto;
+    cursor: pointer;
+    border: 0.1rem solid #ffffff;
+    border-radius: 0.15rem;
+    padding: 0.3rem;
+    font-weight: 500;
+  }
+
+  .errorMessage {
+    color: red;
+    font-size: 0.8rem;
+    margin: 1rem;
+    margin-left: 3rem;
+  }
+  @media screen and (max-width: 45rem) {
+    margin: 0;
+    label,
+    input,
+    textarea,
+    select {
+      margin: 0;
+      margin-top: 1rem;
+    }
+    button {
+      align-items: center;
+    }
+    .presenter {
+      flex-direction: row;
+      margin-bottom: 1rem;
+    }
+  }
+}
+.saveBtn {
+  margin-left: 3rem;
+  margin-top: 2rem;
+}
+.uploadField {
+  align-self: center;
+  justify-self: center;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.showCoAuthors {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  margin-top: 2rem;
+  width: 100%;
+  h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+  }
+  @media screen and (max-width: 45rem) {
+    margin: 0;
+    margin-top: 2rem;
+    .coAuthorContainer {
+      flex-direction: column;
+      div {
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
+.coAuthorContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+  div {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  p {
+    margin-top: 0.5rem;
+  }
+  .deleteCoAuthor {
+    display: block;
+    border: red 0.1rem solid;
+    padding: 0.15rem;
+    margin-left: 0.1rem;
+    border-radius: 0.35rem;
+    background-color: red;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    font-size: 0.7rem;
+    cursor: pointer;
+    color: white;
+  }
+}
+
+.submitBtn {
+  align-self: center;
+
+  button {
+    margin: 2rem;
+    align-self: center;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    font-weight: 700;
+    font-family: "Poppins";
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 5rem;
+  padding: 1rem;
+  gap: 2rem;
+  width: min(80%, 70rem);
+
+  background: radial-gradient(
+    90.16% 143.01% at 15.32% 21.04%,
+    rgba(165, 239, 255, 0.2) 0%,
+    rgba(110, 191, 244, 0.0447917) 77.08%,
+    rgba(70, 144, 213, 0) 100%
+  );
+  background-blend-mode: overlay, normal;
+  backdrop-filter: blur(40px);
+
+  border-radius: 5rem;
+  transform: rotate(0.12deg);
+
+  border: 0.3rem solid rgba(255, 242, 242, 0.354);
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}

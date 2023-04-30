@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import styles from "./page.module.scss";
 import Sidebar from "./components/Sidebar/Sidebar";
 import ContentContainer from "./components/ContentContainer/ContentContainer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Scrollbar from "./components/Scrollbar/Scrollbar";
 import FilteredSchedule from "./components/FilteredSchedule/FilteredSchedule";
 
@@ -13,98 +13,115 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const [active, setActive] = useState("welcome");
 
-  const schedule = [
-    {
-      name: "Day 1",
-      sessions: [
-        {
-          name: "Session 1",
-          fromTime: "9:00 AM",
-          presenters: [
-            {
-              name: "Presenter 1",
-            },
-            {
-              name: "Presenter 2",
-            },
-          ],
-          assignedPapers: [
-            {
-              title: "Paper 1",
-            },
-            {
-              title: "Paper 2",
-            },
-          ],
-        },
-        {
-          name: "Session 2",
-          fromTime: "10:00 AM",
-          presenters: [
-            {
-              name: "Presenter 3",
-            },
-            {
-              name: "Presenter 4",
-            },
-          ],
-          assignedPapers: [
-            {
-              title: "Paper 3",
-            },
-            {
-              title: "Paper 4",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "Day 2",
-      sessions: [
-        {
-          name: "Session 1",
-          fromTime: "9:00 AM",
-          presenters: [
-            {
-              name: "Presenter 1",
-            },
-            {
-              name: "Presenter 2",
-            },
-          ],
-          assignedPapers: [
-            {
-              title: "Paper 1",
-            },
-            {
-              title: "Paper 2",
-            },
-          ],
-        },
-        {
-          name: "Session 2",
-          fromTime: "10:00 AM",
-          presenters: [
-            {
-              name: "Presenter 3",
-            },
-            {
-              name: "Presenter 4",
-            },
-          ],
-          assignedPapers: [
-            {
-              title: "Paper 3",
-            },
-            {
-              title: "Paper 4",
-            },
-          ],
-        },
-      ],
-    },
-  ];
+  const [schedule, setSchedule] = useState([]);
+  const getSchedule = async () => {
+    await fetch("/api/schedule", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((schedule) => {
+        setSchedule(schedule);
+      });
+  };
+  useEffect(() => {
+    getSchedule();
+  }, []);
+
+  // const schedule = [
+  //   {
+  //     name: "Day 1",
+  //     sessions: [
+  //       {
+  //         name: "Session 1",
+  //         fromTime: "9:00 AM",
+  //         presenters: [
+  //           {
+  //             name: "Presenter 1",
+  //           },
+  //           {
+  //             name: "Presenter 2",
+  //           },
+  //         ],
+  //         assignedPapers: [
+  //           {
+  //             title: "Paper 1",
+  //           },
+  //           {
+  //             title: "Paper 2",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         name: "Session 2",
+  //         fromTime: "10:00 AM",
+  //         presenters: [
+  //           {
+  //             name: "Presenter 3",
+  //           },
+  //           {
+  //             name: "Presenter 4",
+  //           },
+  //         ],
+  //         assignedPapers: [
+  //           {
+  //             title: "Paper 3",
+  //           },
+  //           {
+  //             title: "Paper 4",
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Day 2",
+  //     sessions: [
+  //       {
+  //         name: "Session 1",
+  //         fromTime: "9:00 AM",
+  //         presenters: [
+  //           {
+  //             name: "Presenter 1",
+  //           },
+  //           {
+  //             name: "Presenter 2",
+  //           },
+  //         ],
+  //         assignedPapers: [
+  //           {
+  //             title: "Paper 1",
+  //           },
+  //           {
+  //             title: "Paper 2",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         name: "Session 2",
+  //         fromTime: "10:00 AM",
+  //         presenters: [
+  //           {
+  //             name: "Presenter 3",
+  //           },
+  //           {
+  //             name: "Presenter 4",
+  //           },
+  //         ],
+  //         assignedPapers: [
+  //           {
+  //             title: "Paper 3",
+  //           },
+  //           {
+  //             title: "Paper 4",
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //   },
+  // ];
 
   return (
     <div className={styles.homeContainer}>

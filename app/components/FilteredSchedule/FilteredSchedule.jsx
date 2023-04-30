@@ -30,11 +30,11 @@ export default function FilteredSchedule({ schedule }) {
       {schedule
         .filter((day) => day.name === chosenDay || chosenDay === "all")
         .map((day, key) => (
-          <div className={styles.dayContainer}>
+          <div key={key} className={styles.dayContainer}>
             <h2>{day.name}</h2>
             <div className={styles.daySchedule}>
-              {day.sessions.map((session) => (
-                <div className={styles.sessionContainer}>
+              {day.sessions.map((session, key) => (
+                <div key={key} className={styles.sessionContainer}>
                   <h3>{session.name}</h3>
                   <p>
                     <svg

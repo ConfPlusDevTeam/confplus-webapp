@@ -18,6 +18,7 @@ export default function Organizer() {
       }
     }
   }, []);
+  router.push("/organizer/updateschedule");
 
   return <div>Organizer</div>;
 }
