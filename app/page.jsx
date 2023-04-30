@@ -111,6 +111,9 @@ export default function Home() {
       <style>{`
         body {
           overflow:hidden
+          @media screen and (max-width: 45rem) {
+            overflow:visible
+          }
         }
 `}</style>
 
