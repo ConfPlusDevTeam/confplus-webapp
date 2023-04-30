@@ -1,20 +1,39 @@
+"use client";
+
 import React from "react";
 import ContentContainer from "@/app/components/ContentContainer/ContentContainer";
 import Tabs from "@/app/components/Tabs/Tabs";
 import WelcomeMessage from "@/app/components/WelcomeMessage/WelcomeMessage";
 import styles from "./page.module.scss";
 import PaperCards from "../components/PaperCards/PaperCards";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Reviewer() {
+  const router = useRouter();
+  const user = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    if (!user) {
+      router.push("/signin");
+      return;
+    } else {
+      const userRole = user.role;
+      if (userRole !== "reviewer") {
+        router.push("/signin");
+        return;
+      }
+    }
+  }, []);
+
   const links = [
     {
       name: "Assigned Papers",
       link: "/reviewer",
     },
-    {
-      name: "Reviewed Paper",
-      link: "/reviewer/reviewpaper",
-    },
+    // {
+    //   name: "Reviewed Paper",
+    //   link: "/reviewer/reviewpaper",
+    // },
   ];
 
   return (
