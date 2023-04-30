@@ -74,7 +74,7 @@ export default function SignInForm() {
           <Button
             variant={1}
             type="submit"
-            text="Log Out"
+            text="Are you sure you want to log out?"
             onClick={(e) => {
               localStorage.removeItem("user");
               setLoggedIn(false);
