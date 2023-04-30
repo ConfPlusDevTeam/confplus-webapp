@@ -6,6 +6,13 @@
   gap: 1rem;
   margin: 3vh 2vw;
   padding-left: 2rem;
+  @media screen and (max-width: 45rem) {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    padding-left: 0;
+  }
 }
 .links {
   list-style-type: none;
@@ -13,6 +20,13 @@
   flex-direction: row;
   gap: 2rem;
   padding-right: 2rem;
+  @media screen and (max-width: 45rem) {
+    padding-right: 0rem;
+  }
+  @media screen and (max-width: 30rem) {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 .link {
   color: #fff;

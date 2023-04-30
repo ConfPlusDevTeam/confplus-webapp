@@ -7,6 +7,9 @@
   font-size: 1rem;
   color: #e4e4f0;
   margin-top: 1rem;
+  @media screen and (max-width: 45rem) {
+    display: none;
+  }
 }
 
 .scroll-bar svg {
