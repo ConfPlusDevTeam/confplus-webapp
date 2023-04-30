@@ -41,9 +41,6 @@ export default function Authors() {
       <ContentContainer variant={2} className={styles}>
         <Tabs links={links} className={styles} />
         <PaperCards />
-        <PaperCards />
-        <PaperCards />
-        <PaperCards />
       </ContentContainer>
     </div>
   );

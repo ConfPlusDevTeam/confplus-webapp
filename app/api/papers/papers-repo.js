@@ -125,7 +125,9 @@ export default class PapersRepo {
 
   async loadReviewsForPaper(paperTitle) {
     const allPapers = JSON.parse(await fs.readFile(this.path));
-    const paper = allPapers.find((paper) => paper.paperTitle === paperTitle);
+
+    const paper = allPapers.find((paper) => paper.paperTitle == paperTitle);
+
 
     return paper.reviews;
   }

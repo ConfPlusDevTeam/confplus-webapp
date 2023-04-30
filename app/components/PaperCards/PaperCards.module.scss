@@ -20,6 +20,7 @@
   gap: 1rem;
   border: 0.3rem solid rgba(255, 242, 242, 0.354);
 }
+
 .cards {
   display: flex;
   flex-direction: column;
@@ -48,11 +49,13 @@
   cursor: pointer;
   transform: rotate(180deg);
 }
+
 .showAbstract {
   display: flex;
   flex-direction: row;
   gap: 0.4rem;
 }
+
 .revButton {
   background-color: #3a1078;
   border-radius: 5px;

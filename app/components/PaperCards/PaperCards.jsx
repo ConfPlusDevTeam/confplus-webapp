@@ -8,21 +8,41 @@ import { useState } from "react";
 import "./PaperCards.module.scss";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Router } from "next/router";
 
 export default function PaperCards() {
   const router = useRouter();
   const user = localStorage.getItem("user");
-  const email = JSON.parse(user).email;
-
+  const userRole = JSON.parse(user).role;
   const [papers, setPapers] = useState([]);
-  const getAssignedPapers = async () => {
-    const response = await fetch(`/api/papers?reviewer=${email}`).then(
-      (response) => response.json()
-    );
-    setPapers(await response);
-  };
+  useEffect(() => {
+    if (!user) {
+      router.push("/signin");
+      return;
+    } else {
+      if (userRole == "author") {
+        const getAuthorPapers = async () => {
+          const response = await fetch(
+            `/api/papers?author=${JSON.parse(user).email}`
+          ).then((response) => response.json());
+          setPapers(await response);
+        };
+        getAuthorPapers();
+        return;
+      }
 
-  getAssignedPapers();
+      if (userRole == "reviewer") {
+        const getAssignedPapers = async () => {
+          const response = await fetch(
+            `/api/papers?reviewer=${JSON.parse(user).email}`
+          ).then((response) => response.json());
+          setPapers(await response);
+        };
+        getAssignedPapers();
+        return;
+      }
+    }
+  }, []);
 
   const [toggle, setToggle] = useState(false);
 
@@ -32,6 +52,17 @@ export default function PaperCards() {
 
   if (!papers) {
     return <div>No papers available</div>;
+  }
+
+  function handleClick(paper) {
+    return (event) => {
+      event.preventDefault();
+      {
+        router.push("/reviewer/reviewpaper");
+        localStorage.setItem("paperTitle", JSON.stringify(paper.paperTitle));
+        localStorage.setItem("fileLink", JSON.stringify(paper.fileLink));
+      }
+    };
   }
 
   return (
@@ -63,9 +94,15 @@ export default function PaperCards() {
               </button>
             </div>
           </div>
-          <Link className={styles.revButton} href="/reviewer/reviewpaper">
-            Review Paper
-          </Link>
+          {userRole == "reviewer" && (
+            <Link
+              className={styles.revButton}
+              href="reviewer/reviewpaper"
+              onClick={handleClick(paper)}
+            >
+              Review Paper
+            </Link>
+          )}
         </ContentContainer>
       ))}
     </div>
