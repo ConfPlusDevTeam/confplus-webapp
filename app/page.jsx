@@ -140,11 +140,10 @@ export default function Home() {
       />
       <div className={styles.card}>
         {active == "welcome" && (
-          <ContentContainer variant={1} title="Welcome" className={styles}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed
-            similique nisi maxime suscipit et numquam repudiandae aut,
-            architecto veniam eveniet blanditiis ex, voluptas fugiat laboriosam
-            assumenda illo illum debitis fuga?
+          <ContentContainer variant={1} title="Welcome !" className={styles}>
+            We are delighted to have you attend the IEEE International Conference. This conference features some of the best minds in the field of Computer Science and Engineering. We hope you enjoy the conference and have a great time.
+            There will multiple sessions and paper presentations. You can find the schedule for the conference below.
+            
           </ContentContainer>
         )}
         {active == "schedule" && (
@@ -154,10 +153,7 @@ export default function Home() {
         )}
         {active == "about" && (
           <ContentContainer variant={1} title="About" className={styles}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed
-            similique nisi maxime suscipit et numquam repudiandae aut,
-            architecto veniam eveniet blanditiis ex, voluptas fugiat laboriosam
-            assumenda illo illum debitis fuga?
+            Confplus is a webpage that simplifies the organization and management of the IEEE International Conference. Our user-friendly platform streamlines the planning process, from scheduling to promotion, to ensure a successful event.
           </ContentContainer>
         )}
         <Scrollbar />
