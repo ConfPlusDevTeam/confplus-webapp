@@ -18,12 +18,6 @@ export default function RootLayout({ children }) {
     },
 
     {
-      name: "Test",
-
-      link: "/testPage",
-    },
-
-    {
       name: "Schedule",
 
       link: "/schedule",

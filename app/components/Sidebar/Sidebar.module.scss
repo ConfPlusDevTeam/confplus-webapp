@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 20vw;
+  width: max(20vw, 10rem);
   height: 65%;
 }
 
@@ -18,10 +18,13 @@
   letter-spacing: 0.2rem;
   font-family: "Sulphur Point";
   margin: 0.6vh;
-  margin-left: 2vw;
+  margin-left: max(2vw, 2rem);
   height: 1.5rem;
   padding: 0.2rem 0.2rem;
   font-weight: 700;
+  @media screen and (max-width: 45rem) {
+    text-align: center;
+  }
 }
 
 .active {

@@ -59,7 +59,6 @@ export default class PapersRepo {
         paper.reviews[0].reviewerEmail == email ||
         paper.reviews[1].reviewerEmail == email
     );
-    console.log(email);
     return papers;
   }
 
@@ -126,7 +125,9 @@ export default class PapersRepo {
 
   async loadReviewsForPaper(paperTitle) {
     const allPapers = JSON.parse(await fs.readFile(this.path));
+
     const paper = allPapers.find((paper) => paper.paperTitle == paperTitle);
+
 
     return paper.reviews;
   }

@@ -4,6 +4,28 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+
+  @media screen and (max-width: 45rem) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    margin-top: 3rem;
+    .card {
+      width: 80%;
+      height: 60%;
+      align-self: center;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 
 .card {
@@ -45,7 +67,7 @@
   border: 0.3rem solid rgba(255, 242, 242, 0.354);
 
   overflow-x: scroll;
-  overflow-y: hidden;
+  overflow-y: scroll;
   padding: 3rem;
 }
 

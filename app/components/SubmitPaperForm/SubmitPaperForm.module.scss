@@ -6,6 +6,24 @@
   margin-top: 2rem;
   height: 100%;
   width: 100%;
+  @media screen and (max-width: 45rem) {
+    align-items: flex-start;
+    justify-content: center;
+    input,
+    label,
+    textarea,
+    h4 {
+      margin: 0;
+      margin-top: 1rem;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+    .uploadField {
+      display: none;
+    }
+  }
 }
 .paperDetails {
   text-align: left;
@@ -101,6 +119,11 @@
   border-radius: 0.4rem;
   border-color: transparent;
   cursor: pointer;
+
+  @media screen and (max-width: 45rem) {
+    margin: 0;
+    margin-top: 2rem;
+  }
 }
 .checkbox {
   margin-left: 1rem;
@@ -136,6 +159,23 @@
     margin: 1rem;
     margin-left: 3rem;
   }
+  @media screen and (max-width: 45rem) {
+    margin: 0;
+    label,
+    input,
+    textarea,
+    select {
+      margin: 0;
+      margin-top: 1rem;
+    }
+    button {
+      align-items: center;
+    }
+    .presenter {
+      flex-direction: row;
+      margin-bottom: 1rem;
+    }
+  }
 }
 .saveBtn {
   margin-left: 3rem;
@@ -160,10 +200,20 @@
     font-weight: 600;
     color: rgb(255, 255, 255);
   }
+  @media screen and (max-width: 45rem) {
+    margin: 0;
+    margin-top: 2rem;
+    .coAuthorContainer {
+      flex-direction: column;
+      div {
+        flex-wrap: wrap;
+      }
+    }
+  }
 }
 .coAuthorContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   margin-bottom: 1rem;
   div {

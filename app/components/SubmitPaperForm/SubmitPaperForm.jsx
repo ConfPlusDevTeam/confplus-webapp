@@ -267,7 +267,7 @@ export default function SubmitPaperForm({}) {
                   ))}
                 </select>
               </div>
-              <div>
+              <div className={styles.presenter}>
                 <label htmlFor="mark-presenter" className={styles.label}>
                   Mark as Presenter:
                 </label>

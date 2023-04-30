@@ -15,13 +15,13 @@ export async function GET(request, { params }) {
 
 export async function POST(request, { params }) {
     try {
-        const session = await request.json();
-        if (!session) {
+        const schedule = await request.json();
+        if (!schedule) {
             return Response.json({ message: "Bad request" }, { status: 400 });
         }
-        const scheduleItem = await scheduleRepo.addScheduleItem(session);
+        const scheduleResponse = await scheduleRepo.updateSchedule(schedule);
 
-        return Response.json(scheduleItem, { status: 200 });
+        return Response.json(scheduleResponse, { status: 200 });
     } catch (e) {
         return Response.json({ message: "Internal server error" }, { status: 500 });
     }

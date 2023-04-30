@@ -28,6 +28,9 @@
   background: url("../../../public/assets/bg-shapes/shape4.svg") no-repeat;
   transform: rotate(-0.4deg);
   margin: 6rem 1rem 0rem 5rem;
+  @media screen and (max-width: 45rem) {
+    display: none;
+  }
 }
 
 .shape2 {
@@ -36,6 +39,9 @@
   margin: 1rem 1rem 0rem 5rem;
   background: url("../../../public/assets/bg-shapes/shape2.svg") no-repeat;
   transform: rotate(-0.4deg);
+  @media screen and (max-width: 45rem) {
+    display: none;
+  }
 }
 
 .shape3 {
