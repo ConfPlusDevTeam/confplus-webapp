@@ -4,12 +4,12 @@
   justify-content: center;
   align-items: center;
   gap: 4rem;
-  margin-top: 7rem;
+  width: 100%;
 }
 
 .tabsContainer {
-  width: 90%;
-  height: 3.5vh;
+  width: 100%;
+  height: 100%;
   align-self: center;
   justify-self: center;
   background: radial-gradient(
@@ -18,7 +18,7 @@
     rgba(111, 68, 189, 0.2) 77.08%,
     rgba(70, 144, 213, 0) 100%
   );
-  margin-left: 2.9rem;
+
   backdrop-filter: blur(50px);
   border-radius: 60px;
   border: 0.2rem solid rgba(255, 242, 242, 0.354);

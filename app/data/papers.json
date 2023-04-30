@@ -1,42 +1,42 @@
 [
-    {
+  {
+    "paperTitle": "omars love strory of web dev",
+    "abstract": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.  Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.",
+    "fileLink": "omarshenhaby.com",
+    "author": "johnmdoe@gmail.com",
+    "coAuthors": [
+      {
+        "name": "john",
+        "email": "johnmdoe@gmail.com",
+        "affiliation": "QU",
+        "presenter": "yes"
+      },
+      {
+        "name": "john",
+        "email": "johnmdoe@gmail.com",
+        "affiliation": "QU",
+        "presenter": "yes"
+      }
+    ],
+    "reviews": [
+      {
         "paperTitle": "omars love strory of web dev",
-        "abstract:": "omar hates love web dev",
-        "fileLink": "omarshenhaby.com",
-        "author": "johnmdoe@gmail.com",
-        "coAuthors": [
-            {
-                "name": "john",
-                "email": "johnmdoe@gmail.com",
-                "affiliation": "QU",
-                "presenter": "yes"
-            },
-            {
-                "name": "john",
-                "email": "johnmdoe@gmail.com",
-                "affiliation": "QU",
-                "presenter": "yes"
-            }
-        ],
-        "reviews": [
-            {
-                "paperTitle": "omars love strory of web dev",
-                "reviewerEmail": "miawilson@reviewer.com",
-                "status": "pending",
-                "evaluation": "",
-                "contribution": "",
-                "strengths": "",
-                "weaknesses": ""
-            },
-            {
-                "paperTitle": "omars love strory of web dev",
-                "reviewerEmail": "bobsmith@reviewer.com",
-                "status": "submitted",
-                "evaluation": 0,
-                "contribution": 5,
-                "strengths": "lorem",
-                "weaknesses": "lorem"
-            }
-        ]
-    }
+        "reviewerEmail": "miawilson@reviewer.com",
+        "status": "pending",
+        "evaluation": "",
+        "contribution": "",
+        "strengths": "",
+        "weaknesses": ""
+      },
+      {
+        "paperTitle": "omars love strory of web dev",
+        "reviewerEmail": "bobsmith@reviewer.com",
+        "status": "submitted",
+        "evaluation": 0,
+        "contribution": 5,
+        "strengths": "lorem",
+        "weaknesses": "lorem"
+      }
+    ]
+  }
 ]

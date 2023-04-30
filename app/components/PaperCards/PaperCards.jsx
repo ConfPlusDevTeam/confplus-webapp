@@ -5,56 +5,69 @@ import ContentContainer from "../ContentContainer/ContentContainer";
 import Link from "next/link";
 import Button from "../Button/Button";
 import { useState } from "react";
-
 import "./PaperCards.module.scss";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export default function PaperCards(
-  paperTitle,
-  paperAuthor,
-  paperAbstract,
-  paperStatus,
-  paperId
-) {
+export default function PaperCards() {
+  const router = useRouter();
+  const user = localStorage.getItem("user");
+  const email = JSON.parse(user).email;
+
+  const [papers, setPapers] = useState([]);
+  const getAssignedPapers = async () => {
+    const response = await fetch(`/api/papers?reviewer=${email}`).then(
+      (response) => response.json()
+    );
+    setPapers(await response);
+  };
+
+  getAssignedPapers();
+
   const [toggle, setToggle] = useState(false);
 
   const toggleHandler = () => {
     setToggle(!toggle);
   };
 
-  return (
-    <div className={styles.cards}>
-      <ContentContainer variant={2} className={styles}>
-        <div className={styles.paperDetails}>
-          <h3>paperTitle</h3>
-          <p>Authors: Aly Soliman, coAuthors</p>
+  if (!papers) {
+    return <div>No papers available</div>;
+  }
 
-          <div className={styles.showAbstract}>
-            {toggle && (
-              <p>
-                Abstract: Lorem ipsum dolor sit, amet consectetur adipisicing
-                elit. Ea molestias excepturi necessitatibus cupiditate quod
-                iusto, veritatis dicta animi tempore praesentium vitae veniam at
-                iste quidem esse voluptas dolor nesciunt tenetur.
-              </p>
-            )}
-            {!toggle && (
-              <label for="arrow" className={styles.label}>
-                Abstract:
-              </label>
-            )}
-            <button
-              className={toggle ? styles.button : styles.upButton}
-              onClick={toggleHandler}
-              id="arrow"
-            >
-              ^
-            </button>
+  return (
+    <div className={styles.paperCards}>
+      {papers.map((paper) => (
+        <ContentContainer variant={2} className={styles}>
+          <div className={styles.paperDetails}>
+            <h3>{paper.paperTitle}</h3>
+            <p>
+              Authors:&nbsp;
+              {paper.author +
+                "," +
+                paper.coAuthors.map((author) => " " + author.name)}
+            </p>
+
+            <div className={styles.showAbstract}>
+              {toggle && <p>{paper.abstract}</p>}
+              {!toggle && (
+                <label for="arrow" className={styles.label}>
+                  Abstract:
+                </label>
+              )}
+              <button
+                className={toggle ? styles.button : styles.upButton}
+                onClick={toggleHandler}
+                id="arrow"
+              >
+                ^
+              </button>
+            </div>
           </div>
-        </div>
-        <Link className={styles.revButton} href="/reviewer/reviewpaper">
-          Review Paper
-        </Link>
-      </ContentContainer>
+          <Link className={styles.revButton} href="/reviewer/reviewpaper">
+            Review Paper
+          </Link>
+        </ContentContainer>
+      ))}
     </div>
   );
 }

@@ -4,24 +4,20 @@ import styles from "./ReviewPaperForm.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import Button from "../Button/Button";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export default function ReviewPaperForm(
-  paperTitle,
-  paperLink,
-  overallEvaluation,
-  paperContributions,
-  paperStrengths,
-  paperWeaknesses
-) {
+export default function ReviewPaperForm() {
   return (
     <form className={styles.form}>
       <h3 className={styles.reviewPaper}>REVIEW PAPER</h3>
       <h4 className={styles.paperDetails}>PAPER DETAILS:</h4>
       <div className={styles.labelContainer}>
         <label className={styles.label}>Paper Title:</label>
-        <p className={styles.paperTitle}>{paperTitle}</p>
+        <p className={styles.paperTitle}></p>
       </div>
-      <Link href={paperLink} className={styles.downloadFileContainer}>
+      <Link href="#" className={styles.downloadFileContainer}>
         <Image
           className={styles.loadImg}
           src="/assets/downloadPaper.png"
@@ -37,7 +33,7 @@ export default function ReviewPaperForm(
         min={-2}
         max={2}
         step={1}
-        defaultValue={overallEvaluation}
+        defaultValue={0}
         list={"evaluation-labels"}
       />
 
@@ -56,7 +52,7 @@ export default function ReviewPaperForm(
         min={1}
         max={5}
         step={1}
-        defaultValue={paperContributions}
+        defaultValue={3}
         list={"contribution-labels"}
       />
 
@@ -73,7 +69,7 @@ export default function ReviewPaperForm(
         className={styles.textArea}
         type="text"
         placeholder="Enter Paper Strengths"
-        value={paperStrengths}
+        value={""}
       />
 
       <label className={styles.label}>Paper Weaknesses:</label>
@@ -81,7 +77,7 @@ export default function ReviewPaperForm(
         className={styles.textArea}
         type="text"
         placeholder="Enter Paper Weaknesses"
-        value={paperWeaknesses}
+        value={""}
       />
       <div className={styles.submitBtn}>
         <Button variant={1} type="submit" text="Submit Review"></Button>
