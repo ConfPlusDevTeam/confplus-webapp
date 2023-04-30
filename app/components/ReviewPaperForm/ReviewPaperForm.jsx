@@ -9,18 +9,86 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function ReviewPaperForm() {
+  const paperTitle = localStorage.getItem("paperTitle").replace(/[""]/g, "");
+  console.log(paperTitle);
+  const fileLink = localStorage.getItem("fileLink");
+  const user = localStorage.getItem("user");
+  const email = JSON.parse(user).email;
+  const [reviews, setReviews] = useState([{}]);
+
+  const router = useRouter();
+
+  const [evaluation, setEvaluation] = useState();
+  const [contribution, setContribution] = useState();
+  const [strengths, setStrengths] = useState("");
+  const [weaknesses, setWeaknesses] = useState("");
+
+  const handleEvaluationChange = (event) => {
+    setEvaluation(event.target.value);
+  };
+
+  const handleContributionChange = (event) => {
+    setContribution(event.target.value);
+  };
+
+  const handleStrengthsChange = (event) => {
+    setStrengths(event.target.value);
+  };
+
+  const handleWeaknessesChange = (event) => {
+    setWeaknesses(event.target.value);
+  };
+
+  useEffect(() => {
+    const getReviews = async () => {
+      const response = await fetch(
+        `/api/papers/review?paperTitle=${paperTitle}`
+      ).then((response) => response.json());
+      setReviews(await response);
+      return response.json();
+    };
+    const paperReviews = getReviews();
+    console.log(paperReviews);
+    const paperReview = paperReviews.find(
+      (review) => review.reviewerEmail == email
+    );
+    console.log(paperReview);
+  }, []);
+
+  // console.log(paperReview);
+  // setContribution(paperReview.contribution);
+  // setEvaluation(paperReview.evaluation);
+  // setStrengths(paperReview.strengths);
+  // setWeaknesses(paperReview.weaknesses);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await fetch("/api/papers/review", {
+      method: "POST",
+      body: JSON.stringify({
+        paperTitle: paperTitle,
+        reviewerEmail: email,
+        status: "reviewed",
+        evaluation: event.target.evaluation.value,
+        contribution: event.target.contribution.value,
+        strengths: event.target.strengths.value,
+        weaknesses: event.target.weaknesses.value,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <h3 className={styles.reviewPaper}>REVIEW PAPER</h3>
       <h4 className={styles.paperDetails}>PAPER DETAILS:</h4>
       <div className={styles.labelContainer}>
         <label className={styles.label}>Paper Title:</label>
-        <p className={styles.paperTitle}></p>
+        <p className={styles.label}>{paperTitle}</p>
       </div>
-      <Link
-        href="reviewer/reviewpaper"
-        className={styles.downloadFileContainer}
-      >
+
+      <Link href={fileLink} className={styles.downloadFileContainer}>
         <Image
           className={styles.loadImg}
           src="/assets/downloadPaper.png"
@@ -37,7 +105,8 @@ export default function ReviewPaperForm() {
         min={-2}
         max={2}
         step={1}
-        defaultValue={0}
+        value={evaluation}
+        onChange={handleEvaluationChange}
         list={"evaluation-labels"}
       />
 
@@ -56,8 +125,9 @@ export default function ReviewPaperForm() {
         min={1}
         max={5}
         step={1}
-        defaultValue={3}
+        value={contribution}
         list={"contribution-labels"}
+        onChange={handleContributionChange}
       />
 
       <datalist id="contribution-labels">
@@ -73,8 +143,8 @@ export default function ReviewPaperForm() {
         className={styles.textArea}
         type="text"
         placeholder="Enter Paper Strengths"
-        onChange={() => {}}
-        value={""}
+        value={strengths}
+        onChange={handleStrengthsChange}
       />
 
       <label className={styles.label}>Paper Weaknesses:</label>
@@ -82,8 +152,8 @@ export default function ReviewPaperForm() {
         className={styles.textArea}
         type="text"
         placeholder="Enter Paper Weaknesses"
-        onChange={() => {}}
-        value={""}
+        value={weaknesses}
+        onChange={handleWeaknessesChange}
       />
       <div className={styles.submitBtn}>
         <Button variant={1} type="submit" text="Submit Review"></Button>

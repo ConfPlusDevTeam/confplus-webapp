@@ -13,10 +13,12 @@ export default class PapersRepo {
     const papers = JSON.parse(await fs.readFile(this.path));
     let paperReviewers;
 
-
-    await this.usersRepo.getUsersByRole("reviewer")
+    await this.usersRepo
+      .getUsersByRole("reviewer")
       .then((selectedReviewers) => {
-        const shuffledReviewers = selectedReviewers.sort(() => Math.random() - 0.5);
+        const shuffledReviewers = selectedReviewers.sort(
+          () => Math.random() - 0.5
+        );
         paperReviewers = shuffledReviewers.slice(0, 2);
 
         paper.reviews = [
@@ -51,16 +53,23 @@ export default class PapersRepo {
   }
 
   async getPapersForReviewer(email) {
-  
     const allPapers = JSON.parse(await fs.readFile(this.path));
-    const papers = allPapers.filter(paper => (paper.reviews[0].reviewerEmail == email || paper.reviews[1].reviewerEmail == email));
-    console.log(email)
+    const papers = allPapers.filter(
+      (paper) =>
+        paper.reviews[0].reviewerEmail == email ||
+        paper.reviews[1].reviewerEmail == email
+    );
+    console.log(email);
     return papers;
   }
 
   async getPapersForAuthor(email) {
     const allPapers = JSON.parse(await fs.readFile(this.path));
-    const papers = allPapers.filter(paper => paper.author === email || paper.coAuthors.some(coAuthor => coAuthor.email === email));
+    const papers = allPapers.filter(
+      (paper) =>
+        paper.author === email ||
+        paper.coAuthors.some((coAuthor) => coAuthor.email === email)
+    );
     return papers;
   }
 
@@ -80,13 +89,13 @@ export default class PapersRepo {
 
   async addReview(review) {
     const allPapers = JSON.parse(await fs.readFile(this.path));
-    const paper = allPapers.filter(paper => paper.paperTitle == review.paperTitle)[0];
+    const paper = allPapers.filter(
+      (paper) => paper.paperTitle == review.paperTitle
+    )[0];
     if (review.reviewerEmail == paper.reviews[0].reviewerEmail) {
       paper.reviews[0] = review;
       paper.reviews[0].status = "submitted";
-    }
-
-    else {
+    } else {
       paper.reviews[1] = review;
       paper.reviews[1].status = "submitted";
     }
@@ -94,7 +103,9 @@ export default class PapersRepo {
   }
 
   async loadReview(paperTitle, reviewerEmail) {
-    const paper = JSON.parse(await fs.readFile(this.path)).filter(paper => paper.paperTitle == paperTitle);
+    const paper = JSON.parse(await fs.readFile(this.path)).filter(
+      (paper) => paper.paperTitle == paperTitle
+    );
     if (reviewerEmail == paper.reviews[0].reviewerEmail) {
       return paper.reviews[0];
     }
@@ -103,15 +114,20 @@ export default class PapersRepo {
 
   async getAcceptedPapers() {
     const allPapers = JSON.parse(await fs.readFile(this.path));
-    const papers = allPapers.filter(paper => (paper.reviews[0].status == "submitted" && paper.reviews[1].status == "submitted"))
-    return papers.filter(paper => (paper.reviews[0].evaluation + paper.reviews[1].evaluation >= 2));;
+    const papers = allPapers.filter(
+      (paper) =>
+        paper.reviews[0].status == "submitted" &&
+        paper.reviews[1].status == "submitted"
+    );
+    return papers.filter(
+      (paper) => paper.reviews[0].evaluation + paper.reviews[1].evaluation >= 2
+    );
   }
 
   async loadReviewsForPaper(paperTitle) {
     const allPapers = JSON.parse(await fs.readFile(this.path));
-    const paper = allPapers.find(paper => paper.paperTitle === paperTitle);
+    const paper = allPapers.find((paper) => paper.paperTitle == paperTitle);
 
     return paper.reviews;
   }
 }
-

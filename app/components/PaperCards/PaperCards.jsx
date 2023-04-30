@@ -8,6 +8,7 @@ import { useState } from "react";
 import "./PaperCards.module.scss";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Router } from "next/router";
 
 export default function PaperCards() {
   const router = useRouter();
@@ -29,6 +30,7 @@ export default function PaperCards() {
         getAuthorPapers();
         return;
       }
+
       if (userRole == "reviewer") {
         const getAssignedPapers = async () => {
           const response = await fetch(
@@ -50,6 +52,17 @@ export default function PaperCards() {
 
   if (!papers) {
     return <div>No papers available</div>;
+  }
+
+  function handleClick(paper) {
+    return (event) => {
+      event.preventDefault();
+      {
+        router.push("/reviewer/reviewpaper");
+        localStorage.setItem("paperTitle", JSON.stringify(paper.paperTitle));
+        localStorage.setItem("fileLink", JSON.stringify(paper.fileLink));
+      }
+    };
   }
 
   return (
@@ -82,7 +95,11 @@ export default function PaperCards() {
             </div>
           </div>
           {userRole == "reviewer" && (
-            <Link className={styles.revButton} href="/reviewer/reviewpaper">
+            <Link
+              className={styles.revButton}
+              href="reviewer/reviewpaper"
+              onClick={handleClick(paper)}
+            >
               Review Paper
             </Link>
           )}

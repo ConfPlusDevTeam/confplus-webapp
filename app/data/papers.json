@@ -23,10 +23,10 @@
         "paperTitle": "omars love strory of web dev",
         "reviewerEmail": "miawilson@reviewer.com",
         "status": "pending",
-        "evaluation": "",
-        "contribution": "",
-        "strengths": "",
-        "weaknesses": ""
+        "evaluation": -1,
+        "contribution": 5,
+        "strengths": "test",
+        "weaknesses": "test"
       },
       {
         "paperTitle": "omars love strory of web dev",
