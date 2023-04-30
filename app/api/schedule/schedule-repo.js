@@ -28,7 +28,7 @@ export default class ScheduleRepo {
     // }
     async updateSchedule (schedule) {
         await fs.writeFile(this.path, JSON.stringify(schedule));
-        const dates = schedule.map(item => item.date);
+        const dates = schedule.map(item => item.name);
         await fs.writeFile(path.join(process.cwd(), "app/data/conference-dates.json"), JSON.stringify(dates));
         return schedule;
     }
@@ -37,8 +37,8 @@ export default class ScheduleRepo {
     async getScheduleDates () {
         return JSON.parse(await fs.readFile(path.join(process.cwd(), "app/data/conference-dates.json")));
     }
-    async getScheduleItem (date) {
+    async getScheduleItem (name) {
         const schedule = JSON.parse(await fs.readFile(this.path))
-        return schedule.find(item => item.date === date)
+        return schedule.find(item => item.name === name)
     }
 }   

@@ -1,1 +1,94 @@
-[{"date":"28-04-2023","presentations":[{"paperTitle":"Presentation 5","presenter":"Presenter 1","from":"10:00","to":"11:00"},{"paperTitle":"Presentation 2","presenter":"Presenter 2","from":"11:00","to":"12:00"}]},{"date":"29-04-2023","presentations":[{"paperTitle":"Presentation 3","presenter":"Presenter 3","from":"10:00","to":"11:00"},{"paperTitle":"Presentation 4","presenter":"Presenter 4","from":"11:00","to":"12:00"}]},{},{"date":"28-09-2023","presentations":[{"paperTitle":"Presentation 5","presenter":"Presenter 1","from":"10:00","to":"11:00"},{"paperTitle":"Presentation 2","presenter":"Presenter 2","from":"11:00","to":"12:00"}]}]
+[
+    {
+        "name": "28-04-2023",
+        "location": "Sydney Convention and Exhibition Centre, 14 Darling Dr, Sydney NSW 2009, Australia",
+        "sessions": [
+            {
+                "name": "Session 1",
+                "fromTime": "9:00 AM",
+                "presenters": [
+                    {
+                        "name": "Presenter 1"
+                    },
+                    {
+                        "name": "Presenter 2"
+                    }
+                ],
+                "assignedPapers": [
+                    {
+                        "title": "Paper 1"
+                    },
+                    {
+                        "title": "Paper 2"
+                    }
+                ]
+            },
+            {
+                "name": "Session 2",
+                "fromTime": "10:00 AM",
+                "presenters": [
+                    {
+                        "name": "Presenter 3"
+                    },
+                    {
+                        "name": "Presenter 4"
+                    }
+                ],
+                "assignedPapers": [
+                    {
+                        "title": "Paper 3"
+                    },
+                    {
+                        "title": "Paper 4"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "29-04-2023",
+        "location": "Sydney Convention and Exhibition Centre, 14 Darling Dr, Sydney NSW 2009, Australia",
+        "sessions": [
+            {
+                "name": "Session 1",
+                "fromTime": "9:00 AM",
+                "presenters": [
+                    {
+                        "name": "Presenter 1"
+                    },
+                    {
+                        "name": "Presenter 2"
+                    }
+                ],
+                "assignedPapers": [
+                    {
+                        "title": "Paper 1"
+                    },
+                    {
+                        "title": "Paper 2"
+                    }
+                ]
+            },
+            {
+                "name": "Session 2",
+                "fromTime": "10:00 AM",
+                "presenters": [
+                    {
+                        "name": "Presenter 3"
+                    },
+                    {
+                        "name": "Presenter 4"
+                    }
+                ],
+                "assignedPapers": [
+                    {
+                        "title": "Paper 3"
+                    },
+                    {
+                        "title": "Paper 4"
+                    }
+                ]
+            }
+        ]
+    }
+]
