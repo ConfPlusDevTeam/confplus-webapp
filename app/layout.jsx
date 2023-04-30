@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
       },
 
       {
-        name: "Account",
+        name: "Dashboard",
 
         link: `/${JSON.parse(localStorage.getItem("user")).role}`,
       },
