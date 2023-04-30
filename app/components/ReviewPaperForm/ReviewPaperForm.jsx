@@ -17,10 +17,14 @@ export default function ReviewPaperForm() {
         <label className={styles.label}>Paper Title:</label>
         <p className={styles.paperTitle}></p>
       </div>
-      <Link href="#" className={styles.downloadFileContainer}>
+      <Link
+        href="reviewer/reviewpaper"
+        className={styles.downloadFileContainer}
+      >
         <Image
           className={styles.loadImg}
           src="/assets/downloadPaper.png"
+          alt="download paper"
           width={40}
           height={40}
         />
@@ -69,6 +73,7 @@ export default function ReviewPaperForm() {
         className={styles.textArea}
         type="text"
         placeholder="Enter Paper Strengths"
+        onChange={() => {}}
         value={""}
       />
 
@@ -77,6 +82,7 @@ export default function ReviewPaperForm() {
         className={styles.textArea}
         type="text"
         placeholder="Enter Paper Weaknesses"
+        onChange={() => {}}
         value={""}
       />
       <div className={styles.submitBtn}>
