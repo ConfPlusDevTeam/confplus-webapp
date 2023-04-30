@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { use } from "react";
 import styles from "./ReviewPaperForm.module.scss";
 import Link from "next/link";
 import Image from "next/image";
@@ -16,12 +16,12 @@ export default function ReviewPaperForm() {
   const email = JSON.parse(user).email;
   const [reviews, setReviews] = useState([{}]);
 
-  const router = useRouter();
-
-  const [evaluation, setEvaluation] = useState();
-  const [contribution, setContribution] = useState();
+  const [evaluation, setEvaluation] = useState("");
+  const [contribution, setContribution] = useState("");
   const [strengths, setStrengths] = useState("");
   const [weaknesses, setWeaknesses] = useState("");
+
+  const router = useRouter();
 
   const handleEvaluationChange = (event) => {
     setEvaluation(event.target.value);
@@ -39,27 +39,27 @@ export default function ReviewPaperForm() {
     setWeaknesses(event.target.value);
   };
 
-  useEffect(() => {
-    const getReviews = async () => {
-      const response = await fetch(
-        `/api/papers/review?paperTitle=${paperTitle}`
-      ).then((response) => response.json());
-      setReviews(await response);
-      return response.json();
-    };
-    const paperReviews = getReviews();
-    console.log(paperReviews);
-    const paperReview = paperReviews.find(
-      (review) => review.reviewerEmail == email
-    );
-    console.log(paperReview);
-  }, []);
+  async function getReviews() {
+    const response = await fetch(
+      `/api/papers/review?paperTitle=${paperTitle}`
+    ).then((response) => response.json());
+    setReviews(await response);
+    return response;
+  }
 
-  // console.log(paperReview);
-  // setContribution(paperReview.contribution);
-  // setEvaluation(paperReview.evaluation);
-  // setStrengths(paperReview.strengths);
-  // setWeaknesses(paperReview.weaknesses);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getReviews();
+      const paperReview = response.find(
+        (review) => review.reviewerEmail === email
+      );
+      setEvaluation(paperReview.evaluation);
+      setContribution(paperReview.contribution);
+      setStrengths(paperReview.strengths);
+      setWeaknesses(paperReview.weaknesses);
+    }
+    fetchData();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -69,14 +69,15 @@ export default function ReviewPaperForm() {
         paperTitle: paperTitle,
         reviewerEmail: email,
         status: "reviewed",
-        evaluation: event.target.evaluation.value,
-        contribution: event.target.contribution.value,
-        strengths: event.target.strengths.value,
-        weaknesses: event.target.weaknesses.value,
+        evaluation: evaluation,
+        contribution: contribution,
+        strengths: strengths,
+        weaknesses: weaknesses,
       }),
     });
     const data = await response.json();
     console.log(data);
+    router.push("/reviewer");
   };
 
   return (
