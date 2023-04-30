@@ -6,6 +6,7 @@
             {
                 "name": "Session 1",
                 "fromTime": "9:00 AM",
+                "endTime": "10:00 AM",
                 "presenters": [
                     {
                         "name": "Presenter 1"
@@ -26,6 +27,7 @@
             {
                 "name": "Session 2",
                 "fromTime": "10:00 AM",
+                "endTime": "11:00 AM",
                 "presenters": [
                     {
                         "name": "Presenter 3"
