@@ -13,14 +13,8 @@ import { useState } from "react";
 export default function RootLayout({ children }) {
   let links = [
     {
-      name: "Home",
+      name: "Information",
       link: "/",
-    },
-
-    {
-      name: "Schedule",
-
-      link: "/schedule",
     },
 
     {
@@ -36,8 +30,9 @@ export default function RootLayout({ children }) {
   if (isSignedIn) {
     const SignedInLinks = [
       {
-        name: "Home",
-        link: "/",
+        name: "Dashboard",
+
+        link: `/${JSON.parse(localStorage.getItem("user")).role}`,
       },
 
       {
@@ -46,11 +41,6 @@ export default function RootLayout({ children }) {
         link: "/schedule",
       },
 
-      {
-        name: "Dashboard",
-
-        link: `/${JSON.parse(localStorage.getItem("user")).role}`,
-      },
       {
         name: "Log Out",
 
