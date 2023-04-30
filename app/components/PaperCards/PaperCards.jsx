@@ -12,17 +12,35 @@ import { useRouter } from "next/navigation";
 export default function PaperCards() {
   const router = useRouter();
   const user = localStorage.getItem("user");
-  const email = JSON.parse(user).email;
-
+  const userRole = JSON.parse(user).role;
   const [papers, setPapers] = useState([]);
-  const getAssignedPapers = async () => {
-    const response = await fetch(`/api/papers?reviewer=${email}`).then(
-      (response) => response.json()
-    );
-    setPapers(await response);
-  };
-
-  getAssignedPapers();
+  useEffect(() => {
+    if (!user) {
+      router.push("/signin");
+      return;
+    } else {
+      if (userRole == "author") {
+        const getAuthorPapers = async () => {
+          const response = await fetch(
+            `/api/papers?author=${JSON.parse(user).email}`
+          ).then((response) => response.json());
+          setPapers(await response);
+        };
+        getAuthorPapers();
+        return;
+      }
+      if (userRole == "reviewer") {
+        const getAssignedPapers = async () => {
+          const response = await fetch(
+            `/api/papers?reviewer=${JSON.parse(user).email}`
+          ).then((response) => response.json());
+          setPapers(await response);
+        };
+        getAssignedPapers();
+        return;
+      }
+    }
+  }, []);
 
   const [toggle, setToggle] = useState(false);
 
@@ -63,9 +81,11 @@ export default function PaperCards() {
               </button>
             </div>
           </div>
-          <Link className={styles.revButton} href="/reviewer/reviewpaper">
-            Review Paper
-          </Link>
+          {userRole == "reviewer" && (
+            <Link className={styles.revButton} href="/reviewer/reviewpaper">
+              Review Paper
+            </Link>
+          )}
         </ContentContainer>
       ))}
     </div>
