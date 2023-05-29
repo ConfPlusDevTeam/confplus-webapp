@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  name    String @id
+  users   User[]
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String  @unique
+  password  String
+  role      Role    @relation(fields: [roleName], references: [name])
+  roleName  String
+}
+
+model Institution {
+  name      String    @id
+  users     User[]
+}
+
+model Location {
+  name      String    @id
+  Sessions   Session[]
+}
+
+
+model Session {
+  id        Int     @id @default(autoincrement())
+  name      String
+  fromTime  String
+  endTime   String
+  location  Location @relation(fields: [locationName], references: [name])
+  locationName String
+  sessionPapers SessionPaper[]
+}
+
+model SessionPaper {
+  sessionId Int
+  paperId   Int
+  session   Session @relation(fields: [sessionId], references: [id])
+  paper     Paper   @relation(fields: [paperId], references: [id])
+
+  @@id([sessionId, paperId])
+}
+
+model Paper {
+  id        Int     @id @default(autoincrement())
+  title     String
+  abstract  String
+  author   User[]
+  presenter User[]
+  file      Bytes
+  sessionPapers SessionPaper[]
+}
