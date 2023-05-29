@@ -1,4 +1,5 @@
 "use client";
+import Footer from "./components/Footer/Footer";
 import Link from "next/link";
 import "./globals.scss";
 import Background from "./components/Background/background";
@@ -56,8 +57,10 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar links={links} />
         {children}
+
         <Background />
       </body>
+      <Footer />
     </html>
   );
 }
