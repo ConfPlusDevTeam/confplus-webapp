@@ -3,8 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4rem;
-  margin-top: 7rem;
+  gap: 2rem;
+  margin-top: 1rem;
 }
 
 .tabsContainer {
@@ -25,9 +25,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 3rem;
   gap: 2rem;
-  width: min(80%, 70rem);
+  width: min(80%, 60rem);
 
   background: radial-gradient(
     90.16% 143.01% at 15.32% 21.04%,
@@ -41,7 +41,7 @@
   border-radius: 5rem;
   transform: rotate(0.12deg);
 
-  border: 0.3rem solid rgba(255, 242, 242, 0.354);
+  border: 0.1rem solid rgba(255, 242, 242, 0.354);
 }
 
 .content {

@@ -7,6 +7,7 @@ import ContentContainer from "./components/ContentContainer/ContentContainer";
 import { useState, useEffect } from "react";
 import Scrollbar from "./components/Scrollbar/Scrollbar";
 import FilteredSchedule from "./components/FilteredSchedule/FilteredSchedule";
+import Typical from "react-typical";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,11 +48,26 @@ export default function Home() {
       />
       <div className={styles.card}>
         {active == "welcome" && (
-          <ContentContainer
-            variant={1}
-            title="Welcome !"
-            className={styles}
-          ></ContentContainer>
+          <ContentContainer variant={1} title="" className={styles}>
+            <div className={styles.welcomeContainer}>
+              <h1 className={styles.hi}>Welcome, &nbsp;</h1>
+              <Typical
+                steps={[
+                  "Organizer",
+                  1000,
+                  "Author",
+                  1000,
+                  "Reviewer",
+                  1000,
+                  "Attendee",
+                  1000,
+                ]}
+                loop={Infinity}
+                wrapper="h1"
+                className={styles.typical}
+              ></Typical>
+            </div>
+          </ContentContainer>
         )}
         {active == "schedule" && (
           <ContentContainer variant={2} title="Schedule" className={styles}>

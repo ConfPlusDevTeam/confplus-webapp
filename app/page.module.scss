@@ -79,3 +79,22 @@
   margin: auto;
   flex-wrap: nowrap;
 }
+
+.typical {
+  font-size: 5rem;
+  color: pink;
+  align-self: center;
+  justify-self: center;
+}
+.hi {
+  font-size: 5rem;
+  margin-left: 5rem;
+  align-self: center;
+  justify-self: center;
+}
+.welcomeContainer {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  align-self: center;
+}
