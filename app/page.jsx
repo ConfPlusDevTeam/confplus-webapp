@@ -53,14 +53,14 @@ export default function Home() {
               <h1 className={styles.hi}>Welcome, &nbsp;</h1>
               <Typical
                 steps={[
-                  "Organizer",
-                  1000,
-                  "Author",
-                  1000,
-                  "Reviewer",
-                  1000,
-                  "Attendee",
-                  1000,
+                  "Organizer!",
+                  1400,
+                  "Author!",
+                  1400,
+                  "Reviewer!",
+                  1400,
+                  "Attendee!",
+                  1400,
                 ]}
                 loop={Infinity}
                 wrapper="h1"
