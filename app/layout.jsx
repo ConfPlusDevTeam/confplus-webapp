@@ -57,10 +57,11 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar links={links} />
         {children}
-
         <Background />
       </body>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </html>
   );
 }

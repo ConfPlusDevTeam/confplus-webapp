@@ -1,1 +1,42 @@
-[{"paperTitle":"omars love strory of web dev","abstract":"lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.  Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.","fileLink":"omarshenhaby.com","author":"zoeallen@author.com","coAuthors":[{"name":"john","email":"johnmdoe@gmail.com","affiliation":"QU","presenter":"yes"},{"name":"john","email":"johnmdoe@gmail.com","affiliation":"QU","presenter":"yes"}],"reviews":[{"paperTitle":"omars love strory of web dev","reviewerEmail":"miawilson@reviewer.com","status":"submitted","evaluation":"-1","contribution":"1","strengths":"asdasdasd","weaknesses":"asdasdasd"},{"paperTitle":"omars love strory of web dev","reviewerEmail":"bobsmith@reviewer.com","status":"submitted","evaluation":"2","contribution":5,"strengths":"lorem","weaknesses":"lorem"}]}]
+[
+  {
+    "paperTitle": "Exploring the Impact of AI-Enabled Personalization on User Engagement: A Comparative Study",
+    "abstract": "With the rapid advancements in artificial intelligence (AI) and its integration into various domains. ",
+    "fileLink": "https://www.sad.com",
+    "author": "zoeallen@author.com",
+    "coAuthors": [
+      {
+        "name": "Chloe Parker",
+        "email": "chloeparker@author.com",
+        "affiliation": "University of Tokyo",
+        "presenter": "yes"
+      },
+      {
+        "name": "Ethan Turner",
+        "email": "ethanturner@author.com",
+        "affiliation": "University of Oxford",
+        "presenter": "yes"
+      }
+    ],
+    "reviews": [
+      {
+        "paperTitle": "Exploring the Impact of AI-Enabled Personalization on User Engagement: A Comparative Study",
+        "reviewerEmail": "bobsmith@reviewer.com",
+        "status": "pending",
+        "evaluation": "",
+        "contribution": "",
+        "strengths": "",
+        "weaknesses": ""
+      },
+      {
+        "paperTitle": "Exploring the Impact of AI-Enabled Personalization on User Engagement: A Comparative Study",
+        "reviewerEmail": "emilydavis@reviewer.com",
+        "status": "pending",
+        "evaluation": "",
+        "contribution": "",
+        "strengths": "",
+        "weaknesses": ""
+      }
+    ]
+  }
+]

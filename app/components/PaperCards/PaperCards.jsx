@@ -68,42 +68,53 @@ export default function PaperCards() {
   return (
     <div className={styles.paperCards}>
       {papers.map((paper) => (
-        <ContentContainer variant={2} className={styles}>
-          <div className={styles.paperDetails}>
-            <h3>{paper.paperTitle}</h3>
-            <p>
-              Authors:&nbsp;
-              {paper.author +
-                "," +
-                paper.coAuthors.map((author) => " " + author.name)}
-            </p>
-
-            <div className={styles.showAbstract}>
-              {toggle && <p>{paper.abstract}</p>}
-              {!toggle && (
-                <label for="arrow" className={styles.label}>
-                  Abstract:
-                </label>
-              )}
-              <button
-                className={toggle ? styles.button : styles.upButton}
-                onClick={toggleHandler}
-                id="arrow"
-              >
-                ^
-              </button>
-            </div>
+        <div className="card card-compact w-80 h-96 bg-base-100 shadow-xl">
+          <figure>
+            <img src="https://picsum.photos/330/100" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">{paper.paperTitle}</h2>
+            <p>{paper.abstract}</p>
+            <div className="card-actions justify-end"></div>
           </div>
-          {userRole == "reviewer" && (
-            <Link
-              className={styles.revButton}
-              href="reviewer/reviewpaper"
-              onClick={handleClick(paper)}
-            >
-              Review Paper
-            </Link>
-          )}
-        </ContentContainer>
+        </div>
+
+        // <ContentContainer variant={2} className={styles}>
+        //   <div className={styles.paperDetails}>
+        //     <h3>{paper.paperTitle}</h3>
+        //     <p>
+        //       Authors:&nbsp;
+        //       {paper.author +
+        //         "," +
+        //         paper.coAuthors.map((author) => " " + author.name)}
+        //     </p>
+
+        //     <div className={styles.showAbstract}>
+        //       {toggle && <p>{paper.abstract}</p>}
+        //       {!toggle && (
+        //         <label for="arrow" className={styles.label}>
+        //           Abstract:
+        //         </label>
+        //       )}
+        //       <button
+        //         className={toggle ? styles.button : styles.upButton}
+        //         onClick={toggleHandler}
+        //         id="arrow"
+        //       >
+        //         ^
+        //       </button>
+        //     </div>
+        //   </div>
+        //   {userRole == "reviewer" && (
+        //     <Link
+        //       className={styles.revButton}
+        //       href="reviewer/reviewpaper"
+        //       onClick={handleClick(paper)}
+        //     >
+        //       Review Paper
+        //     </Link>
+        //   )}
+        // </ContentContainer>
       ))}
     </div>
   );
