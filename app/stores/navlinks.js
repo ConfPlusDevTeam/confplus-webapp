@@ -13,5 +13,5 @@ export const useNavLinksStore = create((set) => ({
       link: "/signin",
     },
   ],
-  setLinks: (links) => set(links),
+  setLinks: (links) => set({ links }),
 }));

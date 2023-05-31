@@ -5,6 +5,7 @@ import "./globals.scss";
 import Background from "./components/Background/background";
 import Navbar from "./components/Navbar/Navbar";
 import { useNavLinksStore } from "./stores/navlinks";
+import { useEffect } from "react";
 // export const metadata = {
 //   title: "ConfPlus",
 //   description: "WebProject",
@@ -50,7 +51,8 @@ export default function RootLayout({ children }) {
 
   //   links = SignedInLinks;
   // }
-  const { links } = useNavLinksStore();
+  const links = useNavLinksStore((state) => state.links);
+  const setLinks = useNavLinksStore((state) => state.setLinks);
 
   return (
     <html lang="en">
@@ -59,8 +61,8 @@ export default function RootLayout({ children }) {
         {children}
 
         <Background />
-        <Footer />
       </body>
+      <Footer />
     </html>
   );
 }

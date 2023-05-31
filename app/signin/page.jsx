@@ -13,6 +13,7 @@ import { useNavLinksStore } from "../stores/navlinks";
 
 export default function SignInForm() {
   const router = useRouter();
+  const setLinks = useNavLinksStore((state) => state.setLinks);
 
   const [message, setMessage] = React.useState("");
   const [loggedIn, setLoggedIn] = React.useState(
@@ -36,6 +37,26 @@ export default function SignInForm() {
     const data = await res.json();
 
     if (res.status == 200) {
+      setLinks((oldLinks) => [
+        {
+          name: "Dashboard",
+
+          link: `/${data.role}`,
+        },
+
+        {
+          name: "Schedule",
+
+          link: "/schedule",
+        },
+
+        {
+          name: "Log Out",
+
+          link: `/signin`,
+        },
+      ]);
+
       localStorage.setItem("user", JSON.stringify(data));
       const user = JSON.parse(localStorage.getItem("user"));
       setLoggedIn(true);
@@ -75,6 +96,18 @@ export default function SignInForm() {
             onClick={(e) => {
               localStorage.removeItem("user");
               setLoggedIn(false);
+              setLinks((oldLinks) => [
+                {
+                  name: "Information",
+                  link: "/",
+                },
+
+                {
+                  name: "Sign In",
+
+                  link: "/signin",
+                },
+              ]);
               router.push(`/signin`);
             }}
           />
