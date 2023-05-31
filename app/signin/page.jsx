@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Link from "next/link";
 import { redirect } from "next/dist/server/api-utils";
+import { useNavLinksStore } from "../stores/navlinks";
+
 export default function SignInForm() {
   const router = useRouter();
 
@@ -66,11 +68,6 @@ export default function SignInForm() {
       )}
       {loggedIn == true && (
         <div className={Styles.form}>
-          {/* <Button variant={3} type="submit">
-            <Link href={`/${JSON.parse(localStorage.getItem("user")).role}`}>
-              My Account
-            </Link>
-          </Button> */}
           <Button
             variant={1}
             type="submit"
