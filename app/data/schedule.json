@@ -1,1 +1,37 @@
-[{"name":"28-04-2023","sessions":[{"name":"Session 1","fromTime":"9:00 AM","endTime":"10:00 AM","presenters":[{"name":"Presenter 1"},{"name":"Presenter 2"}],"assignedPapers":[{"title":"Paper 1"},{"title":"Paper 2"}]},{"name":"Session 2","fromTime":"10:00 AM","endTime":"11:00 AM","presenters":[{"name":"Presenter 3"},{"name":"Presenter 4"}],"assignedPapers":[{"title":"Paper 3"},{"title":"Paper 4"}]},{"name":"Session 3","location":"Vancouver Convention Centre, 1055 Canada Pl, Vancouver, BC V6C 0C3, Canada","fromTime":"2:00pm","endTime":"2:15pm","presenters":[{"name":"Presenter 1"},{"name":"Presenter 2"}],"assignedPapers":[{"title":"Paper 1"},{"title":"Paper 2"}]},{"name":"Session 4","location":"Sydney Convention and Exhibition Centre, 14 Darling Dr, Sydney NSW 2009, Australia","fromTime":"3:00pm","endTime":"4:15pm","presenters":[{"name":"Presenter 1"},{"name":"Presenter 2"}],"assignedPapers":[{"title":"Paper 1"},{"title":"Paper 2"}]}]}]
+[
+  {
+    "name": "28-04-2023",
+    "sessions": [
+      {
+        "name": "Session 1",
+        "fromTime": "9:00 AM",
+        "endTime": "10:00 AM",
+        "presenters": [{ "name": "Presenter 1" }, { "name": "Presenter 2" }],
+        "assignedPapers": [{ "title": "Paper 1" }, { "title": "Paper 2" }]
+      },
+      {
+        "name": "Session 2",
+        "fromTime": "10:00 AM",
+        "endTime": "11:00 AM",
+        "presenters": [{ "name": "Presenter 3" }, { "name": "Presenter 4" }],
+        "assignedPapers": [{ "title": "Paper 3" }, { "title": "Paper 4" }]
+      },
+      {
+        "name": "Session 3",
+        "location": "Vancouver Convention Centre, 1055 Canada Pl, Vancouver, BC V6C 0C3, Canada",
+        "fromTime": "2:00pm",
+        "endTime": "2:15pm",
+        "presenters": [{ "name": "Presenter 1" }, { "name": "Presenter 2" }],
+        "assignedPapers": [{ "title": "Paper 1" }, { "title": "Paper 2" }]
+      },
+      {
+        "name": "Session 4",
+        "location": "Sydney Convention and Exhibition Centre, 14 Darling Dr, Sydney NSW 2009, Australia",
+        "fromTime": "3:00pm",
+        "endTime": "4:15pm",
+        "presenters": [{ "name": "Presenter 1" }, { "name": "Presenter 2" }],
+        "assignedPapers": [{ "title": "Paper 1" }, { "title": "Paper 2" }]
+      }
+    ]
+  }
+]

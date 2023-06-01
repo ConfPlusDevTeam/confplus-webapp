@@ -1,7 +1,7 @@
 "use client";
 import Footer from "./components/Footer/Footer";
 import Link from "next/link";
-import "./globals.scss";
+import styles from "./globals.scss";
 import Background from "./components/Background/background";
 import Navbar from "./components/Navbar/Navbar";
 import { useState } from "react";
@@ -58,10 +58,9 @@ export default function RootLayout({ children }) {
         <Navbar links={links} />
         {children}
         <Background />
+
+        <Footer className={styles.footer} />
       </body>
-      <footer>
-        <Footer />
-      </footer>
     </html>
   );
 }
