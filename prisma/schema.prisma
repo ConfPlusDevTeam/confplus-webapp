@@ -83,7 +83,7 @@ model Paper {
   abstract      String
   fileLink      String
   file          Bytes
-  status        String         @default("pending")
+  status        String         @default("Pending")
   sessionPapers SessionPaper[]
   authors       PaperAuthors[]
   presenterID   Int
