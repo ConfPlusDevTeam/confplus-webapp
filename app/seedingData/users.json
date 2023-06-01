@@ -1,0 +1,29 @@
+[
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "gender": "Male",
+        "email": "johndoe@example.com",
+        "password": "password123",
+        "role": "author",
+        "institutionName": "ABC University"
+    },
+    {
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "gender": "Female",
+        "email": "janesmith@example.com",
+        "password": "password456",
+        "role": "reviewer",
+        "institutionName": "XYZ College"
+    },
+    {
+        "first_name": "David",
+        "last_name": "Johnson",
+        "gender": "Male",
+        "email": "davidjohnson@example.com",
+        "password": "password789",
+        "role": "author",
+        "institutionName": "PQR Institute"
+    }
+]
