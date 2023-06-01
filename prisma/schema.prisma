@@ -1,5 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// This is your Prisma schema file.
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -11,53 +11,38 @@ datasource db {
 }
 
 model User {
-  id         Int    @id @default(autoincrement())
-  first_name String
-  last_name  String
-  gender     String
-  email      String @unique
-  password   String
-  role       String
-
-  Institution     Institution @relation(fields: [institutionName], references: [name])
+  id              Int            @id @default(autoincrement())
+  first_name      String
+  last_name       String
+  gender          String
+  email           String         @unique
+  password        String
+  role            String
+  institution     Institution    @relation(fields: [institutionName], references: [name])
   institutionName String
-  Paper           Paper?      @relation(fields: [paperId], references: [id])
-  paperId         Int?
-
-  Papers PaperAuthors[]
+  papers          PaperAuthors[]
+  papersAsPresenter Paper[]
+  reviews         Review[]
 }
 
 model Institution {
-  name  String @id
-  users User[]
+  name   String  @id
+  users  User[]
 }
 
 model PaperAuthors {
   paperId Int
   userId  Int
-  paper   Paper @relation(fields: [paperId], references: [id])
-  user    User  @relation(fields: [userId], references: [id])
+  paper   Paper   @relation(fields: [paperId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
 
   @@id([paperId, userId])
 }
 
-model Paper {
-  id         Int    @id @default(autoincrement())
-  paperTitle String
-  abstract   String
-  fileLink   String
-  file       Bytes
-  status     String @default("pending")
-
-  sessionPapers SessionPaper[]
-  Authors       PaperAuthors[]
-  presenter     User           @relation(fields: [presenterId], references: [id])
-  presenterId   Int
-}
 
 model Location {
   name     String    @id
-  Sessions Session[]
+  sessions Session[]
 }
 
 model Session {
@@ -73,8 +58,36 @@ model Session {
 model SessionPaper {
   sessionId Int
   paperId   Int
-  session   Session @relation(fields: [sessionId], references: [id])
-  paper     Paper   @relation(fields: [paperId], references: [id])
+  session   Session        @relation(fields: [sessionId], references: [id])
+  paper     Paper          @relation(fields: [paperId], references: [id])
 
   @@id([sessionId, paperId])
+}
+
+model Paper {
+  id            Int            @id @default(autoincrement())
+  paperTitle    String
+  abstract      String
+  fileLink      String
+  file          Bytes
+  status        String         @default("pending")
+  sessionPapers SessionPaper[]
+  authors       PaperAuthors[]
+  presenterID   Int
+  presenter    User           @relation(fields: [presenterID], references: [id])
+  reviews       Review[]
+}
+
+model Review {
+  paperId       Int
+  reviewerId    Int
+  @@id([paperId, reviewerId])
+  paper         Paper          @relation(fields: [paperId], references: [id])
+  reviewer      User           @relation(fields: [reviewerId], references: [id])
+  evaluation    Int
+  contribution  Int
+  strengths     String
+  weaknesses    String
+  status        String         @default("pending")
+  
 }
