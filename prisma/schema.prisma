@@ -48,11 +48,25 @@ model Location {
 model Session {
   id            Int            @id @default(autoincrement())
   name          String
-  fromTime      String
-  endTime       String
+  fromTime      DateTime
+  endTime       DateTime
   location      Location       @relation(fields: [locationName], references: [name])
   locationName  String
   sessionPapers SessionPaper[]
+  ScheduleDate         ScheduleDate   @relation(fields: [date], references: [date])
+  date       DateTime
+}
+
+model ScheduleDate{
+  date          DateTime     @id
+  sessions      Session[]
+  Schedule    Schedule      @relation(fields: [scheduleId], references: [id])
+  scheduleId  Int
+}
+
+model Schedule {
+  id            Int            @id @default(autoincrement())
+  scheduleDates ScheduleDate[]
 }
 
 model SessionPaper {
@@ -60,7 +74,6 @@ model SessionPaper {
   paperId   Int
   session   Session        @relation(fields: [sessionId], references: [id])
   paper     Paper          @relation(fields: [paperId], references: [id])
-
   @@id([sessionId, paperId])
 }
 
@@ -89,5 +102,4 @@ model Review {
   strengths     String
   weaknesses    String
   status        String         @default("pending")
-  
 }
