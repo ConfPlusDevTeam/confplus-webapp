@@ -10,39 +10,63 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Role {
-  name    String @id
-  users   User[]
-}
-
 model User {
-  id        Int     @id @default(autoincrement())
-  firstName String
-  lastName  String
-  email     String  @unique
-  password  String
-  role      Role    @relation(fields: [roleName], references: [name])
-  roleName  String
+  id         Int    @id @default(autoincrement())
+  first_name String
+  last_name  String
+  gender     String
+  email      String @unique
+  password   String
+  role       String
+
+  Institution     Institution @relation(fields: [institutionName], references: [name])
+  institutionName String
+  Paper           Paper?      @relation(fields: [paperId], references: [id])
+  paperId         Int?
+
+  Papers PaperAuthors[]
 }
 
 model Institution {
-  name      String    @id
-  users     User[]
+  name  String @id
+  users User[]
+}
+
+model PaperAuthors {
+  paperId Int
+  userId  Int
+  paper   Paper @relation(fields: [paperId], references: [id])
+  user    User  @relation(fields: [userId], references: [id])
+
+  @@id([paperId, userId])
+}
+
+model Paper {
+  id         Int    @id @default(autoincrement())
+  paperTitle String
+  abstract   String
+  fileLink   String
+  file       Bytes
+  status     String @default("pending")
+
+  sessionPapers SessionPaper[]
+  Authors       PaperAuthors[]
+  presenter     User           @relation(fields: [presenterId], references: [id])
+  presenterId   Int
 }
 
 model Location {
-  name      String    @id
-  Sessions   Session[]
+  name     String    @id
+  Sessions Session[]
 }
 
-
 model Session {
-  id        Int     @id @default(autoincrement())
-  name      String
-  fromTime  String
-  endTime   String
-  location  Location @relation(fields: [locationName], references: [name])
-  locationName String
+  id            Int            @id @default(autoincrement())
+  name          String
+  fromTime      String
+  endTime       String
+  location      Location       @relation(fields: [locationName], references: [name])
+  locationName  String
   sessionPapers SessionPaper[]
 }
 
@@ -53,14 +77,4 @@ model SessionPaper {
   paper     Paper   @relation(fields: [paperId], references: [id])
 
   @@id([sessionId, paperId])
-}
-
-model Paper {
-  id        Int     @id @default(autoincrement())
-  title     String
-  abstract  String
-  author   User[]
-  presenter User[]
-  file      Bytes
-  sessionPapers SessionPaper[]
 }
