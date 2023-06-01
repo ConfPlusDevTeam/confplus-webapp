@@ -11,34 +11,33 @@ datasource db {
 }
 
 model User {
-  id              Int            @id @default(autoincrement())
-  first_name      String
-  last_name       String
-  gender          String
-  email           String         @unique
-  password        String
-  role            String
-  institution     Institution    @relation(fields: [institutionName], references: [name])
-  institutionName String
-  papers          PaperAuthors[]
+  id                Int            @id @default(autoincrement())
+  first_name        String
+  last_name         String
+  gender            String
+  email             String         @unique
+  password          String
+  role              String
+  institution       Institution    @relation(fields: [institutionName], references: [name])
+  institutionName   String
+  papers            PaperAuthors[]
   papersAsPresenter Paper[]
-  reviews         Review[]
+  reviews           Review[]
 }
 
 model Institution {
-  name   String  @id
-  users  User[]
+  name  String @id
+  users User[]
 }
 
 model PaperAuthors {
   paperId Int
   userId  Int
-  paper   Paper   @relation(fields: [paperId], references: [id])
-  user    User    @relation(fields: [userId], references: [id])
+  paper   Paper @relation(fields: [paperId], references: [id])
+  user    User  @relation(fields: [userId], references: [id])
 
   @@id([paperId, userId])
 }
-
 
 model Location {
   name     String    @id
@@ -53,15 +52,15 @@ model Session {
   location      Location       @relation(fields: [locationName], references: [name])
   locationName  String
   sessionPapers SessionPaper[]
-  ScheduleDate         ScheduleDate   @relation(fields: [date], references: [date])
-  date       DateTime
+  ScheduleDate  ScheduleDate   @relation(fields: [date], references: [date])
+  date          DateTime
 }
 
-model ScheduleDate{
-  date          DateTime     @id
-  sessions      Session[]
-  Schedule    Schedule      @relation(fields: [scheduleId], references: [id])
-  scheduleId  Int
+model ScheduleDate {
+  date       DateTime  @id
+  sessions   Session[]
+  Schedule   Schedule  @relation(fields: [scheduleId], references: [id])
+  scheduleId Int
 }
 
 model Schedule {
@@ -72,8 +71,9 @@ model Schedule {
 model SessionPaper {
   sessionId Int
   paperId   Int
-  session   Session        @relation(fields: [sessionId], references: [id])
-  paper     Paper          @relation(fields: [paperId], references: [id])
+  session   Session @relation(fields: [sessionId], references: [id])
+  paper     Paper   @relation(fields: [paperId], references: [id])
+
   @@id([sessionId, paperId])
 }
 
@@ -87,19 +87,19 @@ model Paper {
   sessionPapers SessionPaper[]
   authors       PaperAuthors[]
   presenterID   Int
-  presenter    User           @relation(fields: [presenterID], references: [id])
+  presenter     User           @relation(fields: [presenterID], references: [id])
   reviews       Review[]
 }
 
 model Review {
-  paperId       Int
-  reviewerId    Int
-  @@id([paperId, reviewerId])
-  paper         Paper          @relation(fields: [paperId], references: [id])
-  reviewer      User           @relation(fields: [reviewerId], references: [id])
-  evaluation    Int
-  contribution  Int
-  strengths     String
-  weaknesses    String
-  status        String         @default("pending")
+  id           Int    @id @default(autoincrement())
+  paperId      Int
+  reviewerId   Int
+  paper        Paper  @relation(fields: [paperId], references: [id])
+  reviewer     User   @relation(fields: [reviewerId], references: [id])
+  evaluation   Int
+  contribution Int
+  strengths    String
+  weaknesses   String
+  status       String @default("Pending")
 }
