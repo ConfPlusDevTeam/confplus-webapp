@@ -11,9 +11,7 @@ import { useRouter } from "next/navigation";
 export default function ReviewPaperForm() {
   const paperTitle = localStorage.getItem("paperTitle").replace(/[""]/g, "");
   console.log(paperTitle);
-  const fileLink = localStorage.getItem("fileLink");
-  const user = localStorage.getItem("user");
-  const email = JSON.parse(user).email;
+
   const [reviews, setReviews] = useState([{}]);
 
   const [evaluation, setEvaluation] = useState("");
@@ -40,9 +38,9 @@ export default function ReviewPaperForm() {
   };
 
   async function getReviews() {
-    const response = await fetch(
-      `/api/papers/review?paperTitle=${paperTitle}`
-    ).then((response) => response.json());
+    const response = await fetch(`/api/papers/review/${id}`).then((response) =>
+      response.json()
+    );
     setReviews(await response);
     return response;
   }

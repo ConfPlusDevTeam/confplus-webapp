@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { use } from "react";
 import styles from "./PaperCards.module.scss";
 import ContentContainer from "../ContentContainer/ContentContainer";
 import Link from "next/link";
@@ -10,81 +10,60 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Router } from "next/router";
 
-export default function PaperCards() {
+export default function PaperCards(props, role) {
   let key = 40;
   const router = useRouter();
-  const user = localStorage.getItem("user");
-  const userRole = JSON.parse(user).role;
-  const [papers, setPapers] = useState([]);
-  useEffect(() => {
-    if (!user) {
-      router.push("/signin");
-      return;
-    } else {
-      if (userRole == "author") {
-        const getAuthorPapers = async () => {
-          const response = await fetch(
-            `/api/papers?author=${JSON.parse(user).email}`
-          ).then((response) => response.json());
-          setPapers(await response);
-        };
-        getAuthorPapers();
-        return;
-      }
+  const [show, setShow] = useState(false);
 
-      if (userRole == "reviewer") {
-        const getAssignedPapers = async () => {
-          const response = await fetch(
-            `/api/papers?reviewer=${JSON.parse(user).email}`
-          ).then((response) => response.json());
-          setPapers(await response);
-        };
-        getAssignedPapers();
-        return;
-      }
-    }
-  }, []);
-
-  const [toggle, setToggle] = useState(false);
-
-  const toggleHandler = () => {
-    setToggle(!toggle);
+  const handleClick = () => {
+    router.push("/reviewer/reviewpaper");
+    router.query = { id: props.id };
   };
-
-  if (!papers) {
-    return <div>No papers available</div>;
-  }
-
-  function handleClick(paper) {
-    return (event) => {
-      event.preventDefault();
-      {
-        router.push("/reviewer/reviewpaper");
-        localStorage.setItem("paperTitle", JSON.stringify(paper.paperTitle));
-        localStorage.setItem("fileLink", JSON.stringify(paper.fileLink));
-      }
-    };
-  }
 
   return (
     <div className={styles.paperCards}>
-      {papers.map(
-        (paper) => (
-          key++,
-          (
-            <div className="card card-compact w-80 h-96 bg-base-100 shadow-xl">
-              <figure>
-                <img src={`https://picsum.photos/id/${key}/330/100`} />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">{paper.paperTitle}</h2>
-                <p>{paper.abstract}</p>
-                <div className="card-actions justify-end"></div>
-              </div>
-            </div>
-          )
-
-          // <ContentContainer variant={2} className={styles}>
+      <div className="card card-compact md:flex w-auto h-auto bg-base-100 shadow-lg card-side hover:shadow-xl ease-in-out transition duration-600">
+        <figure>
+          <img src={`https://picsum.photos/id/${props.id}/300/330`} />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title text-[13px] font-bold">
+            {props.paperTitle}
+          </h2>
+          <p className="text-[11px]">
+            <p className="font-semibold  ">Co Authors:&nbsp;</p>
+            {props.coAuthors?.map((author) => "" + "(" + author.name + ")")}
+          </p>
+          {show && (
+            <p className="text-[11px]">
+              <p className="font-semibold  ">Abstract:&nbsp;</p>
+              {props.abstract}
+            </p>
+          )}
+          <div className="badge badge-success gap-2">{props.statues}</div>
+          <div className="card-actions justify-end">
+            <button
+              className="btn btn-sm btn-primary"
+              onClick={() => setShow(!show)}
+            >
+              {show ? (
+                <div className="text-[10px]">Hide Abstract</div>
+              ) : (
+                <div className="text-[10px]">Show Abstract</div>
+              )}
+            </button>
+            {role == "reviewer" && (
+              <button
+                className="btn btn-sm btn-primary"
+                onClick={() => handleClick()}
+              >
+                Review Paper
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+      {/* // <ContentContainer variant={2} className={styles}>
           //   <div className={styles.paperDetails}>
           //     <h3>{paper.paperTitle}</h3>
           //     <p>
@@ -119,9 +98,7 @@ export default function PaperCards() {
           //       Review Paper
           //     </Link>
           //   )}
-          // </ContentContainer>
-        )
-      )}
+          // </ContentContainer> */}
     </div>
   );
 }

@@ -54,3 +54,15 @@
   align-items: center;
   gap: 2rem;
 }
+
+.paperCards {
+  display: grid;
+  // use the ram template to make the cards responsive
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.8rem;
+  justify-items: center;
+  align-items: center;
+  padding: 1rem;
+  margin: 0.6rem;
+  // width: 100%;
+}
