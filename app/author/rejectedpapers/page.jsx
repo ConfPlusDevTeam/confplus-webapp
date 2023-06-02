@@ -14,7 +14,7 @@ export default function page() {
   const [papers, setPapers] = useState([]);
   let key = 50;
 
-  const [count, setCount] = useState(0);
+  let count = 0;
 
   useEffect(() => {
     if (!user) {
@@ -78,7 +78,6 @@ export default function page() {
                 />
               )
           )}
-          {setCount(count++)}
         </div>
       </ContentContainer>
     </div>
