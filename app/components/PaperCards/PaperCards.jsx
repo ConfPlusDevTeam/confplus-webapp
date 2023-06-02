@@ -31,14 +31,14 @@ export default function PaperCards(props, role) {
             {props.paperTitle}
           </h2>
           <div className="dropdown ">
-            <label tabIndex={0} className="btn btn-xs bg-[purple]">
+            <label tabIndex={0} className="btn btn-xs bg-purple-900">
               Abstract
             </label>
             <div
               tabIndex={0}
               className="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content"
             >
-              <div className="card-body bg-[purple]">
+              <div className="card-body bg-purple-900">
                 <p>{props.abstract}</p>
               </div>
             </div>
@@ -66,14 +66,17 @@ export default function PaperCards(props, role) {
           )}
           <div className="card-actions justify-end ">
             {role == "reviewer" && (
-              <button className="btn btn-xs  " onClick={() => handleClick()}>
+              <button
+                className="btn btn-xs bg-purple-900 "
+                onClick={() => handleClick()}
+              >
                 Review Paper
               </button>
             )}
             {props.statues == "Accepted" ||
               (props.statues == "Refused" && (
                 <button
-                  className="btn btn-xs  text-[10px]"
+                  className="btn btn-xs  text-[10px] bg-purple-900"
                   onClick={() => handleClick()}
                 >
                   View 1st Review
@@ -82,7 +85,7 @@ export default function PaperCards(props, role) {
             {props.statues == "Accepted" ||
               (props.statues == "Refused" && (
                 <button
-                  className="btn btn-xs  text-[10px]"
+                  className="btn btn-xs  text-[10px] bg-purple-900"
                   onClick={() => handleClick()}
                 >
                   View 2nd Review
