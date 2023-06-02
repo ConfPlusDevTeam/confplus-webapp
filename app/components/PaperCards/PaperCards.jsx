@@ -33,7 +33,7 @@ export default function PaperCards(props, role) {
           <div className="dropdown ">
             <label
               tabIndex={0}
-              className="btn btn-xs bg-purple-900 normal-case"
+              className="btn btn-xs bg-purple-900 normal-case text-[11px]"
             >
               Abstract
             </label>

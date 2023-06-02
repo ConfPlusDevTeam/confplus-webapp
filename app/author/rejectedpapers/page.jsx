@@ -6,14 +6,15 @@ import ContentContainer from "../../components/ContentContainer/ContentContainer
 import Tabs from "../../components/Tabs/Tabs";
 import PaperCards from "../../components/PaperCards/PaperCards";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function page() {
   const router = useRouter();
   const user = JSON.parse(localStorage.getItem("user"));
-  const [papers, setPapers] = React.useState([]);
+  const [papers, setPapers] = useState([]);
   let key = 50;
 
-  let count = 2;
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!user) {
@@ -77,6 +78,7 @@ export default function page() {
                 />
               )
           )}
+          {setCount(count++)}
         </div>
       </ContentContainer>
     </div>
