@@ -4,53 +4,55 @@ import Link from "next/link";
 import styles from "./globals.scss";
 import Background from "./components/Background/background";
 import Navbar from "./components/Navbar/Navbar";
-import { useState } from "react";
-
+import { useNavLinksStore } from "./stores/navlinks";
+import { useEffect } from "react";
 // export const metadata = {
 //   title: "ConfPlus",
 //   description: "WebProject",
 // };
 
 export default function RootLayout({ children }) {
-  let links = [
-    {
-      name: "Information",
-      link: "/",
-    },
+  // let links = [
+  //   {
+  //     name: "Information",
+  //     link: "/",
+  //   },
 
-    {
-      name: "Sign In",
+  //   {
+  //     name: "Sign In",
 
-      link: "/signin",
-    },
-  ];
-  const [isSignedIn, setIsSignedIn] = useState(
-    localStorage.getItem("user") == null ? false : true
-  );
+  //     link: "/signin",
+  //   },
+  // ];
+  // const [isSignedIn, setIsSignedIn] = useState(
+  //   localStorage.getItem("user") == null ? false : true
+  // );
 
-  if (isSignedIn) {
-    const SignedInLinks = [
-      {
-        name: "Dashboard",
+  // if (isSignedIn) {
+  //   const SignedInLinks = [
+  //     {
+  //       name: "Dashboard",
 
-        link: `/${JSON.parse(localStorage.getItem("user")).role}`,
-      },
+  //       link: `/${JSON.parse(localStorage.getItem("user")).role}`,
+  //     },
 
-      {
-        name: "Schedule",
+  //     {
+  //       name: "Schedule",
 
-        link: "/schedule",
-      },
+  //       link: "/schedule",
+  //     },
 
-      {
-        name: "Log Out",
+  //     {
+  //       name: "Log Out",
 
-        link: `/signin`,
-      },
-    ];
+  //       link: `/signin`,
+  //     },
+  //   ];
 
-    links = SignedInLinks;
-  }
+  //   links = SignedInLinks;
+  // }
+  const links = useNavLinksStore((state) => state.links);
+  const setLinks = useNavLinksStore((state) => state.setLinks);
 
   return (
     <html lang="en">
