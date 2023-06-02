@@ -30,57 +30,50 @@ export default function PaperCards(props, role) {
           <h2 className="card-title text-[13px] font-bold">
             {props.paperTitle}
           </h2>
+          <div className="dropdown ">
+            <label tabIndex={0} className="btn btn-xs bg-[purple]">
+              Abstract
+            </label>
+            <div
+              tabIndex={0}
+              className="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content"
+            >
+              <div className="card-body bg-[purple]">
+                <p>{props.abstract}</p>
+              </div>
+            </div>
+          </div>
           <p className="text-[11px]">
             <p className="font-semibold  ">Co Authors:&nbsp;</p>
             {props.coAuthors?.map((author) => "" + "(" + author.name + ")")}
           </p>
-          {show && (
-            <p className="text-[11px]">
-              <p className="font-semibold  ">Abstract:&nbsp;</p>
-              {props.abstract}
-            </p>
-          )}
+
           {props.statues == "Pending" && (
             <div className="badge badge-success gap-2 text-[11px] font-semibold bg-amber-600">
-              Statues: &nbsp;
+              &nbsp;
               {props.statues}
             </div>
           )}
           {props.statues == "Accepted" && (
             <div className="badge badge-success gap-2 text-[11px] font-semibold bg-lime-500">
-              Statues: &nbsp;
               {props.statues}
             </div>
           )}
           {props.statues == "Refused" && (
             <div className="badge badge-success gap-2 text-[11px] font-semibold bg-red-600">
-              Statues: &nbsp;
               {props.statues}
             </div>
           )}
           <div className="card-actions justify-end ">
-            <button
-              className="btn btn-sm btn-primary"
-              onClick={() => setShow(!show)}
-            >
-              {show ? (
-                <div className="text-[10px]">Hide Abstract</div>
-              ) : (
-                <div className="text-[10px]">Show Abstract</div>
-              )}
-            </button>
             {role == "reviewer" && (
-              <button
-                className="btn btn-sm btn-secondary "
-                onClick={() => handleClick()}
-              >
+              <button className="btn btn-xs  " onClick={() => handleClick()}>
                 Review Paper
               </button>
             )}
             {props.statues == "Accepted" ||
               (props.statues == "Refused" && (
                 <button
-                  className="btn btn-sm btn-primary text-[10px]"
+                  className="btn btn-xs  text-[10px]"
                   onClick={() => handleClick()}
                 >
                   View 1st Review
@@ -89,7 +82,7 @@ export default function PaperCards(props, role) {
             {props.statues == "Accepted" ||
               (props.statues == "Refused" && (
                 <button
-                  className="btn btn-sm btn-primary text-[10px]"
+                  className="btn btn-xs  text-[10px]"
                   onClick={() => handleClick()}
                 >
                   View 2nd Review
