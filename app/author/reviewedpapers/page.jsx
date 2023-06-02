@@ -59,7 +59,7 @@ export default function page() {
         <div className={styles.paperCards}>
           {papers.map(
             (paper) =>
-              (paper.statues == "Accepted" || paper.statues == "Refused") && (
+              (paper.statues == "Accepted" || paper.statues == "Rejected") && (
                 <PaperCards
                   id={key++}
                   paperTitle={paper.paperTitle}

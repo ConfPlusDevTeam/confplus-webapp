@@ -31,7 +31,7 @@ export default function SubmitPaper() {
     },
     {
       name: "Reviewed Papers",
-      link: "/author/reviedpapers",
+      link: "/author/reviewedpapers",
     },
     {
       name: "Submit Paper",

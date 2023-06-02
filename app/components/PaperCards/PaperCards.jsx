@@ -31,15 +31,18 @@ export default function PaperCards(props, role) {
             {props.paperTitle}
           </h2>
           <div className="dropdown ">
-            <label tabIndex={0} className="btn btn-xs bg-purple-900">
+            <label
+              tabIndex={0}
+              className="btn btn-xs bg-purple-900 normal-case"
+            >
               Abstract
             </label>
             <div
               tabIndex={0}
-              className="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content"
+              className="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content bg-purple-900"
             >
-              <div className="card-body bg-purple-900">
-                <p>{props.abstract}</p>
+              <div className="card-body  ">
+                <p className="text-[11px]">{props.abstract}</p>
               </div>
             </div>
           </div>
@@ -59,12 +62,12 @@ export default function PaperCards(props, role) {
               {props.statues}
             </div>
           )}
-          {props.statues == "Refused" && (
+          {props.statues == "Rejected" && (
             <div className="badge badge-success gap-2 text-[11px] font-semibold bg-red-600">
               {props.statues}
             </div>
           )}
-          <div className="card-actions justify-end ">
+          <div className="card-actions justify-center ">
             {role == "reviewer" && (
               <button
                 className="btn btn-xs bg-purple-900 "
@@ -73,63 +76,33 @@ export default function PaperCards(props, role) {
                 Review Paper
               </button>
             )}
-            {props.statues == "Accepted" ||
-              (props.statues == "Refused" && (
-                <button
-                  className="btn btn-xs  text-[10px] bg-purple-900"
-                  onClick={() => handleClick()}
-                >
-                  View 1st Review
-                </button>
-              ))}
-            {props.statues == "Accepted" ||
-              (props.statues == "Refused" && (
-                <button
-                  className="btn btn-xs  text-[10px] bg-purple-900"
-                  onClick={() => handleClick()}
-                >
-                  View 2nd Review
-                </button>
-              ))}
+            {props.statues == "Rejected" && (
+              <button
+                className="btn btn-primary btn-xs   text-[10px]  bg-purple-900"
+                onClick={() => handleClick()}
+              >
+                View 1st Review
+              </button>
+            )}
+            {props.statues == "Rejected" && (
+              <button
+                className="btn btn-primary btn-xs  text-[10px]  bg-purple-900"
+                onClick={() => handleClick()}
+              >
+                View 2nd Review
+              </button>
+            )}
+            {props.statues == "Rejected" && (
+              <button
+                className="btn btn-primary btn-xs  text-[10px] btn-wide bg-red-600"
+                onClick={() => handleDelete()}
+              >
+                Delete
+              </button>
+            )}
           </div>
         </div>
       </div>
-      {/* // <ContentContainer variant={2} className={styles}>
-          //   <div className={styles.paperDetails}>
-          //     <h3>{paper.paperTitle}</h3>
-          //     <p>
-          //       Authors:&nbsp;
-          //       {paper.author +
-          //         "," +
-          //         paper.coAuthors.map((author) => " " + author.name)}
-          //     </p>
-
-          //     <div className={styles.showAbstract}>
-          //       {toggle && <p>{paper.abstract}</p>}
-          //       {!toggle && (
-          //         <label for="arrow" className={styles.label}>
-          //           Abstract:
-          //         </label>
-          //       )}
-          //       <button
-          //         className={toggle ? styles.button : styles.upButton}
-          //         onClick={toggleHandler}
-          //         id="arrow"
-          //       >
-          //         ^
-          //       </button>
-          //     </div>
-          //   </div>
-          //   {userRole == "reviewer" && (
-          //     <Link
-          //       className={styles.revButton}
-          //       href="reviewer/reviewpaper"
-          //       onClick={handleClick(paper)}
-          //     >
-          //       Review Paper
-          //     </Link>
-          //   )}
-          // </ContentContainer> */}
     </div>
   );
 }
