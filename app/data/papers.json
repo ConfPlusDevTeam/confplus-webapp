@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "paperTitle": "Exploring the Impact of AI-Enabled Personalization on User Engagement: A Comparative Study",
     "abstract": "With the rapid advancements in artificial intelligence (AI) and its integration into various domains. ",
     "fileLink": "https://www.sad.com",
@@ -41,6 +42,7 @@
     ]
   },
   {
+    "id": 2,
     "paperTitle": "Emerging Trends in Blockchain-based Supply Chain Management: A Systematic Review",
     "abstract": "As global markets continue to evolve and expand, efficient supply chain management becomes a crucial aspect for businesses seeking to gain a competitive edge.",
     "fileLink": "https://www.sad.com",
@@ -76,6 +78,7 @@
     ]
   },
   {
+    "id": 3,
     "paperTitle": "Emerging Trends in Blockchain-based Supply Chain Management: A Systematic Review",
     "abstract": "As global markets continue to evolve and expand, efficient supply chain management becomes a crucial aspect for businesses seeking to gain a competitive edge.",
     "fileLink": "https://www.sad.com",
@@ -111,6 +114,7 @@
     ]
   },
   {
+    "id": 4,
     "paperTitle": "Emerging Trends in Blockchain-based Supply Chain Management: A Systematic Review",
     "abstract": "As global markets continue to evolve and expand, efficient supply chain management becomes a crucial aspect for businesses seeking to gain a competitive edge.",
     "fileLink": "https://www.sad.com",
@@ -137,6 +141,78 @@
       {
         "paperTitle": "Emerging Trends in Blockchain-based Supply Chain Management: A Systematic Review",
         "reviewerEmail": "sophiemiller@reviewer.com",
+        "status": "pending",
+        "evaluation": "",
+        "contribution": "",
+        "strengths": "",
+        "weaknesses": ""
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "paperTitle": "Enhancing Data Privacy in Healthcare using Blockchain Technology",
+    "abstract": "With the increasing digitization of healthcare data, ensuring data privacy has become a major concern.",
+    "fileLink": "https://www.pqr.com",
+    "author": "zoeallen@author.com",
+    "statues": "Accepted",
+    "coAuthors": [
+      {
+        "name": "Sarah Thompson",
+        "email": "sarahthompson@coauthor.com",
+        "affiliation": "Harvard Medical School",
+        "presenter": "yes"
+      }
+    ],
+    "reviews": [
+      {
+        "paperTitle": "Enhancing Data Privacy in Healthcare using Blockchain Technology",
+        "reviewerEmail": "davidwilson@reviewer.com",
+        "status": "completed",
+        "evaluation": "Positive",
+        "contribution": "The paper provides a comprehensive analysis of how blockchain technology can address data privacy concerns in healthcare.",
+        "strengths": "Well-structured and clearly presented.",
+        "weaknesses": "Could include more real-world case studies."
+      },
+      {
+        "paperTitle": "Enhancing Data Privacy in Healthcare using Blockchain Technology",
+        "reviewerEmail": "jenniferadams@reviewer.com",
+        "status": "completed",
+        "evaluation": "Positive",
+        "contribution": "The paper highlights the potential of blockchain technology in improving data privacy in healthcare.",
+        "strengths": "Thorough literature review and insightful analysis.",
+        "weaknesses": "Could provide more details on implementation challenges."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "paperTitle": "Blockchain Applications in Supply Chain Sustainability: A Review of Existing Literature",
+    "abstract": "Sustainable supply chain management has gained significant attention in recent years, and blockchain technology offers potential solutions.",
+    "fileLink": "https://www.mno.com",
+    "author": "zoeallen@author.com",
+    "statues": "Rejected",
+    "coAuthors": [
+      {
+        "name": "Daniel Cooper",
+        "email": "danielcooper@coauthor.com",
+        "affiliation": "University of California, Berkeley",
+        "presenter": "yes"
+      }
+    ],
+    "reviews": [
+      {
+        "paperTitle": "Blockchain Applications in Supply Chain Sustainability: A Review of Existing Literature",
+        "reviewerEmail": "laurasmith@reviewer.com",
+        "status": "pending",
+        "evaluation": "",
+        "contribution": "",
+        "strengths": "",
+        "weaknesses": ""
+      },
+      {
+        "paperTitle": "Blockchain Applications in Supply Chain Sustainability: A Review of Existing Literature",
+        "reviewerEmail": "matthewbrown@reviewer.com",
         "status": "pending",
         "evaluation": "",
         "contribution": "",

@@ -13,6 +13,8 @@ export default function Authors() {
   const [papers, setPapers] = React.useState([]);
   let key = 50;
 
+  let count = 2;
+
   useEffect(() => {
     if (!user) {
       router.push("/signin");
@@ -41,14 +43,20 @@ export default function Authors() {
       link: "/author",
     },
     {
-      name: "Reviewed Papers",
-      link: "/author/reviewedpapers",
+      name: "Accepted Papers",
+      link: "/author/acceptedpapers",
     },
+    {
+      name: `Rejected Papers (${count})`,
+      link: "/author/rejectedpapers",
+    },
+
     {
       name: "Submit Paper",
       link: "/author/submitpaper",
     },
   ];
+
   return (
     <div className={styles.profile}>
       <WelcomeMessage

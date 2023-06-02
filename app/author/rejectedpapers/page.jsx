@@ -13,6 +13,8 @@ export default function page() {
   const [papers, setPapers] = React.useState([]);
   let key = 50;
 
+  let count = 2;
+
   useEffect(() => {
     if (!user) {
       router.push("/signin");
@@ -41,9 +43,14 @@ export default function page() {
       link: "/author",
     },
     {
-      name: "Reviewed Papers",
-      link: "/author/reviewedpapers",
+      name: "Accepted Papers",
+      link: "/author/acceptedpapers",
     },
+    {
+      name: `Rejected Papers (${count})`,
+      link: "/author/rejectedpapers",
+    },
+
     {
       name: "Submit Paper",
       link: "/author/submitpaper",
@@ -59,7 +66,7 @@ export default function page() {
         <div className={styles.paperCards}>
           {papers.map(
             (paper) =>
-              (paper.statues == "Accepted" || paper.statues == "Rejected") && (
+              paper.statues == "Rejected" && (
                 <PaperCards
                   id={key++}
                   paperTitle={paper.paperTitle}
