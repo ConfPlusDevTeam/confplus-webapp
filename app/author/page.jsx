@@ -37,12 +37,12 @@ export default function Authors() {
 
   const links = [
     {
-      name: "Processing Papers",
+      name: "Pending Papers",
       link: "/author",
     },
     {
       name: "Reviewed Papers",
-      link: "/author/reviedpapers",
+      link: "/author/reviewedpapers",
     },
     {
       name: "Submit Paper",
@@ -57,16 +57,19 @@ export default function Authors() {
       <ContentContainer variant={2} className={styles}>
         <Tabs links={links} className={styles} />
         <div className={styles.paperCards}>
-          {papers.map((paper) => (
-            <PaperCards
-              id={key++}
-              paperTitle={paper.paperTitle}
-              coAuthors={paper.coAuthors}
-              abstract={paper.abstract}
-              statue={paper.statue}
-              role={user.role}
-            />
-          ))}
+          {papers.map(
+            (paper) =>
+              paper.statues == "Pending" && (
+                <PaperCards
+                  id={key++}
+                  paperTitle={paper.paperTitle}
+                  coAuthors={paper.coAuthors}
+                  abstract={paper.abstract}
+                  statues={paper.statues}
+                  role={user.role}
+                />
+              )
+          )}
         </div>
       </ContentContainer>
     </div>

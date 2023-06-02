@@ -22,7 +22,7 @@ export default function PaperCards(props, role) {
 
   return (
     <div className={styles.paperCards}>
-      <div className="card card-compact md:flex w-auto h-auto bg-base-100 shadow-lg card-side hover:shadow-xl ease-in-out transition duration-600">
+      <div className="card card-compact md:flex w-auto h-auto bg-purple-800 bg-primary glass shadow-lg card-side hover:shadow-xl ease-in-out transition duration-600">
         <figure>
           <img src={`https://picsum.photos/id/${props.id}/300/330`} />
         </figure>
@@ -40,8 +40,25 @@ export default function PaperCards(props, role) {
               {props.abstract}
             </p>
           )}
-          <div className="badge badge-success gap-2">{props.statues}</div>
-          <div className="card-actions justify-end">
+          {props.statues == "Pending" && (
+            <div className="badge badge-success gap-2 text-[11px] font-semibold bg-amber-600">
+              Statues: &nbsp;
+              {props.statues}
+            </div>
+          )}
+          {props.statues == "Accepted" && (
+            <div className="badge badge-success gap-2 text-[11px] font-semibold bg-lime-500">
+              Statues: &nbsp;
+              {props.statues}
+            </div>
+          )}
+          {props.statues == "Refused" && (
+            <div className="badge badge-success gap-2 text-[11px] font-semibold bg-red-600">
+              Statues: &nbsp;
+              {props.statues}
+            </div>
+          )}
+          <div className="card-actions justify-end ">
             <button
               className="btn btn-sm btn-primary"
               onClick={() => setShow(!show)}
@@ -54,12 +71,30 @@ export default function PaperCards(props, role) {
             </button>
             {role == "reviewer" && (
               <button
-                className="btn btn-sm btn-primary"
+                className="btn btn-sm btn-secondary "
                 onClick={() => handleClick()}
               >
                 Review Paper
               </button>
             )}
+            {props.statues == "Accepted" ||
+              (props.statues == "Refused" && (
+                <button
+                  className="btn btn-sm btn-primary text-[10px]"
+                  onClick={() => handleClick()}
+                >
+                  View 1st Review
+                </button>
+              ))}
+            {props.statues == "Accepted" ||
+              (props.statues == "Refused" && (
+                <button
+                  className="btn btn-sm btn-primary text-[10px]"
+                  onClick={() => handleClick()}
+                >
+                  View 2nd Review
+                </button>
+              ))}
           </div>
         </div>
       </div>
