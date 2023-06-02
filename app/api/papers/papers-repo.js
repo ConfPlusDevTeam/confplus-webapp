@@ -4,9 +4,8 @@
 // import path from "path";
 // import UsersRepo from "../users/users-repo";
 
-import { Prisma } from "@prisma/client"
-const prisma = new Prisma() 
-
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 export default class PapersRepo {
   constructor() {
@@ -56,9 +55,9 @@ export default class PapersRepo {
   //     });
   // }
   //expects {paperTitle, Authors, abstract, fileName, presenterID}, and a list of authorIDs
-  async addPaper(data, authorIDs) {
-    const paper = await prisma.papers.create({ data: data })
-    for (const authorID of authorIDs) { await prisma.PaperAuthors.create({paperId: paper.id, userId: authorID})}
+  async addPaper(data) {
+    const paper = await prisma.paper.create({ title: data.paperTitle, abstract: data.abstract, fileName: data.fileName, presenterId: data.presenterID, file: data.file })
+    for (const authorID of data.authorIDs) { await prisma.PaperAuthors.create({paperId: paper.id, userId: authorID})}
     const reviewers = await prisma.users.findMany({ where: { role: "reviewer" } })
     const shuffledReviewers = reviewers.sort(() => Math.random() - 0.5).slice(0, 2)
     await prisma.reviews.create({ data: { paperId: paper.id, reviewerId: shuffledReviewers[0].id } })
@@ -80,7 +79,9 @@ export default class PapersRepo {
 
   //getPapersforreviewer gets the reviewer id and returns the papers that are assigned to him by looking into the list of reviews and checking if the reviewer id is in the list of reviews
   async getPapersForReviewer(id) {
-    return await prisma.papers.findMany({ where: { reviews: { some: { reviewerId: id } } } })
+    console.log(id)
+    // where review --- some reviewer id = id, but review is a whole object and not just the id
+    return await prisma.paper.findMany({ where: { reviews: { some: { reviewerId: Number(id) } } }, include: { reviews: true } })
   }
 
 
@@ -96,7 +97,7 @@ export default class PapersRepo {
 
   //getPapersforauthor gets the author id and returns the papers that are assigned to him by looking into the list of papers and checking if the author id is in the list of reviews 
   async getPapersForAuthor(id) {
-    return await prisma.papers.findMany({ where: { authors: { some: { userId: id } } } })
+    return await prisma.paper.findMany({ where: { authors: { some: { userId: Number(id) } } } })
   }
 
 
@@ -125,14 +126,14 @@ export default class PapersRepo {
     const reviews = await prisma.reviews.findMany({ where: { paperId: paperID } })
     if (reviews[0].status == "submitted" && reviews[1].status == "submitted") {
       if (reviews[0].evaluation + reviews[1].evaluation >= 2) {
-        return await prisma.papers.update({ where: { id: paperID }, data: { status: "Accepted" } })
+        return await prisma.paper.update({ where: { id: paperID }, data: { status: "Accepted" } })
       }
       else {
-        return await prisma.papers.update({ where: { id: paperID }, data: { status: "Rejected" } })
+        return await prisma.paper.update({ where: { id: paperID }, data: { status: "Rejected" } })
       }
     }
     else {
-      return await prisma.papers.update({ where: { id: paperID }, data: { status: "Pending" } })
+      return await prisma.paper.update({ where: { id: paperID }, data: { status: "Pending" } })
     }
   }
 
@@ -164,7 +165,7 @@ export default class PapersRepo {
   // }
 
   async getAcceptedPapers() {
-    return await prisma.papers.findMany({ where: { status: "Accepted" } })
+    return await prisma.paper.findMany({ where: { status: "Accepted" } })
   }
 
   // async loadReviewsForPaper(paperTitle) {

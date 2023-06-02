@@ -1,8 +1,8 @@
 //get locations
 // import fs from "fs-extra";
 // import path from "path";
-import { Prisma } from "@prisma/client"
-const prisma = new Prisma()
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 export default class LocationsRepo {
     constructor() {
@@ -10,6 +10,6 @@ export default class LocationsRepo {
     }
     async getLocations() {
         // return JSON.parse(await fs.readFile(this.path));
-        return await prisma.locations.findMany()
+        return await prisma.location.findMany()
     }
 }

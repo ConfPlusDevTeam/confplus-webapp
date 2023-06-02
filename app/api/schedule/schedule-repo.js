@@ -17,7 +17,6 @@ export default class ScheduleRepo {
     }
     // async addScheduleItem (session) {
     //     const allSessions = await this.getSchedule();
-
     //     const matchingSession = allSessions.find(item => item.date === session.date);
     //     if (matchingSession) {
     //         matchingSession.presentations = session.presentations;

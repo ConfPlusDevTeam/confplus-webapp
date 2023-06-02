@@ -2,8 +2,8 @@
 // import fs from "fs-extra";
 // import path from "path";
 
-import { Prisma } from "@prisma/client"
-const prisma = new Prisma()
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 export default class InstituionsRepo {
   constructor() {
@@ -11,6 +11,6 @@ export default class InstituionsRepo {
   }
   async getInstitutions() {
     // return JSON.parse(await fs.readFile(this.path));
-    return await prisma.institutions.findMany()
+    return await prisma.institution.findMany()
   }
 }
