@@ -37,7 +37,7 @@ export default function SignInForm() {
     const data = await res.json();
 
     if (res.status == 200) {
-      setLinks((oldLinks) => [
+      setLinks([
         {
           name: "Dashboard",
 
@@ -96,7 +96,7 @@ export default function SignInForm() {
             onClick={(e) => {
               localStorage.removeItem("user");
               setLoggedIn(false);
-              setLinks((oldLinks) => [
+              setLinks([
                 {
                   name: "Information",
                   link: "/",
