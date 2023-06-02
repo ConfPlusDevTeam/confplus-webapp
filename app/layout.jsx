@@ -58,8 +58,6 @@ export default function RootLayout({ children }) {
         <Navbar links={links} />
         {children}
         <Background />
-
-        <Footer className={styles.footer} />
       </body>
     </html>
   );

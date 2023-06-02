@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import styles from "./background.module.scss";
+import Footer from "../Footer/Footer.jsx";
 
 import { motion } from "framer-motion";
 
@@ -45,6 +46,7 @@ export default function Background() {
             className={styles.shape5}
           ></motion.div>
         </div>
+        <Footer className={styles.footer} />
       </div>
     </div>
   );

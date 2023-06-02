@@ -3,7 +3,7 @@ import Logo from "../Logo/Logo";
 
 export default function Footer() {
   return (
-    <footer className="footer p-10 bg-neutral text-neutral-content">
+    <footer className="footer p-10 h-56 bg-[#3d0466] text-neutral-content content-center">
       <div>
         <Logo />
         <p className="font-bold">
