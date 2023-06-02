@@ -1,15 +1,19 @@
 //get schedule
 //post schedule
-import fs from "fs-extra";
-import path from "path";
+// import fs from "fs-extra";
+// import path from "path";
+
+import { Prisma } from "@prisma/client"
+const prisma = new Prisma()
 
 export default class ScheduleRepo {
     constructor() {
-        this.path = path.join(process.cwd(), "app/data/schedule.json");
+        // this.path = path.join(process.cwd(), "app/data/schedule.json");
     }
     async getSchedule () {
-        const schedule = JSON.parse(await fs.readFile(this.path));
-        return schedule;
+        // const schedule = JSON.parse(await fs.readFile(this.path));
+        // return schedule;
+        return await prisma.schedule.findMany()
     }
     // async addScheduleItem (session) {
     //     const allSessions = await this.getSchedule();
