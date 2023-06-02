@@ -1,12 +1,19 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./NavLink.module.scss";
+import { useSelectedLayoutSegment } from "next/navigation";
 
 export default function NavLink({ navlink, active, onclick, className }) {
+  const segment = useSelectedLayoutSegment();
+
   return (
     <li>
       <Link
-        className={`${active ? className.active : className.link}`}
+        className={`${
+          `${segment}` == navlink.link.replace("/", "")
+            ? className.active
+            : className.link
+        }`}
         href={navlink.link}
         onClick={onclick}
       >
