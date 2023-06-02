@@ -1,17 +1,45 @@
 import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
 
-export const useNavLinksStore = create((set) => ({
-  links: [
-    {
-      name: "Information",
-      link: "/",
-    },
+export const useNavLinksStore = create(
+  immer((set) => ({
+    links:
+      localStorage.getItem("user") == null
+        ? [
+            {
+              name: "Information",
+              link: "/",
+            },
 
-    {
-      name: "Sign In",
+            {
+              name: "Sign In",
 
-      link: "/signin",
-    },
-  ],
-  setLinks: (links) => set({ links }),
-}));
+              link: "/signin",
+            },
+          ]
+        : [
+            {
+              name: "Dashboard",
+
+              link: `/${JSON.parse(localStorage.getItem("user")).role}`,
+            },
+
+            {
+              name: "Schedule",
+
+              link: "/schedule",
+            },
+
+            {
+              name: "Log Out",
+
+              link: `/signin`,
+            },
+          ],
+
+    setLinks: (links) =>
+      set((state) => {
+        state.links = links;
+      }),
+  }))
+);
