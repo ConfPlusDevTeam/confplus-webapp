@@ -1,0 +1,11 @@
+[
+    {
+        "paperId": 1,
+        "reviewerId": 2,
+        "evaluation": 4,
+        "contribution": 3,
+        "strengths": "Well-written and organized",
+        "weaknesses": "Lacks detailed examples",
+        "status": "completed"
+    }
+]

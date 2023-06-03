@@ -1,0 +1,16 @@
+[
+    {
+        "paperTitle": "Introduction to Artificial Intelligence",
+        "abstract": "This paper provides an overview of AI and its applications.",
+        "fileLink": "https://example.com/papers/1",
+        "status": "Pending",
+        "presenterID": 1
+    },
+    {
+        "paperTitle": "Machine Learning Techniques for Image Recognition",
+        "abstract": "This paper explores various ML algorithms for image recognition tasks.",
+        "fileLink": "https://example.com/papers/2",
+        "status": "Accepted",
+        "presenterID": 3
+    }
+]

@@ -1,0 +1,105 @@
+// This is your Prisma schema file.
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                Int            @id @default(autoincrement())
+  first_name        String
+  last_name         String
+  gender            String
+  email             String         @unique
+  password          String
+  role              String
+  institution       Institution    @relation(fields: [institutionName], references: [name])
+  institutionName   String
+  papers            PaperAuthors[]
+  papersAsPresenter Paper[]
+  reviews           Review[]
+}
+
+model Institution {
+  name  String @id
+  users User[]
+}
+
+model PaperAuthors {
+  paperId Int
+  userId  Int
+  paper   Paper @relation(fields: [paperId], references: [id])
+  user    User  @relation(fields: [userId], references: [id])
+
+  @@id([paperId, userId])
+}
+
+model Location {
+  name     String    @id
+  sessions Session[]
+}
+
+model Session {
+  id            Int            @id @default(autoincrement())
+  name          String
+  fromTime      DateTime
+  endTime       DateTime
+  location      Location       @relation(fields: [locationName], references: [name])
+  locationName  String
+  sessionPapers SessionPaper[]
+  ScheduleDate  ScheduleDate   @relation(fields: [date], references: [date])
+  date          DateTime
+}
+
+model ScheduleDate {
+  date       DateTime  @id
+  sessions   Session[]
+  Schedule   Schedule  @relation(fields: [scheduleId], references: [id])
+  scheduleId Int
+}
+
+model Schedule {
+  id            Int            @id @default(autoincrement())
+  scheduleDates ScheduleDate[]
+}
+
+model SessionPaper {
+  sessionId Int
+  paperId   Int
+  session   Session @relation(fields: [sessionId], references: [id])
+  paper     Paper   @relation(fields: [paperId], references: [id])
+
+  @@id([sessionId, paperId])
+}
+
+model Paper {
+  id            Int            @id @default(autoincrement())
+  paperTitle    String
+  abstract      String
+  fileLink      String?
+  file          Bytes?
+  status        String         @default("Pending")
+  sessionPapers SessionPaper[]
+  authors       PaperAuthors[]
+  presenterID   Int
+  presenter     User           @relation(fields: [presenterID], references: [id])
+  reviews       Review[]
+}
+
+model Review {
+  id           Int    @id @default(autoincrement())
+  paperId      Int
+  reviewerId   Int 
+  paper        Paper  @relation(fields: [paperId], references: [id])
+  reviewer     User   @relation(fields: [reviewerId], references: [id])
+  evaluation   Int    @default(0)
+  contribution Int    @default(0)
+  strengths    String @default("")
+  weaknesses   String @default("")
+  status       String @default("Pending")
+}
