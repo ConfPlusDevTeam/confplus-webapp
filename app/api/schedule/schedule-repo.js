@@ -3,8 +3,8 @@
 // import fs from "fs-extra";
 // import path from "path";
 
-import { Prisma } from "@prisma/client"
-const prisma = new Prisma()
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 export default class ScheduleRepo {
     constructor() {
@@ -13,7 +13,8 @@ export default class ScheduleRepo {
     async getSchedule () {
         // const schedule = JSON.parse(await fs.readFile(this.path));
         // return schedule;
-        return await prisma.schedule.findMany()
+        // get all papers from sessionpapers from session from scheduledates from schedule
+        return await prisma.schedule.findMany({ include: { scheduleDates: { include: { sessions : { include : { sessionPapers: { include: { paper: { include: { presenter: true } } } } } } } } } });
     }
     // async addScheduleItem (session) {
     //     const allSessions = await this.getSchedule();
