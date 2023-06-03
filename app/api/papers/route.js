@@ -6,10 +6,11 @@ const papersRepo = new PapersRepo();
 export async function POST(request, { params }) {
     try {
         const paper = await request.json();
-
-        if (!paper) return Response.json({ message: "Bad request" }, { status: 400 });
+        const authorIDs = paper.authorIDs;
+        delete paper.authorIDs;
+        if (!paper || !authorIDs) return Response.json({ message: "Bad request" }, { status: 400 });
         
-        const response = await papersRepo.addPaper(paper);
+        const response = await papersRepo.addPaper(authorIDs, paper);
         return Response.json(paper, { status: 200 });
 
     } catch (e) {
