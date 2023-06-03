@@ -78,7 +78,7 @@ export default function PaperCards(props, role) {
             )}
             {props.statues == "Rejected" && (
               <button
-                className="btn btn-primary btn-xs   text-[10px]  bg-purple-900 border-none"
+                className="btn btn-primary btn-sm   text-[11px]  bg-purple-900 border-none"
                 onClick={() => handleClick()}
               >
                 View 1st Review
@@ -86,7 +86,7 @@ export default function PaperCards(props, role) {
             )}
             {props.statues == "Rejected" && (
               <button
-                className="btn btn-primary btn-xs  text-[10px]  bg-purple-900 border-none"
+                className="btn btn-primary btn-sm  text-[11px]  bg-purple-900 border-none"
                 onClick={() => handleClick()}
               >
                 View 2nd Review
@@ -94,7 +94,7 @@ export default function PaperCards(props, role) {
             )}
             {props.statues == "Rejected" && (
               <button
-                className="btn btn-primary btn-xs  text-[10px] btn-wide bg-red-600 border-none"
+                className="btn btn-primary btn-sm  text-[10px] btn-wide bg-red-600 border-none"
                 onClick={() => handleDelete()}
               >
                 Delete
