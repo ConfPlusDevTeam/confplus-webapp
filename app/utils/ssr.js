@@ -10,3 +10,11 @@ export async function averageAuthorsinPapers(){
     return await ssrRepo.averageAuthorsinPapers()
 }
 
+export async function getSessionsCount(){
+    return await ssrRepo.getSessionsCount()
+}
+
+export async function averagePresentationsinSessions(){
+    return await ssrRepo.averagePresentationsinSessions()
+}
+

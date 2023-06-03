@@ -14,11 +14,13 @@ export default class ssrRepo {
         return totalAuthors/totalPapers
     }
 
-    // averageconfpresen(){returns number of total sessions (sum of all day sessions) , average papers in a session)
-    // async scheduleInfo () {
-    //     const totalSessions = await prisma.session.count()
-    //     const averagePapers = await prisma.$queryRaw`SELECT AVG(ARRAY_LENGTH(papers, 1)) FROM "Session"`
-    //     const averagePapersInSession = await prisma.s
-    //     return {totalSessions, averagePapers}
-    // }
+    async getSessionsCount () {
+        return await prisma.session.count()
+    }
+
+    async averagePresentationsinSessions () {
+        const totalPresentations = await prisma.SessionPaper.count()
+        const totalSessions = await prisma.session.count()
+        return totalPresentations/totalSessions
+    }
 }
