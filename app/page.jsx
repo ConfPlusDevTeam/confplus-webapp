@@ -7,6 +7,7 @@ import ContentContainer from "./components/ContentContainer/ContentContainer";
 import { useState, useEffect } from "react";
 import Scrollbar from "./components/Scrollbar/Scrollbar";
 import FilteredSchedule from "./components/FilteredSchedule/FilteredSchedule";
+import Typical from "react-typical";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +31,6 @@ export default function Home() {
     getSchedule();
   }, []);
 
-
   return (
     <div className={styles.homeContainer}>
       <style>{`
@@ -48,10 +48,25 @@ export default function Home() {
       />
       <div className={styles.card}>
         {active == "welcome" && (
-          <ContentContainer variant={1} title="Welcome !" className={styles}>
-            We are delighted to have you attend the IEEE International Conference. This conference features some of the best minds in the field of Computer Science and Engineering. We hope you enjoy the conference and have a great time.
-            There will multiple sessions and paper presentations. You can find the schedule for the conference below.
-            
+          <ContentContainer variant={1} title="" className={styles}>
+            <div className={styles.welcomeContainer}>
+              <h1 className={styles.hi}>Welcome, &nbsp;</h1>
+              <Typical
+                steps={[
+                  "Organizer!",
+                  1400,
+                  "Author!",
+                  1400,
+                  "Reviewer!",
+                  1400,
+                  "Attendee!",
+                  1400,
+                ]}
+                loop={Infinity}
+                wrapper="h1"
+                className={styles.typical}
+              ></Typical>
+            </div>
           </ContentContainer>
         )}
         {active == "schedule" && (
@@ -61,7 +76,10 @@ export default function Home() {
         )}
         {active == "about" && (
           <ContentContainer variant={1} title="About" className={styles}>
-            Confplus is a webpage that simplifies the organization and management of the IEEE International Conference. Our user-friendly platform streamlines the planning process, from scheduling to promotion, to ensure a successful event.
+            Confplus is a webpage that simplifies the organization and
+            management of the IEEE International Conference. Our user-friendly
+            platform streamlines the planning process, from scheduling to
+            promotion, to ensure a successful event.
           </ContentContainer>
         )}
         <Scrollbar />

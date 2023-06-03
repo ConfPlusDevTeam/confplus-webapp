@@ -64,8 +64,6 @@
   border-radius: 5rem;
   transform: rotate(0.12deg);
 
-  border: 0.3rem solid rgba(255, 242, 242, 0.354);
-
   overflow-x: scroll;
   overflow-y: scroll;
   padding: 3rem;
@@ -80,4 +78,23 @@
   justify-content: flex-start;
   margin: auto;
   flex-wrap: nowrap;
+}
+
+.typical {
+  font-size: 3.5rem;
+  color: pink;
+  align-self: center;
+  justify-self: center;
+}
+.hi {
+  font-size: 3.5rem;
+  margin-left: 5rem;
+  align-self: center;
+  justify-self: center;
+}
+.welcomeContainer {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  align-self: center;
 }

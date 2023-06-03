@@ -9,8 +9,11 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Link from "next/link";
 import { redirect } from "next/dist/server/api-utils";
+import { useNavLinksStore } from "../stores/navlinks";
+
 export default function SignInForm() {
   const router = useRouter();
+  const setLinks = useNavLinksStore((state) => state.setLinks);
 
   const [message, setMessage] = React.useState("");
   const [loggedIn, setLoggedIn] = React.useState(
@@ -34,6 +37,26 @@ export default function SignInForm() {
     const data = await res.json();
 
     if (res.status == 200) {
+      setLinks([
+        {
+          name: "Dashboard",
+
+          link: `/${data.role}`,
+        },
+
+        {
+          name: "Schedule",
+
+          link: "/schedule",
+        },
+
+        {
+          name: "Log Out",
+
+          link: `/signin`,
+        },
+      ]);
+
       localStorage.setItem("user", JSON.stringify(data));
       const user = JSON.parse(localStorage.getItem("user"));
       setLoggedIn(true);
@@ -66,11 +89,6 @@ export default function SignInForm() {
       )}
       {loggedIn == true && (
         <div className={Styles.form}>
-          {/* <Button variant={3} type="submit">
-            <Link href={`/${JSON.parse(localStorage.getItem("user")).role}`}>
-              My Account
-            </Link>
-          </Button> */}
           <Button
             variant={1}
             type="submit"
@@ -78,6 +96,18 @@ export default function SignInForm() {
             onClick={(e) => {
               localStorage.removeItem("user");
               setLoggedIn(false);
+              setLinks([
+                {
+                  name: "Information",
+                  link: "/",
+                },
+
+                {
+                  name: "Sign In",
+
+                  link: "/signin",
+                },
+              ]);
               router.push(`/signin`);
             }}
           />

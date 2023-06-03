@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { use } from "react";
 import styles from "./PaperCards.module.scss";
 import ContentContainer from "../ContentContainer/ContentContainer";
 import Link from "next/link";
@@ -10,101 +10,99 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Router } from "next/router";
 
-export default function PaperCards() {
+export default function PaperCards(props, role) {
+  let key = 40;
   const router = useRouter();
-  const user = localStorage.getItem("user");
-  const userRole = JSON.parse(user).role;
-  const [papers, setPapers] = useState([]);
-  useEffect(() => {
-    if (!user) {
-      router.push("/signin");
-      return;
-    } else {
-      if (userRole == "author") {
-        const getAuthorPapers = async () => {
-          const response = await fetch(
-            `/api/papers?author=${JSON.parse(user).email}`
-          ).then((response) => response.json());
-          setPapers(await response);
-        };
-        getAuthorPapers();
-        return;
-      }
+  const [show, setShow] = useState(false);
 
-      if (userRole == "reviewer") {
-        const getAssignedPapers = async () => {
-          const response = await fetch(
-            `/api/papers?reviewer=${JSON.parse(user).email}`
-          ).then((response) => response.json());
-          setPapers(await response);
-        };
-        getAssignedPapers();
-        return;
-      }
-    }
-  }, []);
-
-  const [toggle, setToggle] = useState(false);
-
-  const toggleHandler = () => {
-    setToggle(!toggle);
+  const handleClick = () => {
+    router.push("/reviewer/reviewpaper");
+    router.query = { id: props.id };
   };
-
-  if (!papers) {
-    return <div>No papers available</div>;
-  }
-
-  function handleClick(paper) {
-    return (event) => {
-      event.preventDefault();
-      {
-        router.push("/reviewer/reviewpaper");
-        localStorage.setItem("paperTitle", JSON.stringify(paper.paperTitle));
-        localStorage.setItem("fileLink", JSON.stringify(paper.fileLink));
-      }
-    };
-  }
 
   return (
     <div className={styles.paperCards}>
-      {papers.map((paper) => (
-        <ContentContainer variant={2} className={styles}>
-          <div className={styles.paperDetails}>
-            <h3>{paper.paperTitle}</h3>
-            <p>
-              Authors:&nbsp;
-              {paper.author +
-                "," +
-                paper.coAuthors.map((author) => " " + author.name)}
-            </p>
-
-            <div className={styles.showAbstract}>
-              {toggle && <p>{paper.abstract}</p>}
-              {!toggle && (
-                <label for="arrow" className={styles.label}>
-                  Abstract:
-                </label>
-              )}
-              <button
-                className={toggle ? styles.button : styles.upButton}
-                onClick={toggleHandler}
-                id="arrow"
-              >
-                ^
-              </button>
+      <div className="card card-compact md:flex w-auto h-auto bg-purple-800 bg-primary glass shadow-lg card-side hover:shadow-xl ease-in-out transition duration-600">
+        <figure>
+          <img src={`https://picsum.photos/id/${props.id}/300/330`} />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title text-[13px] font-bold">
+            {props.paperTitle}
+          </h2>
+          <div className="dropdown ">
+            <label
+              tabIndex={0}
+              className="btn btn-xs bg-purple-900 normal-case text-[11px]"
+            >
+              Abstract
+            </label>
+            <div
+              tabIndex={0}
+              className="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content bg-purple-900"
+            >
+              <div className="card-body  ">
+                <p className="text-[11px]">{props.abstract}</p>
+              </div>
             </div>
           </div>
-          {userRole == "reviewer" && (
-            <Link
-              className={styles.revButton}
-              href="reviewer/reviewpaper"
-              onClick={handleClick(paper)}
-            >
-              Review Paper
-            </Link>
+          <p className="text-[11px]">
+            <p className="font-semibold  ">Co Authors:&nbsp;</p>
+            {props.coAuthors?.map((author) => "" + "(" + author.name + ")")}
+          </p>
+
+          {props.statues == "Pending" && (
+            <div className="badge badge-success gap-2 text-[11px] font-semibold bg-amber-600">
+              &nbsp;
+              {props.statues}
+            </div>
           )}
-        </ContentContainer>
-      ))}
+          {props.statues == "Accepted" && (
+            <div className="badge badge-success gap-2 text-[11px] font-semibold bg-lime-500">
+              {props.statues}
+            </div>
+          )}
+          {props.statues == "Rejected" && (
+            <div className="badge badge-success gap-2 text-[11px] font-semibold bg-red-600">
+              {props.statues}
+            </div>
+          )}
+          <div className="card-actions justify-center ">
+            {role == "reviewer" && (
+              <button
+                className="btn btn-xs bg-purple-900 "
+                onClick={() => handleClick()}
+              >
+                Review Paper
+              </button>
+            )}
+            {props.statues == "Rejected" && (
+              <button
+                className="btn btn-primary btn-sm   text-[11px]  bg-purple-900 border-none"
+                onClick={() => handleClick()}
+              >
+                View 1st Review
+              </button>
+            )}
+            {props.statues == "Rejected" && (
+              <button
+                className="btn btn-primary btn-sm  text-[11px]  bg-purple-900 border-none"
+                onClick={() => handleClick()}
+              >
+                View 2nd Review
+              </button>
+            )}
+            {props.statues == "Rejected" && (
+              <button
+                className="btn btn-primary btn-sm  text-[10px] btn-wide bg-red-600 border-none"
+                onClick={() => handleDelete()}
+              >
+                Delete
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

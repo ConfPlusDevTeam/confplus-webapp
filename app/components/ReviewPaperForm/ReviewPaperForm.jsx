@@ -9,11 +9,10 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function ReviewPaperForm() {
-  const paperTitle = localStorage.getItem("paperTitle").replace(/[""]/g, "");
-  console.log(paperTitle);
-  const fileLink = localStorage.getItem("fileLink");
-  const user = localStorage.getItem("user");
-  const email = JSON.parse(user).email;
+  router = useRouter();
+  const { id } = router.query;
+  const reviewerEmail = JSON.parse(localStorage.getItem("user")).email;
+
   const [reviews, setReviews] = useState([{}]);
 
   const [evaluation, setEvaluation] = useState("");
@@ -40,9 +39,9 @@ export default function ReviewPaperForm() {
   };
 
   async function getReviews() {
-    const response = await fetch(
-      `/api/papers/review?paperTitle=${paperTitle}`
-    ).then((response) => response.json());
+    const response = await fetch(`/api/papers/review/${id}`).then((response) =>
+      response.json()
+    );
     setReviews(await response);
     return response;
   }
@@ -50,9 +49,7 @@ export default function ReviewPaperForm() {
   useEffect(() => {
     async function fetchData() {
       const response = await getReviews();
-      const paperReview = response.find(
-        (review) => review.reviewerEmail === email
-      );
+      const paperReview = response.find(() => reviewerEmail === email);
       setEvaluation(paperReview.evaluation);
       setContribution(paperReview.contribution);
       setStrengths(paperReview.strengths);

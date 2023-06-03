@@ -10,6 +10,11 @@ import { useRouter } from "next/navigation";
 export default function Authors() {
   const router = useRouter();
   const user = JSON.parse(localStorage.getItem("user"));
+  const [papers, setPapers] = React.useState([]);
+  let key = 50;
+
+  let count = 2;
+
   useEffect(() => {
     if (!user) {
       router.push("/signin");
@@ -19,20 +24,39 @@ export default function Authors() {
       if (userRole !== "author") {
         router.push("/signin");
         return;
+      } else {
+        const getAuthorPapers = async () => {
+          const response = await fetch(`/api/papers?author=${user.email}`).then(
+            (response) => response.json()
+          );
+          setPapers(await response);
+        };
+        getAuthorPapers();
+        return;
       }
     }
   }, []);
 
   const links = [
     {
-      name: "Submitted Papers",
+      name: "Pending Papers",
       link: "/author",
     },
+    {
+      name: "Accepted Papers",
+      link: "/author/acceptedpapers",
+    },
+    {
+      name: `Rejected Papers (${count})`,
+      link: "/author/rejectedpapers",
+    },
+
     {
       name: "Submit Paper",
       link: "/author/submitpaper",
     },
   ];
+
   return (
     <div className={styles.profile}>
       <WelcomeMessage
@@ -40,7 +64,21 @@ export default function Authors() {
       />
       <ContentContainer variant={2} className={styles}>
         <Tabs links={links} className={styles} />
-        <PaperCards />
+        <div className={styles.paperCards}>
+          {papers.map(
+            (paper) =>
+              paper.statues == "Pending" && (
+                <PaperCards
+                  id={key++}
+                  paperTitle={paper.paperTitle}
+                  coAuthors={paper.coAuthors}
+                  abstract={paper.abstract}
+                  statues={paper.statues}
+                  role={user.role}
+                />
+              )
+          )}
+        </div>
       </ContentContainer>
     </div>
   );
