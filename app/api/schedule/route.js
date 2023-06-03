@@ -15,11 +15,11 @@ export async function GET(request, { params }) {
 
 export async function POST(request, { params }) {
     try {
-        const schedule = await request.json();
-        if (!schedule) {
+        const scheduleDate = await request.json();
+        if (!scheduleDate.date) {
             return Response.json({ message: "Bad request" }, { status: 400 });
         }
-        const scheduleResponse = await scheduleRepo.updateSchedule(schedule);
+        const scheduleResponse = await scheduleRepo.addScheduleDate(scheduleDate.date);
 
         return Response.json(scheduleResponse, { status: 200 });
     } catch (e) {

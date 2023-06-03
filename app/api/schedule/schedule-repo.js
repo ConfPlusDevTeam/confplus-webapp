@@ -15,6 +15,10 @@ export default class ScheduleRepo {
         // return schedule;
         return await prisma.schedule.findMany()
     }
+
+    async addScheduleDate (date){
+        return await prisma.scheduleDate.create({ data: { date: new Date(date).toISOString(), scheduleId: 1 } });
+    }
     // async addScheduleItem (session) {
     //     const allSessions = await this.getSchedule();
     //     const matchingSession = allSessions.find(item => item.date === session.date);
@@ -29,19 +33,19 @@ export default class ScheduleRepo {
     //     return session;
 
     // }
-    async updateSchedule (schedule) {
-        await fs.writeFile(this.path, JSON.stringify(schedule));
-        const dates = schedule.map(item => item.name);
-        await fs.writeFile(path.join(process.cwd(), "app/data/conference-dates.json"), JSON.stringify(dates));
-        return schedule;
-    }
+    // async updateSchedule (schedule) {
+    //     await fs.writeFile(this.path, JSON.stringify(schedule));
+    //     const dates = schedule.map(item => item.name);
+    //     await fs.writeFile(path.join(process.cwd(), "app/data/conference-dates.json"), JSON.stringify(dates));
+    //     return schedule;
+    // }
 
 
-    async getScheduleDates () {
-        return JSON.parse(await fs.readFile(path.join(process.cwd(), "app/data/conference-dates.json")));
-    }
-    async getScheduleItem (name) {
-        const schedule = JSON.parse(await fs.readFile(this.path))
-        return schedule.find(item => item.name === name)
-    }
+    // async getScheduleDates () {
+    //     return JSON.parse(await fs.readFile(path.join(process.cwd(), "app/data/conference-dates.json")));
+    // }
+    // async getScheduleItem (name) {
+    //     const schedule = JSON.parse(await fs.readFile(this.path))
+    //     return schedule.find(item => item.name === name)
+    // }
 }   
