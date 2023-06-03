@@ -55,16 +55,23 @@ export default class PapersRepo {
   //     });
   // }
   //expects {paperTitle, Authors, abstract, fileName, presenterID}, and a list of authorIDs
+
   async addPaper(data) {
-    const paper = await prisma.paper.create({ title: data.paperTitle, abstract: data.abstract, fileName: data.fileName, presenterId: data.presenterID, file: data.file })
+    console.log(data)
+    //dk why but this doesnt work although its recieving the correct data
+    const paper = await prisma.paper.create({paperTitle: data.paperTitle, abstract: data.abstract, fileLink: data.fileLink, presenterID: data.presenterID})
     for (const authorID of data.authorIDs) { await prisma.PaperAuthors.create({paperId: paper.id, userId: authorID})}
     const reviewers = await prisma.users.findMany({ where: { role: "reviewer" } })
     const shuffledReviewers = reviewers.sort(() => Math.random() - 0.5).slice(0, 2)
-    await prisma.reviews.create({ data: { paperId: paper.id, reviewerId: shuffledReviewers[0].id } })
-    await prisma.reviews.create({ data: { paperId: paper.id, reviewerId: shuffledReviewers[1].id } })
+    await prisma.review.create({ data: { paperId: paper.id, reviewerId: shuffledReviewers[0].id } })
+    await prisma.review.create({ data: { paperId: paper.id, reviewerId: shuffledReviewers[1].id } })
     return paper
   }
 
+  async getPaperById(id) {
+    return await prisma.paper.findUnique({ where: { id: Number(id) } })
+  }
+  
 
 
   // async getPapersForReviewer(email) {
@@ -115,15 +122,15 @@ export default class PapersRepo {
   //   }
   //   await fs.writeFile(this.path, JSON.stringify(allPapers));
   // }
-  async addReview(id, data) {
+  async addReview(data) {
     data.status = "submitted"
-    const res = await prisma.reviews.update({ where: { id: id }, data: data })
+    const res = await prisma.review.update({ where: { id: Number(data.id) }, data: data })
     await this.refigureStatus(res.paperId)
     return res
   }
 
   async refigureStatus(paperID) {
-    const reviews = await prisma.reviews.findMany({ where: { paperId: paperID } })
+    const reviews = await prisma.review.findMany({ where: { paperId: paperID } })
     if (reviews[0].status == "submitted" && reviews[1].status == "submitted") {
       if (reviews[0].evaluation + reviews[1].evaluation >= 2) {
         return await prisma.paper.update({ where: { id: paperID }, data: { status: "Accepted" } })
@@ -149,7 +156,7 @@ export default class PapersRepo {
   // }
 
   async loadReview(paperID, reviewerID) {
-    return await prisma.reviews.findUnique({ where: { paperId: paperID, reviewerId: reviewerID } })
+    return await prisma.review.findFirst({ where: { paperId: Number(paperID), reviewerId: Number(reviewerID) } })
   }
 
   // async getAcceptedPapers() {
@@ -178,8 +185,8 @@ export default class PapersRepo {
   // }
 
   async loadReviewsForPaper(id) {
-    return await prisma.reviews.findMany({ where: { paperId: id } })
+    return await prisma.review.findMany({ where: { paperId: Number(id) } })
   }
-
+  
 }
 

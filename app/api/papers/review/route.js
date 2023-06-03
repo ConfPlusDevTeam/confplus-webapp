@@ -20,10 +20,13 @@ export async function POST(request, { params }) {
 export async function GET(request, { params }) {
   try {
     const paperId = new URL(request.url).searchParams.get("paperId");
+    const reviewerId = new URL(request.url).searchParams.get("reviewerId");
     if (!paperId) {
       return Response.json({ message: "Bad request" }, { status: 400 });
     }
-
+    if (reviewerId){
+      return Response.json(await papersRepo.loadReview(paperId, reviewerId), { status: 200 });
+    }
     const paperReviews = await papersRepo.loadReviewsForPaper(paperId);
     return Response.json(paperReviews, { status: 200 });
   } catch (e) {
