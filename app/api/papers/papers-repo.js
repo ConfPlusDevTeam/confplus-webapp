@@ -69,9 +69,9 @@ export default class PapersRepo {
   }
 
   async getPaperById(id) {
-    return await prisma.paper.findUnique({ where: { id: Number(id) } })
+    return await prisma.paper.findUnique({ where: { id: Number(id) }, include: { reviews: true } })
   }
-  
+
 
 
   // async getPapersForReviewer(email) {
