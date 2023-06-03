@@ -81,7 +81,7 @@ model Paper {
   id            Int            @id @default(autoincrement())
   paperTitle    String
   abstract      String
-  fileLink      String
+  fileLink      String?
   file          Bytes?
   status        String         @default("Pending")
   sessionPapers SessionPaper[]
@@ -94,12 +94,12 @@ model Paper {
 model Review {
   id           Int    @id @default(autoincrement())
   paperId      Int
-  reviewerId   Int
+  reviewerId   Int 
   paper        Paper  @relation(fields: [paperId], references: [id])
   reviewer     User   @relation(fields: [reviewerId], references: [id])
-  evaluation   Int
-  contribution Int
-  strengths    String
-  weaknesses   String
+  evaluation   Int    @default(0)
+  contribution Int    @default(0)
+  strengths    String @default("")
+  weaknesses   String @default("")
   status       String @default("Pending")
 }

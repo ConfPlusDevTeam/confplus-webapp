@@ -57,10 +57,8 @@ export default class PapersRepo {
   //expects {paperTitle, Authors, abstract, fileName, presenterID}, and a list of authorIDs
 
   async addPaper(authorIDs, data) {
-    console.log(data)
-    console.log(authorIDs)
     const paper = await prisma.paper.create({data})
-    // authorIDs.map(async (authorID) => {await prisma.paperAuthors.create({data: {paperId: paper.id, userId: authorID}})})
+    authorIDs.map(async (authorID) => {await prisma.paperAuthors.create({data: {paperId: paper.id, userId: authorID}})})
     const reviewers = await prisma.user.findMany({ where: { role: "reviewer" } })
     const shuffledReviewers = reviewers.sort(() => Math.random() - 0.5).slice(0, 2)
     await prisma.review.create({ data: { paperId: paper.id, reviewerId: shuffledReviewers[0].id } })
