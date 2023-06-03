@@ -9,3 +9,4 @@ export async function getPapersCount(status){
 export async function averageAuthorsinPapers(){
     return await ssrRepo.averageAuthorsinPapers()
 }
+
