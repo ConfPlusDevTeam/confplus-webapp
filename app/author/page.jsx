@@ -26,7 +26,7 @@ export default function Authors() {
       } else {
         const getAuthorPapers = async () => {
           const response = await fetch(
-            `/api/users/${user.id}?status=Pending`
+            `/api/users/${user.id}/author?status=Pending`
           ).then((response) => response.json());
           setPapers(await response);
         };
@@ -58,19 +58,17 @@ export default function Authors() {
 
   return (
     <div className={styles.profile}>
-      <WelcomeMessage
-        props={JSON.parse(localStorage.getItem("user")).first_name}
-      />
+      <WelcomeMessage props={user.first_name} />
       <ContentContainer variant={2} className={styles}>
         <Tabs links={links} className={styles} />
         <div className={styles.paperCards}>
-          {papers.map((paper) => (
+          {papers?.map((paper) => (
             <PaperCards
               id={paper.id}
               paperTitle={paper.paperTitle}
-              coAuthors={paper.coAuthors}
+              authors={paper.authors}
               abstract={paper.abstract}
-              statues={paper.statues}
+              status={paper.status}
               role={user.role}
             />
           ))}

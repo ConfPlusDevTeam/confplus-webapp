@@ -18,13 +18,6 @@ export default function SubmitPaperForm({}) {
   const [users, setUsers] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const getAffiliations = async () => {
-    const response = await fetch("/api/institutions").then((response) =>
-      response.json()
-    );
-    setAffiliations(await response);
-  };
-
   const getUsers = async () => {
     const response = await fetch("/api/users?role=author").then((response) =>
       response.json()
@@ -34,7 +27,6 @@ export default function SubmitPaperForm({}) {
   };
 
   useEffect(() => {
-    getAffiliations();
     getUsers();
   }, []);
 
@@ -52,6 +44,10 @@ export default function SubmitPaperForm({}) {
       users.filter((user) => user.email == event.target.value)[0].first_name +
         " " +
         users.filter((user) => user.email == event.target.value)[0].last_name
+    );
+    setAffiliation(
+      users.filter((user) => user.email == event.target.value)[0]
+        .institutionName
     );
   };
   const handleAffiliationChange = (event) => {
@@ -242,30 +238,16 @@ export default function SubmitPaperForm({}) {
                 />
               </div>
               <div>
-                <label htmlFor="affiliation" className={styles.label}>
-                  AFFILIATION:
+                <label htmlFor="institution" className={styles.label}>
+                  Affiliation NAME:
                 </label>
-                <select
-                  id="affiliation"
-                  name="affiliation"
-                  className={styles.affiliations}
+                <input
+                  id="name"
+                  className={styles.input}
+                  type="text"
+                  disabled
                   value={affiliation}
-                  onChange={handleAffiliationChange}
-                  defaultValue=""
-                >
-                  <option disabled hidden value="">
-                    Choose Affiliation
-                  </option>
-                  {affiliations?.map((affil, key) => (
-                    <option
-                      key={key}
-                      onClick={handleAffiliationChange}
-                      value={affil}
-                    >
-                      {affil}
-                    </option>
-                  ))}
-                </select>
+                />
               </div>
               <div className={styles.presenter}>
                 <label htmlFor="mark-presenter" className={styles.label}>

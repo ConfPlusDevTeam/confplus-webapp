@@ -47,14 +47,22 @@ export default function PaperCards(props, role) {
             </div>
           </div>
           <p className="text-[11px]">
-            <p className="font-semibold  ">Co Authors:&nbsp;</p>
-            {props.coAuthors?.map((author) => "" + "(" + author.name + ")")}
+            <p className="font-semibold  ">Authors:&nbsp;</p>
+            {props.authors?.map(
+              (author) =>
+                "" +
+                "(" +
+                author.user.first_name +
+                " " +
+                author.user.last_name +
+                ")"
+            )}
           </p>
 
-          {props.statues == "Pending" && (
+          {props.status == "Pending" && (
             <div className="badge badge-success gap-2 text-[11px] font-semibold bg-amber-600">
               &nbsp;
-              {props.statues}
+              {props.status}
             </div>
           )}
           {props.statues == "Accepted" && (
