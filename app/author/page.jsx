@@ -11,7 +11,6 @@ export default function Authors() {
   const router = useRouter();
   const user = JSON.parse(localStorage.getItem("user"));
   const [papers, setPapers] = React.useState([]);
-  let key = 50;
 
   let count = 2;
 
@@ -26,9 +25,9 @@ export default function Authors() {
         return;
       } else {
         const getAuthorPapers = async () => {
-          const response = await fetch(`/api/papers?author=${user.email}`).then(
-            (response) => response.json()
-          );
+          const response = await fetch(
+            `/api/users/${user.id}?status=Pending`
+          ).then((response) => response.json());
           setPapers(await response);
         };
         getAuthorPapers();
@@ -65,19 +64,16 @@ export default function Authors() {
       <ContentContainer variant={2} className={styles}>
         <Tabs links={links} className={styles} />
         <div className={styles.paperCards}>
-          {papers.map(
-            (paper) =>
-              paper.statues == "Pending" && (
-                <PaperCards
-                  id={key++}
-                  paperTitle={paper.paperTitle}
-                  coAuthors={paper.coAuthors}
-                  abstract={paper.abstract}
-                  statues={paper.statues}
-                  role={user.role}
-                />
-              )
-          )}
+          {papers.map((paper) => (
+            <PaperCards
+              id={paper.id}
+              paperTitle={paper.paperTitle}
+              coAuthors={paper.coAuthors}
+              abstract={paper.abstract}
+              statues={paper.statues}
+              role={user.role}
+            />
+          ))}
         </div>
       </ContentContainer>
     </div>
