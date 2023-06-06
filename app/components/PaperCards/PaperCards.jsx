@@ -65,14 +65,14 @@ export default function PaperCards(props, role) {
               {props.status}
             </div>
           )}
-          {props.statues == "Accepted" && (
+          {props.status == "Accepted" && (
             <div className="badge badge-success gap-2 text-[11px] font-semibold bg-lime-500">
-              {props.statues}
+              {props.status}
             </div>
           )}
-          {props.statues == "Rejected" && (
+          {props.status == "Rejected" && (
             <div className="badge badge-success gap-2 text-[11px] font-semibold bg-red-600">
-              {props.statues}
+              {props.status}
             </div>
           )}
           <div className="card-actions justify-center ">
@@ -84,7 +84,7 @@ export default function PaperCards(props, role) {
                 Review Paper
               </button>
             )}
-            {props.statues == "Rejected" && (
+            {props.status == "Rejected" && (
               <button
                 className="btn btn-primary btn-sm   text-[11px]  bg-purple-900 border-none"
                 onClick={() => handleClick()}
@@ -92,7 +92,7 @@ export default function PaperCards(props, role) {
                 View 1st Review
               </button>
             )}
-            {props.statues == "Rejected" && (
+            {props.status == "Rejected" && (
               <button
                 className="btn btn-primary btn-sm  text-[11px]  bg-purple-900 border-none"
                 onClick={() => handleClick()}
@@ -100,7 +100,7 @@ export default function PaperCards(props, role) {
                 View 2nd Review
               </button>
             )}
-            {props.statues == "Rejected" && (
+            {props.status == "Rejected" && (
               <button
                 className="btn btn-primary btn-sm  text-[10px] btn-wide bg-red-600 border-none"
                 onClick={() => handleDelete()}
