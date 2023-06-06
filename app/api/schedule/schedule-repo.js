@@ -66,6 +66,8 @@ export default class ScheduleRepo {
     });
   }
 
+
+  //not working properly
   async updateSession(id, session) {
     console.log(id, session)
     return await prisma.session.update({
