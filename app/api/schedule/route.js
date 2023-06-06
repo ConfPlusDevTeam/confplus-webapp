@@ -4,7 +4,7 @@
 import ScheduleRepo from "./schedule-repo";
 const scheduleRepo = new ScheduleRepo();
 
-export async function GET(request, { params }) {
+export async function GET(request) {
     try {
         const schedule = await scheduleRepo.getSchedule();
         return Response.json(schedule, { status: 200 });
@@ -13,7 +13,7 @@ export async function GET(request, { params }) {
     }
 }
 
-export async function POST(request, { params }) {
+export async function POST(request) {
     try {
         const scheduleDate = await request.json();
         if (!scheduleDate.date) {
