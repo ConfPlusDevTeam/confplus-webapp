@@ -38,48 +38,21 @@ export default function page() {
     }
   }, []);
 
-  const links = [
-    {
-      name: "Pending Papers",
-      link: "/author",
-    },
-    {
-      name: "Accepted Papers",
-      link: "/author/acceptedpapers",
-    },
-    {
-      name: `Rejected Papers (${count})`,
-      link: "/author/rejectedpapers",
-    },
-
-    {
-      name: "Submit Paper",
-      link: "/author/submitpaper",
-    },
-  ];
   return (
-    <div className={styles.profile}>
-      <WelcomeMessage
-        props={JSON.parse(localStorage.getItem("user")).first_name}
-      />
-      <ContentContainer variant={2} className={styles}>
-        <Tabs links={links} className={styles} />
-        <div className={styles.paperCards}>
-          {papers.map(
-            (paper) =>
-              paper.statues == "Rejected" && (
-                <PaperCards
-                  id={key++}
-                  paperTitle={paper.paperTitle}
-                  coAuthors={paper.coAuthors}
-                  abstract={paper.abstract}
-                  statues={paper.statues}
-                  role={user.role}
-                />
-              )
-          )}
-        </div>
-      </ContentContainer>
+    <div className={styles.paperCards}>
+      {papers.map(
+        (paper) =>
+          paper.statues == "Rejected" && (
+            <PaperCards
+              id={key++}
+              paperTitle={paper.paperTitle}
+              coAuthors={paper.coAuthors}
+              abstract={paper.abstract}
+              statues={paper.statues}
+              role={user.role}
+            />
+          )
+      )}
     </div>
   );
 }
