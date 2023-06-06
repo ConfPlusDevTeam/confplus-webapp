@@ -57,10 +57,11 @@ export default class ScheduleRepo {
   }
 
   async addSession(date, session) {
+    date = new Date(date).toISOString()
     return await prisma.session.create({
       data: {
         ...session,
-        scheduleDate: { connect: { date: new Date(date).toISOString() } },
+        date
       },
     });
   }
