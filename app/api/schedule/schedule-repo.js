@@ -55,4 +55,13 @@ export default class ScheduleRepo {
       },
     });
   }
+
+  async addSession(date, session) {
+    return await prisma.session.create({
+      data: {
+        ...session,
+        scheduleDate: { connect: { date: new Date(date).toISOString() } },
+      },
+    });
+  }
 }
