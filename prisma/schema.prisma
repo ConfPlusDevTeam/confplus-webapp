@@ -33,8 +33,8 @@ model Institution {
 model PaperAuthors {
   paperId Int
   userId  Int
-  paper   Paper @relation(fields: [paperId], references: [id])
-  user    User  @relation(fields: [userId], references: [id])
+  paper   Paper @relation(fields: [paperId], references: [id], onDelete: Cascade)
+  user    User  @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([paperId, userId])
 }
@@ -52,14 +52,14 @@ model Session {
   location      Location       @relation(fields: [locationName], references: [name])
   locationName  String
   sessionPapers SessionPaper[]
-  ScheduleDate  ScheduleDate   @relation(fields: [date], references: [date])
+  ScheduleDate  ScheduleDate   @relation(fields: [date], references: [date], onDelete: Cascade)
   date          DateTime
 }
 
 model ScheduleDate {
   date       DateTime  @id
   sessions   Session[]
-  Schedule   Schedule  @relation(fields: [scheduleId], references: [id])
+  Schedule   Schedule  @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
   scheduleId Int
 }
 
@@ -71,8 +71,8 @@ model Schedule {
 model SessionPaper {
   sessionId Int
   paperId   Int
-  session   Session @relation(fields: [sessionId], references: [id])
-  paper     Paper   @relation(fields: [paperId], references: [id])
+  session   Session @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  paper     Paper   @relation(fields: [paperId], references: [id], onDelete: Cascade)
 
   @@id([sessionId, paperId])
 }
@@ -87,7 +87,7 @@ model Paper {
   sessionPapers SessionPaper[]
   authors       PaperAuthors[]
   presenterID   Int
-  presenter     User           @relation(fields: [presenterID], references: [id])
+  presenter     User           @relation(fields: [presenterID], references: [id], onDelete: Cascade)
   reviews       Review[]
 }
 
@@ -95,8 +95,8 @@ model Review {
   id           Int    @id @default(autoincrement())
   paperId      Int
   reviewerId   Int 
-  paper        Paper  @relation(fields: [paperId], references: [id])
-  reviewer     User   @relation(fields: [reviewerId], references: [id])
+  paper        Paper  @relation(fields: [paperId], references: [id], onDelete: Cascade)
+  reviewer     User   @relation(fields: [reviewerId], references: [id], onDelete: Cascade)
   evaluation   Int    @default(0)
   contribution Int    @default(0)
   strengths    String @default("")
