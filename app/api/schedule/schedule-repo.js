@@ -81,7 +81,7 @@ export default class ScheduleRepo {
 
   async getSesssion(id) {
     return await prisma.session.findUnique({
-      where: { id },
+      where: { id: Number(id) },
       include: {
         sessionPapers: {
           include: { paper: { include: { presenter: true } } },
