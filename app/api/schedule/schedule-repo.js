@@ -65,4 +65,28 @@ export default class ScheduleRepo {
       },
     });
   }
+
+  async updateSession(id, session) {
+    return await prisma.session.update({
+      where: { id },
+      data: session,
+    });
+  }
+
+  async deleteScheduleDate(date) {
+    return await prisma.scheduleDate.delete({
+      where: { date: new Date(date).toISOString() },
+    });
+  }
+
+  async getSesssion(id) {
+    return await prisma.session.findUnique({
+      where: { id },
+      include: {
+        sessionPapers: {
+          include: { paper: { include: { presenter: true } } },
+        },
+      },
+    });
+  }
 }

@@ -25,3 +25,16 @@ export async function POST(request, { params }) {
         return Response.json({ message: "Internal server error" }, { status: 500 });
     }
 }
+
+export async function DELETE(request, { params }){
+    try {
+        const date = params.date;
+        const Res = await scheduleRepo.deleteScheduleDate(date);
+        if (!Res)
+            return Response.json({ message: "Invalid date" }, { status: 400 });
+        return Response.json(Res, { status: 201 });
+    }
+    catch (e) {
+        return Response.json({ message: "Internal server error" }, { status: 500 });
+    }
+}
