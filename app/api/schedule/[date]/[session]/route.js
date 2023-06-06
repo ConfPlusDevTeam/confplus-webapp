@@ -17,3 +17,15 @@ export async function GET(request, { params }) {
     }
 }
 
+export async function POST(request, { params }) {
+    try{
+        const paper = await request.json()
+        const session = await scheduleRepo.addSessionPaper(params.session, paper.paperId);
+        if (!session)
+            return Response.json({ message: "Invalid session or date" }, { status: 400 });
+        return Response.json(session, { status: 200 });
+    }
+    catch(e){
+        return Response.json({ message: "Internal server error" }, { status: 500 });
+    }
+}

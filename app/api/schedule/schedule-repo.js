@@ -89,4 +89,11 @@ export default class ScheduleRepo {
       },
     });
   }
+
+  async addSessionPaper(sessionId, paperId) {
+    console.log(sessionId, paperId);
+    return await prisma.sessionPaper.create({
+      data: { sessionId: Number(sessionId), paperId: Number(paperId) },
+    });
+  }
 }
