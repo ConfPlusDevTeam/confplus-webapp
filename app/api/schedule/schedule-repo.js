@@ -67,6 +67,7 @@ export default class ScheduleRepo {
   }
 
   async updateSession(id, session) {
+    console.log(id, session)
     return await prisma.session.update({
       where: { id },
       data: session,
@@ -76,6 +77,12 @@ export default class ScheduleRepo {
   async deleteScheduleDate(date) {
     return await prisma.scheduleDate.delete({
       where: { date: new Date(date).toISOString() },
+    });
+  }
+
+  async deleteSession(id) {
+    return await prisma.session.delete({
+      where: { id: Number(id) },
     });
   }
 
@@ -95,4 +102,19 @@ export default class ScheduleRepo {
       data: { sessionId: Number(sessionId), paperId: Number(paperId) },
     });
   }
+
+  async getSessionPaper(sessionId, paperId) {
+    return await prisma.sessionPaper.findUnique({
+      where: { sessionId_paperId: { sessionId: Number(sessionId), paperId: Number(paperId) } },
+      include: { paper: { include: { presenter: true } } },
+    });
+  }
+
+  async deleteSessionPaper(sessionId, paperId) {
+    return await prisma.sessionPaper.delete({
+      where: { sessionId_paperId: { sessionId: Number(sessionId), paperId: Number(paperId) } },
+    });
+  }
+
+
 }
