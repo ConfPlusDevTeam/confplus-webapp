@@ -21,9 +21,38 @@ export default class ScheduleRepo {
     });
   }
 
+  async getScheduleDates() {
+    return await prisma.scheduleDate.findMany( {
+      include: {
+        sessions: {
+          include: {
+            sessionPapers: {
+              include: { paper: { include: { presenter: true } } },
+            },
+          },
+        },
+      },
+    });
+  }
+
   async addScheduleDate(date) {
     return await prisma.scheduleDate.create({
       data: { date: new Date(date).toISOString(), scheduleId: 1 },
+    });
+  }
+
+  async getScheduleDate(date) {
+    return await prisma.scheduleDate.findUnique({
+      where: { date: new Date(date).toISOString() },
+      include: {
+        sessions: {
+          include: {
+            sessionPapers: {
+              include: { paper: { include: { presenter: true } } },
+            },
+          },
+        },
+      },
     });
   }
 }
