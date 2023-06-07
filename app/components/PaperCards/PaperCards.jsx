@@ -22,7 +22,7 @@ export default function PaperCards(props, role) {
 
   return (
     <div className={styles.paperCards}>
-      <div className="card card-compact md:flex w-auto h-auto bg-purple-800 bg-primary glass shadow-lg card-side hover:shadow-xl ease-in-out transition duration-600">
+      <div className="relative z-0 card card-compact md:flex w-auto h-auto m-2 bg-purple-800 bg-primary glass shadow-lg card-side hover:shadow-xl ease-in-out transition duration-600">
         <figure>
           <img src={`https://picsum.photos/id/${props.id}/300/330`} />
         </figure>
@@ -39,9 +39,9 @@ export default function PaperCards(props, role) {
             </label>
             <div
               tabIndex={0}
-              className="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content bg-purple-900"
+              className="absolute z-10 dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content bg-purple-900 "
             >
-              <div className="card-body  ">
+              <div className="card-body ">
                 <p className="text-[11px]">{props.abstract}</p>
               </div>
             </div>

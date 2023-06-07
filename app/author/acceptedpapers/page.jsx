@@ -26,9 +26,9 @@ export default function page() {
         return;
       } else {
         const getAuthorPapers = async () => {
-          const response = await fetch(`/api/papers?author=${user.email}`).then(
-            (response) => response.json()
-          );
+          const response = await fetch(
+            `/api/users/${user.id}/author?status=Accepted`
+          ).then((response) => response.json());
           setPapers(await response);
         };
         getAuthorPapers();
@@ -58,19 +58,16 @@ export default function page() {
   ];
   return (
     <div className={styles.paperCards}>
-      {papers.map(
-        (paper) =>
-          paper.statues == "Accepted" && (
-            <PaperCards
-              id={key++}
-              paperTitle={paper.paperTitle}
-              coAuthors={paper.coAuthors}
-              abstract={paper.abstract}
-              statues={paper.statues}
-              role={user.role}
-            />
-          )
-      )}
+      {papers?.map((paper) => (
+        <PaperCards
+          id={paper.id}
+          paperTitle={paper.paperTitle}
+          authors={paper.authors}
+          abstract={paper.abstract}
+          status={paper.status}
+          role={user.role}
+        />
+      ))}
     </div>
   );
 }
