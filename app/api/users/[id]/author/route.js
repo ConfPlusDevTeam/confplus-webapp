@@ -5,8 +5,6 @@ const repo = new UsersRepo();
 export async function GET(request, { params }) {
   const status = new URL(request.url).searchParams.get("status");
   const { id } = params;
-  console.log(id);
-  console.log(status);
   if (
     id &&
     (status === "Pending" || status === "Rejected" || status === "Accepted")

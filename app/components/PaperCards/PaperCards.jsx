@@ -15,9 +15,11 @@ export default function PaperCards(props, role) {
   const router = useRouter();
   const [show, setShow] = useState(false);
 
-  const handleClick = () => {
-    router.push("/reviewer/reviewpaper");
-    router.query = { id: props.id };
+  const handleViewReview1 = () => {
+    router.push(`/author/rejectedpapers/${props.id}/0`);
+  };
+  const handleViewReview2 = () => {
+    router.push(`/author/rejectedpapers/${props.id}/1`);
   };
 
   return (
@@ -88,7 +90,7 @@ export default function PaperCards(props, role) {
             {props.status == "Rejected" && (
               <button
                 className="btn btn-primary btn-sm   text-[11px]  bg-purple-900 border-none"
-                onClick={() => handleClick()}
+                onClick={() => handleViewReview1()}
               >
                 View 1st Review
               </button>
@@ -96,7 +98,7 @@ export default function PaperCards(props, role) {
             {props.status == "Rejected" && (
               <button
                 className="btn btn-primary btn-sm  text-[11px]  bg-purple-900 border-none"
-                onClick={() => handleClick()}
+                onClick={() => handleViewReview2()}
               >
                 View 2nd Review
               </button>
