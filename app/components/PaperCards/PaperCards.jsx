@@ -1,32 +1,25 @@
 "use client";
-import React, { use } from "react";
+import React from "react";
 import styles from "./PaperCards.module.scss";
 import ContentContainer from "../ContentContainer/ContentContainer";
 import Link from "next/link";
 import Button from "../Button/Button";
-import { useState } from "react";
+import * as papersRepo from "../../api/papers/papers-repo";
+
 import "./PaperCards.module.scss";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { Router } from "next/router";
 
 export default function PaperCards(props, role) {
   let key = 40;
-  const router = useRouter();
-  const [show, setShow] = useState(false);
 
-  const handleViewReview1 = () => {
-    router.push(`/author/rejectedpapers/${props.id}/0`);
-  };
-  const handleViewReview2 = () => {
-    router.push(`/author/rejectedpapers/${props.id}/1`);
+  const handleDelete = async (id) => {
+    return await papersRepo.deletePaper(id);
   };
 
   return (
     <div className={styles.paperCards}>
-      <div className=" card card-compact md:flex w-auto h-auto m-2 bg-purple-800 bg-primary glass shadow-lg card-side hover:shadow-xl ease-in-out transition duration-600 relative">
+      <div className=" card card-compact md:flex w-auto h-auto m-2 bg-purple-800 bg-primary glass shadow-lg card-side hover:shadow-xl ease-in-out transition duration-600 ">
         <figure>
-          <img src={`https://picsum.photos/id/${props.id}/300/330`} />
+          <img src={`https://picsum.photos/id/${props.id}/300/460`} />
         </figure>
         <div className="card-body">
           <h2 className="card-title text-[13px] font-bold">
@@ -35,7 +28,7 @@ export default function PaperCards(props, role) {
           <div className="dropdown ">
             <label
               tabIndex={0}
-              className="btn btn-xs bg-purple-900 normal-case text-[11px]"
+              className="btn btn-primary btn-sm  bg-purple-900 normal-case text-[11px]"
             >
               Abstract
             </label>
@@ -88,25 +81,25 @@ export default function PaperCards(props, role) {
               </button>
             )}
             {props.status == "Rejected" && (
-              <button
+              <Link
+                href={`/author/rejectedpapers/${props.id}/0`}
                 className="btn btn-primary btn-sm   text-[11px]  bg-purple-900 border-none"
-                onClick={() => handleViewReview1()}
               >
                 View 1st Review
-              </button>
+              </Link>
             )}
             {props.status == "Rejected" && (
-              <button
+              <Link
+                href={`/author/rejectedpapers/${props.id}/1`}
                 className="btn btn-primary btn-sm  text-[11px]  bg-purple-900 border-none"
-                onClick={() => handleViewReview2()}
               >
                 View 2nd Review
-              </button>
+              </Link>
             )}
             {props.status == "Rejected" && (
               <button
                 className="btn btn-primary btn-sm  text-[10px] btn-wide bg-red-600 border-none"
-                onClick={() => handleDelete()}
+                onClick={() => handleDelete(props.id)}
               >
                 Delete
               </button>

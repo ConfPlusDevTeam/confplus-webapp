@@ -42,7 +42,7 @@ export default function page() {
     <div className={styles.paperCards}>
       {papers?.map((paper) => (
         <PaperCards
-          id={paper.id}s
+          id={paper.id}
           paperTitle={paper.paperTitle}
           authors={paper.authors}
           abstract={paper.abstract}

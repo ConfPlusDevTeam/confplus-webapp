@@ -9,7 +9,6 @@ export default async function page({ params }) {
 
   const reviews = await loadReviewsForPaper(pid);
   const review = reviews[rid];
-  console.log(reviews);
 
   return (
     <ViewPaperForm
