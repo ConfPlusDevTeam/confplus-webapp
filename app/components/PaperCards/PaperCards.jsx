@@ -17,7 +17,7 @@ export default function PaperCards(props, role) {
 
   const handleDelete = async (id) => {
     await papersRepo.deletePaper(id);
-    router.push("/author");
+    window.location.reload();
   };
 
   return (
