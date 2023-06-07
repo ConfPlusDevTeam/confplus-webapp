@@ -6,13 +6,18 @@ import Link from "next/link";
 import Button from "../Button/Button";
 import * as papersRepo from "../../api/papers/papers-repo";
 
+import { useRouter } from "next/navigation";
+
 import "./PaperCards.module.scss";
 
 export default function PaperCards(props, role) {
+  const router = new useRouter();
+
   let key = 40;
 
   const handleDelete = async (id) => {
-    return await papersRepo.deletePaper(id);
+    await papersRepo.deletePaper(id);
+    router.push("/author");
   };
 
   return (
