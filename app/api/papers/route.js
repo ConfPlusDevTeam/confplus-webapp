@@ -1,7 +1,6 @@
 //post - accepts a paper object to be assigned 2 random reviewrs and saved in `papers.json`.
 
-import PapersRepo from "./papers-repo";
-const papersRepo = new PapersRepo();
+import * as repo from "./papers-repo.js";
 
 export async function POST(request, { params }) {
   try {
@@ -11,7 +10,7 @@ export async function POST(request, { params }) {
     if (!paper || !authorIDs)
       return Response.json({ message: "Bad request" }, { status: 400 });
 
-    const response = await papersRepo.addPaper(authorIDs, paper);
+    const response = await repo.addPaper(authorIDs, paper);
     return Response.json(paper, { status: 200 });
   } catch (e) {
     return Response.json({ message: "Internal server error" }, { status: 500 });

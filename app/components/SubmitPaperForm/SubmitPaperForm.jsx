@@ -9,14 +9,18 @@ import { useRouter } from "next/navigation";
 
 export default function SubmitPaperForm({}) {
   const router = useRouter();
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  const [coAuthors, setCoAuthors] = useState([]);
+  const [authorsIDs, setAuthorsIDs] = useState([parseInt(user.id)]);
+
   const [showButton, setShowButton] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [affiliations, setAffiliations] = useState([]);
   const [emails, setEmails] = useState([]);
   const [users, setUsers] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [authorId, setAuthorId] = useState();
+  const [coAuthors, setCoAuthors] = useState([]);
 
   const getUsers = async () => {
     const response = await fetch("/api/users?role=author").then((response) =>
@@ -49,7 +53,10 @@ export default function SubmitPaperForm({}) {
       users.filter((user) => user.email == event.target.value)[0]
         .institutionName
     );
+    setAuthorId(users.find((user) => user.email == event.target.value).id);
   };
+
+  console.log(authorId);
   const handleAffiliationChange = (event) => {
     setAffiliation(event.target.value);
   };
@@ -68,15 +75,17 @@ export default function SubmitPaperForm({}) {
   const handleAdd = (event) => {
     event.preventDefault();
     if (name && email && affiliation) {
-      const newCoAuthor = {
+      const newCoAuthor = authorId;
+      const newCoAuthor2 = {
         name: name,
         email: email,
-        affiliation: affiliation,
-        presenter: markPresenter ? "yes" : "no",
       };
+      setCoAuthors([...coAuthors, newCoAuthor2]);
       emails.splice(emails.indexOf(email), 1);
       setErrorMessage("");
-      setCoAuthors([...coAuthors, newCoAuthor]);
+
+      setAuthorsIDs([...authorsIDs, newCoAuthor]);
+      setAuthorId(0);
       setName("");
       setEmail("");
       setAffiliation("");
@@ -84,22 +93,23 @@ export default function SubmitPaperForm({}) {
     } else setErrorMessage("Please fill all the fields");
   };
 
-  const handleDelete = (index) => {
-    const newCoAuthors = [...coAuthors];
-    emails.push(newCoAuthors[index].email);
+  const handleDelete = async (index) => {
+    const newCoAuthors = [...authorsIDs];
 
     newCoAuthors.splice(index, 1);
-    setCoAuthors(newCoAuthors);
+    setAuthorsIDs(newCoAuthors);
   };
+
+  console.log(authorsIDs);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const paper = {
+      authorIDs: authorsIDs,
       paperTitle: event.target.title.value,
       abstract: event.target.abstract.value,
       fileLink: event.target.link.value,
-      author: JSON.parse(localStorage.getItem("user")).email,
-      coAuthors: coAuthors,
+      presenterID: parseInt(user.id),
     };
     fetch("/api/papers", {
       method: "POST",
@@ -111,8 +121,7 @@ export default function SubmitPaperForm({}) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        const user = JSON.parse(localStorage.getItem("user"));
-        router.push(`/${user.role}`);
+        router.push(`/author`);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -167,7 +176,7 @@ export default function SubmitPaperForm({}) {
         <div className={styles.showCoAuthors}>
           <h5>CoAuthors:</h5>
           <div className={styles.coAuthorContainer}>
-            {coAuthors?.map((coAuthor, index) => (
+            {coAuthors.map((coAuthor, index) => (
               <div key={index}>
                 <p className={styles.coAuthor}>
                   {index + 1 + "- "}
