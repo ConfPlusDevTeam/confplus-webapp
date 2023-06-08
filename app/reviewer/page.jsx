@@ -47,12 +47,17 @@ export default function Reviewer() {
   ];
 
   return (
-    <div className={styles.profile}>
-      <WelcomeMessage props="Aly" />
-      <ContentContainer variant={2} className={styles}>
-        <Tabs links={links} className={styles} />
-        <PaperCards />
-      </ContentContainer>
+    <div className={styles.paperCards}>
+      {papers?.map((paper) => (
+        <PaperCards
+          id={paper.id}
+          paperTitle={paper.paperTitle}
+          authors={paper.authors}
+          abstract={paper.abstract}
+          status={paper.status}
+          role={user.role}
+        />
+      ))}
     </div>
   );
 }

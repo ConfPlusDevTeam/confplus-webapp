@@ -3,15 +3,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4rem;
-  width: 100%;
+  gap: 2rem;
+  margin-top: 1rem;
 }
 
 .tabsContainer {
-  width: 70%;
+  width: 95%;
   height: 3.5vh;
-  justify-self: center;
-  align-self: center;
   background: radial-gradient(
     90.16% 143.01% at 15.32% 21.04%,
     rgba(72, 38, 168, 0.2) 0%,
@@ -23,13 +21,13 @@
   border: 0.2rem solid rgba(255, 242, 242, 0.354);
 }
 .container {
- display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 3rem;
   gap: 2rem;
-  width: min(80%, 70rem);
+  width: min(80%, 60rem);
 
   background: radial-gradient(
     90.16% 143.01% at 15.32% 21.04%,
@@ -43,8 +41,10 @@
   border-radius: 5rem;
   transform: rotate(0.12deg);
 
-  border: 0.3rem solid rgba(255, 242, 242, 0.354);
+  border: 0.1rem solid rgba(255, 242, 242, 0.354);
+  margin-bottom: 3rem;
 }
+
 .content {
   width: 100%;
   height: 100%;
@@ -55,3 +55,13 @@
   gap: 2rem;
 }
 
+.paperCards {
+  display: grid;
+  // use the ram template to make the cards responsive
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-items: center;
+  align-items: center;
+  padding: 0rem;
+  margin: 0.6rem;
+  // width: 100%;
+}
