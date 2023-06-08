@@ -14,10 +14,10 @@ export default function ReviewPaperForm(props) {
   const reviewerEmail = JSON.parse(localStorage.getItem("user")).email;
   const paper = JSON.parse(localStorage.getItem("paper"));
 
-  const [reviews, setReviews] = useState([{}]);
+  const [reviews, setReviews] = useState({});
 
-  const [evaluation, setEvaluation] = useState("");
-  const [contribution, setContribution] = useState("");
+  const [evaluation, setEvaluation] = useState(0);
+  const [contribution, setContribution] = useState(0);
   const [strengths, setStrengths] = useState("");
   const [weaknesses, setWeaknesses] = useState("");
 
@@ -41,15 +41,20 @@ export default function ReviewPaperForm(props) {
     const response = await fetch(
       `/api/papers/review?paperId=${props.id}?reviewerId=${user.id}`
     ).then((response) => response.json());
+    if (!response) {
+      return;
+    }
     setReviews(await response);
     return response;
   }
 
+  console.log(reviews);
+
   useEffect(() => {
     async function fetchData() {
       const response = await getReviews();
-      const paperReview = response.find(() => reviewerEmail === email);
-      setEvaluation(paperReview.evaluation);
+      console.log(response);
+      const paperReview = response;
       setContribution(paperReview.contribution);
       setStrengths(paperReview.strengths);
       setWeaknesses(paperReview.weaknesses);
@@ -62,9 +67,8 @@ export default function ReviewPaperForm(props) {
     const response = await fetch("/api/papers/review", {
       method: "POST",
       body: JSON.stringify({
-        paperTitle: paperTitle,
-        reviewerEmail: email,
-        status: "reviewed",
+        paperId: props.id,
+        reviewerId: user.id,
         evaluation: evaluation,
         contribution: contribution,
         strengths: strengths,

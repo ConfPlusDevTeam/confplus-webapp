@@ -1,5 +1,4 @@
-import PapersRepo from "../papers-repo";
-const papersRepo = new PapersRepo();
+import * as papersRepo from "./papers-repo.js";
 
 export async function GET(request, { params }) {
   const { paperid } = params;

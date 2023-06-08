@@ -1,5 +1,4 @@
-import PapersRepo from "../papers-repo";
-const papersRepo = new PapersRepo();
+import * as papersRepo from "./papers-repo.js";
 
 //adds a review to a paper
 export async function POST(request, { params }) {
@@ -17,15 +16,18 @@ export async function POST(request, { params }) {
 }
 
 //returns reviews for a paper
-export async function GET(request, { params }) {
+export async function GET(request) {
   try {
-    const paperId = new URL(request.url).searchParams.get("paperId");
-    const reviewerId = new URL(request.url).searchParams.get("reviewerId");
+    const { searchParams } = new URL(request.url);
+    const paperId = searchParams.get("paperId");
+    const reviewerId = searchParams.get("reviewerId");
     if (!paperId) {
       return Response.json({ message: "Bad request" }, { status: 400 });
     }
-    if (reviewerId){
-      return Response.json(await papersRepo.loadReview(paperId, reviewerId), { status: 200 });
+    if (reviewerId) {
+      return Response.json(await papersRepo.loadReview(paperId, reviewerId), {
+        status: 200,
+      });
     }
     const paperReviews = await papersRepo.loadReviewsForPaper(paperId);
     return Response.json(paperReviews, { status: 200 });

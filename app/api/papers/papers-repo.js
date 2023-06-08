@@ -153,7 +153,10 @@ export const deletePaper = async (id) => {
 export const addReview = async (data) => {
   data.status = "submitted";
   const res = await prisma.review.update({
-    where: { id: Number(data.id) },
+    where: {
+      paperId: Number(data.paperId),
+      reviewerId: Number(data.reviewerId),
+    },
     data: data,
   });
   await this.refigureStatus(res.paperId);
