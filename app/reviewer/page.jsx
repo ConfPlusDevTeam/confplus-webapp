@@ -8,10 +8,13 @@ import styles from "./page.module.scss";
 import PaperCards from "../components/PaperCards/PaperCards";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { getPapersForReviewer } from "../api/papers/papers-repo";
 
 export default function Reviewer() {
   const router = useRouter();
   const user = JSON.parse(localStorage.getItem("user"));
+  const [papers, setPapers] = React.useState([]);
+
   useEffect(() => {
     if (!user) {
       router.push("/signin");
@@ -20,6 +23,13 @@ export default function Reviewer() {
       const userRole = user.role;
       if (userRole !== "reviewer") {
         router.push("/signin");
+        return;
+      } else {
+        const getPapers = async () => {
+          const response = await getPapersForReviewer(user.id);
+          setPapers(await response);
+        };
+        getPapers();
         return;
       }
     }

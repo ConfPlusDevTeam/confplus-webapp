@@ -97,7 +97,6 @@ export const getPaperById = async (id) => {
 
 //getPapersforreviewer gets the reviewer id and returns the papers that are assigned to him by looking into the list of reviews and checking if the reviewer id is in the list of reviews
 export const getPapersForReviewer = async (id) => {
-  console.log(id);
   // where review --- some reviewer id = id, but review is a whole object and not just the id
   return await prisma.paper.findMany({
     where: { reviews: { some: { reviewerId: Number(id) } } },
