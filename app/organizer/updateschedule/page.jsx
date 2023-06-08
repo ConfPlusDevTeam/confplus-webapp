@@ -131,7 +131,6 @@ export default function UpdateSchedule() {
       .then((response) => response.json())
       .then((data) => {
         setPapers(data);
-        console.log(data);
       });
   };
 
