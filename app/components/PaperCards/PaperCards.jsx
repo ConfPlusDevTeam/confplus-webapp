@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 import "./PaperCards.module.scss";
 
-export default function PaperCards(props, role) {
+export default function PaperCards(props) {
   const router = new useRouter();
 
   let key = 40;
@@ -77,7 +77,7 @@ export default function PaperCards(props, role) {
             </div>
           )}
           <div className="card-actions justify-center ">
-            {role == "reviewer" && (
+            {props.role == "reviewer" && (
               <button
                 className="btn btn-xs bg-purple-900 "
                 onClick={() => handleClick()}

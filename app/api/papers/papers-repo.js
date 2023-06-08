@@ -99,8 +99,16 @@ export const getPaperById = async (id) => {
 export const getPapersForReviewer = async (id) => {
   // where review --- some reviewer id = id, but review is a whole object and not just the id
   return await prisma.paper.findMany({
-    where: { reviews: { some: { reviewerId: Number(id) } } },
-    include: { reviews: true },
+    where: {
+      reviews: { some: { reviewerId: Number(id) } },
+    },
+    select: {
+      id: true,
+      paperTitle: true,
+      abstract: true,
+      fileLink: true,
+      authors: { include: { user: true } },
+    },
   });
 };
 
