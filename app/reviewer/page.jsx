@@ -34,7 +34,6 @@ export default function Reviewer() {
       }
     }
   }, []);
-  console.log(papers);
 
   const links = [
     {
@@ -47,9 +46,11 @@ export default function Reviewer() {
     // },
   ];
 
+  const pendingPapers = papers?.filter((paper) => paper.status === "pending");
+
   return (
     <div className={styles.paperCards}>
-      {papers?.map((paper) => (
+      {pendingPapers?.map((paper) => (
         <PaperCards
           id={paper.id}
           paperTitle={paper.paperTitle}

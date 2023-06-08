@@ -39,7 +39,7 @@ export default function ReviewPaperForm(props) {
 
   async function getReviews() {
     const response = await fetch(
-      `/api/papers/review?paperId=${props.id}?reviewerId=${user.id}`
+      `/api/papers/review?paperId=${paper.id}&reviewerId=${user.id}`
     ).then((response) => response.json());
     if (!response) {
       return;
@@ -55,6 +55,8 @@ export default function ReviewPaperForm(props) {
       const response = await getReviews();
       console.log(response);
       const paperReview = response;
+      setReviews(paperReview);
+      setEvaluation(paperReview.evaluation);
       setContribution(paperReview.contribution);
       setStrengths(paperReview.strengths);
       setWeaknesses(paperReview.weaknesses);
@@ -62,22 +64,23 @@ export default function ReviewPaperForm(props) {
     fetchData();
   }, []);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const response = await fetch("/api/papers/review", {
+    const response = fetch("/api/papers/review", {
       method: "POST",
       body: JSON.stringify({
-        paperId: props.id,
-        reviewerId: user.id,
+        id: reviews.id,
         evaluation: evaluation,
         contribution: contribution,
         strengths: strengths,
         weaknesses: weaknesses,
       }),
-    });
-    const data = await response.json();
-    console.log(data);
-    router.push("/reviewer");
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        router.push(`/reviewer`);
+      });
   };
 
   return (

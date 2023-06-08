@@ -25,5 +25,5 @@ export default function ReviewPaper() {
     }
   }, []);
 
-  return <ReviewPaperForm id={id} />;
+  return <ReviewPaperForm />;
 }

@@ -1,4 +1,4 @@
-import * as papersRepo from "./papers-repo.js";
+import * as papersRepo from "../papers-repo";
 
 //adds a review to a paper
 export async function POST(request, { params }) {

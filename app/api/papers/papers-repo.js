@@ -152,14 +152,18 @@ export const deletePaper = async (id) => {
 // }
 export const addReview = async (data) => {
   data.status = "submitted";
+  data.evaluation = Number(data.evaluation);
+  data.contribution = Number(data.contribution);
+  console.log(data);
   const res = await prisma.review.update({
     where: {
-      paperId: Number(data.paperId),
-      reviewerId: Number(data.reviewerId),
+      id: data.id,
     },
     data: data,
   });
-  await this.refigureStatus(res.paperId);
+
+  await refigureStatus(res.paperId);
+
   return res;
 };
 
@@ -186,6 +190,14 @@ export const refigureStatus = async (paperID) => {
     });
   }
 };
+
+// export const updateStatus = async (paperID) => {
+//   const reviews = await prisma.review.findMany({
+//     where: { paperId: paperID },
+//   });
+//   console.log(reviews);
+//   return;
+// };
 
 // async loadReview(paperTitle, reviewerEmail) {
 //   const paper = JSON.parse(await fs.readFile(this.path)).filter(
