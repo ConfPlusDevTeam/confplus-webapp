@@ -23,7 +23,7 @@ import {
   getSessionsCount,
 } from "@/app/actions/actions";
 
-export default async function Authors() {
+export default function Authors() {
   const router = useRouter();
   const user = JSON.parse(localStorage.getItem("user"));
 
