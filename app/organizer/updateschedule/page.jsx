@@ -5,7 +5,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import styles from "./page.module.scss";
 import Button from "@/app/components/Button/Button";
-import ContentContainer from "@/app/components/ContentContainer/ContentContainer";
+import WelcomeMessage from "../../components/WelcomeMessage/WelcomeMessage";
+import ContentContainer from "../../components/ContentContainer/ContentContainer";
+import Tabs from "../../components/Tabs/Tabs";
 
 export default function UpdateSchedule() {
   const router = useRouter();
@@ -22,6 +24,17 @@ export default function UpdateSchedule() {
       }
     }
   }, []);
+
+  const links = [
+    {
+      name: "Report",
+      link: "/organizer/report",
+    },
+    {
+      name: "Update Schedule",
+      link: "/organizer/updateschedule",
+    },
+  ];
 
   const [dates, setDates] = useState([]);
   const [date, setDate] = useState("");
@@ -202,153 +215,159 @@ export default function UpdateSchedule() {
   };
 
   return (
-    <ContentContainer variant={2} className={styles}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <h3 className={styles.submitForm}> Update Schedule</h3>
-        <div>
+    <div className={styles.profile}>
+      <WelcomeMessage
+        props={JSON.parse(localStorage.getItem("user")).first_name}
+      />
+      <ContentContainer variant={2} className={styles}>
+        <Tabs links={links} className={styles} />
+
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <h3 className={styles.submitForm}> Update Schedule</h3>
           <div>
-            <label htmlFor="day" className={styles.label}>
-              Date:
-            </label>
-            <select
-              id="day"
-              name="day"
-              className={styles.affiliations}
-              value={date}
-              onChange={handleDateChange}
-              defaultValue=""
-            >
-              <option disabled hidden value="">
-                Choose Date
-              </option>
-              {dates?.map((em, key) => (
-                <option key={key} onClick={handleDateChange} value={em}>
-                  {em}
+            <div>
+              <label htmlFor="day" className={styles.label}>
+                Date:
+              </label>
+              <select
+                id="day"
+                name="day"
+                className={styles.affiliations}
+                value={date}
+                onChange={handleDateChange}
+                defaultValue=""
+              >
+                <option disabled hidden value="">
+                  Choose Date
                 </option>
-              ))}
-            </select>
-          </div>
-          {sessions?.length > 0 && (
-            <div className={styles.showCoAuthors}>
-              <h5>Sessions:</h5>
-              <div className={styles.coAuthorContainer}>
-                {sessions?.map((session, index) => (
-                  <div key={index}>
-                    <p className={styles.coAuthor}>
-                      {index + 1 + "- "}
-                      {session.name} (Starting time: {session.fromTime}){" "}
-                    </p>{" "}
-                    <span
-                      onClick={() => handleDelete(index)}
-                      className={styles.deleteCoAuthor}
-                    >
-                      X
-                    </span>
-                  </div>
-                ))}{" "}
-              </div>
+                {dates?.map((em, key) => (
+                  <option key={key} onClick={handleDateChange} value={em}>
+                    {em}
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
-        </div>
-
-        <div>
-          <div>
             {sessions?.length > 0 && (
-              <>
-                <input
-                  type={"button"}
-                  onClick={handleShow}
-                  value="+"
-                  id="add-coauthor"
-                  className={styles.addCoAuthorBtn}
-                ></input>
-                <label htmlFor="add-coauthor" className={styles.paperDetails}>
-                  ADD SESSION
-                </label>
-              </>
-            )}
-            {showForm && (
-              <div className={styles.coAuthorForm}>
-                <h4 className={styles.paperDetails}>SESSION </h4>
-                <div className={styles.errorMessage}>
-                  <p>{errorMessage}</p>
-                </div>
-                <div>
-                  <label htmlFor="name" className={styles.label}>
-                    Session Name:
-                  </label>
-                  <input
-                    id="name"
-                    className={styles.input}
-                    type="text"
-                    onChange={(e) => setName(e.target.value)}
-                    value={name}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="location" className={styles.label}>
-                    Location:
-                  </label>
-                  <select
-                    id="location"
-                    name="location"
-                    className={styles.affiliations}
-                    value={location}
-                    onChange={handleLocationChange}
-                    defaultValue=""
-                  >
-                    <option disabled hidden value="">
-                      Choose Session Location
-                    </option>
-                    {locations?.map((em, key) => (
-                      <option
-                        key={key}
-                        onClick={handleLocationChange}
-                        value={em}
+              <div className={styles.showCoAuthors}>
+                <h5>Sessions:</h5>
+                <div className={styles.coAuthorContainer}>
+                  {sessions?.map((session, index) => (
+                    <div key={index}>
+                      <p className={styles.coAuthor}>
+                        {index + 1 + "- "}
+                        {session.name} (Starting time: {session.fromTime}){" "}
+                      </p>{" "}
+                      <span
+                        onClick={() => handleDelete(index)}
+                        className={styles.deleteCoAuthor}
                       >
-                        {em}
-                      </option>
-                    ))}
-                  </select>
+                        X
+                      </span>
+                    </div>
+                  ))}{" "}
                 </div>
-                <div>
-                  <label htmlFor="toTime" className={styles.label}>
-                    Starting Time:
-                  </label>
-                  <input
-                    id="toTime"
-                    className={styles.input}
-                    type="text"
-                    onChange={(e) => setSTime(e.target.value)}
-                    value={sTime}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="fromTime" className={styles.label}>
-                    Finishing Time:
-                  </label>
-                  <input
-                    id="fromTime"
-                    className={styles.input}
-                    type="text"
-                    onChange={(e) => setFTime(e.target.value)}
-                    value={fTime}
-                  />
-                </div>
-
-                <Button
-                  className={styles.saveBtn}
-                  variant={1}
-                  type="submit"
-                  text="Save"
-                  onClick={handleAdd}
-                ></Button>
               </div>
             )}
           </div>
-        </div>
 
-        {/* <div>
+          <div>
+            <div>
+              {sessions?.length > 0 && (
+                <>
+                  <input
+                    type={"button"}
+                    onClick={handleShow}
+                    value="+"
+                    id="add-coauthor"
+                    className={styles.addCoAuthorBtn}
+                  ></input>
+                  <label htmlFor="add-coauthor" className={styles.paperDetails}>
+                    ADD SESSION
+                  </label>
+                </>
+              )}
+              {showForm && (
+                <div className={styles.coAuthorForm}>
+                  <h4 className={styles.paperDetails}>SESSION </h4>
+                  <div className={styles.errorMessage}>
+                    <p>{errorMessage}</p>
+                  </div>
+                  <div>
+                    <label htmlFor="name" className={styles.label}>
+                      Session Name:
+                    </label>
+                    <input
+                      id="name"
+                      className={styles.input}
+                      type="text"
+                      onChange={(e) => setName(e.target.value)}
+                      value={name}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="location" className={styles.label}>
+                      Location:
+                    </label>
+                    <select
+                      id="location"
+                      name="location"
+                      className={styles.affiliations}
+                      value={location}
+                      onChange={handleLocationChange}
+                      defaultValue=""
+                    >
+                      <option disabled hidden value="">
+                        Choose Session Location
+                      </option>
+                      {locations?.map((em, key) => (
+                        <option
+                          key={key}
+                          onClick={handleLocationChange}
+                          value={em}
+                        >
+                          {em}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="toTime" className={styles.label}>
+                      Starting Time:
+                    </label>
+                    <input
+                      id="toTime"
+                      className={styles.input}
+                      type="text"
+                      onChange={(e) => setSTime(e.target.value)}
+                      value={sTime}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="fromTime" className={styles.label}>
+                      Finishing Time:
+                    </label>
+                    <input
+                      id="fromTime"
+                      className={styles.input}
+                      type="text"
+                      onChange={(e) => setFTime(e.target.value)}
+                      value={fTime}
+                    />
+                  </div>
+
+                  <Button
+                    className={styles.saveBtn}
+                    variant={1}
+                    type="submit"
+                    text="Save"
+                    onClick={handleAdd}
+                  ></Button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* <div>
           <div>
             {papers?.length > 0 && (
               <>
@@ -435,10 +454,11 @@ export default function UpdateSchedule() {
           </div>
         </div> */}
 
-        <div className={styles.submitBtn}>
-          <Button variant={1} type="submit" text="Update Schedule"></Button>
-        </div>
-      </form>
-    </ContentContainer>
+          <div className={styles.submitBtn}>
+            <Button variant={1} type="submit" text="Update Schedule"></Button>
+          </div>
+        </form>
+      </ContentContainer>
+    </div>
   );
 }
