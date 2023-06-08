@@ -1,21 +1,124 @@
+<<<<<<< Updated upstream
 //add a paper - assigns 2 random reviewers to the paper
 
 // import fs from "fs-extra";
 // import path from "path";
 // import UsersRepo from "../users/users-repo";
+=======
+"use server";
+>>>>>>> Stashed changes
 
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
+<<<<<<< Updated upstream
 export default class PapersRepo {
   constructor() {
     // this.path = path.join(process.cwd(), "app/ data/papers.json");
     // this.usersRepo = new UsersRepo();
+=======
+export const addPaper = async (authorIDs, data) => {
+  const paper = await prisma.paper.create({ data });
+  authorIDs.map(async (authorID) => {
+    await prisma.paperAuthors.create({
+      data: { paperId: paper.id, userId: authorID },
+    });
+  });
+  const reviewers = await prisma.user.findMany({
+    where: { role: "reviewer" },
+  });
+  const shuffledReviewers = reviewers
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 2);
+  await prisma.review.create({
+    data: { paperId: paper.id, reviewerId: shuffledReviewers[0].id },
+  });
+  await prisma.review.create({
+    data: { paperId: paper.id, reviewerId: shuffledReviewers[1].id },
+  });
+  return paper;
+};
+
+export const getPaperById = async (id) => {
+  return await prisma.paper.findUnique({
+    where: { id: Number(id) },
+    include: { reviews: true },
+  });
+};
+
+export const getPapersForReviewer = async (id) => {
+  return await prisma.paper.findMany({
+    where: {
+      reviews: { some: { reviewerId: Number(id) } },
+    },
+    select: {
+      id: true,
+      paperTitle: true,
+      abstract: true,
+      fileLink: true,
+      authors: { include: { user: true } },
+    },
+  });
+};
+
+export const getPapersForAuthor = async (id) => {
+  return await prisma.paper.findMany({
+    where: { authors: { some: { userId: Number(id) } } },
+  });
+};
+
+export const deletePaper = async (id) => {
+  const paper = await prisma.paper.delete({
+    where: { id: Number(id) },
+  });
+  return paper;
+};
+
+export const addReview = async (data) => {
+  data.status = "submitted";
+  data.evaluation = Number(data.evaluation);
+  data.contribution = Number(data.contribution);
+  console.log(data);
+  const res = await prisma.review.update({
+    where: {
+      id: data.id,
+    },
+    data: data,
+  });
+
+  await refigureStatus(res.paperId);
+
+  return res;
+};
+
+export const refigureStatus = async (paperID) => {
+  const reviews = await prisma.review.findMany({
+    where: { paperId: paperID },
+  });
+  if (reviews[0].status == "submitted" && reviews[1].status == "submitted") {
+    if (reviews[0].evaluation + reviews[1].evaluation >= 2) {
+      return await prisma.paper.update({
+        where: { id: paperID },
+        data: { status: "Accepted" },
+      });
+    } else {
+      return await prisma.paper.update({
+        where: { id: paperID },
+        data: { status: "Rejected" },
+      });
+    }
+  } else {
+    return await prisma.paper.update({
+      where: { id: paperID },
+      data: { status: "Pending" },
+    });
+>>>>>>> Stashed changes
   }
   // async addPaper(paper) {
   //   const papers = JSON.parse(await fs.readFile(this.path));
   //   let paperReviewers;
 
+<<<<<<< Updated upstream
   //   await this.usersRepo
   //     .getUsersByRole("reviewer")
   //     .then((selectedReviewers) => {
@@ -44,6 +147,8 @@ export default class PapersRepo {
   //           weaknesses: "",
   //         },
   //       ];
+=======
+>>>>>>> Stashed changes
 
   //       papers.push(paper);
   //       fs.writeFile(this.path, JSON.stringify(papers));
@@ -56,6 +161,7 @@ export default class PapersRepo {
   // }
   //expects {paperTitle, Authors, abstract, fileName, presenterID}, and a list of authorIDs
 
+<<<<<<< Updated upstream
   async addPaper(authorIDs, data) {
     const paper = await prisma.paper.create({data})
     authorIDs.map(async (authorID) => {await prisma.paperAuthors.create({data: {paperId: paper.id, userId: authorID}})})
@@ -65,11 +171,14 @@ export default class PapersRepo {
     await prisma.review.create({ data: { paperId: paper.id, reviewerId: shuffledReviewers[1].id } })
     return paper
   }
+=======
+>>>>>>> Stashed changes
 
   async getPaperById(id) {
     return await prisma.paper.findUnique({ where: { id: Number(id) }, include: { reviews: true } })
   }
 
+<<<<<<< Updated upstream
 
 
   // async getPapersForReviewer(email) {
@@ -188,3 +297,8 @@ export default class PapersRepo {
   
 }
 
+=======
+export const loadReviewsForPaper = async (id) => {
+  return await prisma.review.findMany({ where: { paperId: Number(id) } });
+};
+>>>>>>> Stashed changes
