@@ -20,6 +20,19 @@ export default function PaperCards(props) {
     window.location.reload();
   };
 
+  const handleReview = async (id) => {
+    const paper = {
+      id: id,
+      paperTitle: props.paperTitle,
+      abstract: props.abstract,
+      authors: props.authors,
+      fileLink: props.fileLink,
+    };
+    localStorage.setItem("paper", JSON.stringify(paper));
+    router.push(`/reviewer/reviewpaper?id=${id}`);
+    router.query = { id: id };
+  };
+
   return (
     <div className={styles.paperCards}>
       <div className=" card card-compact md:flex w-auto h-auto m-2 bg-purple-800 bg-primary glass shadow-lg card-side hover:shadow-xl ease-in-out transition duration-600 ">
@@ -80,7 +93,7 @@ export default function PaperCards(props) {
             {props.role == "reviewer" && (
               <button
                 className="btn btn-xs bg-purple-900 "
-                onClick={() => handleClick()}
+                onClick={() => handleReview(props.id)}
               >
                 Review Paper
               </button>

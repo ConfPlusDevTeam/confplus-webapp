@@ -34,6 +34,7 @@ export default function Reviewer() {
       }
     }
   }, []);
+  console.log(papers);
 
   const links = [
     {
@@ -56,6 +57,7 @@ export default function Reviewer() {
           abstract={paper.abstract}
           status={paper.status}
           role={user.role}
+          fileLink={paper.fileLink}
         />
       ))}
     </div>

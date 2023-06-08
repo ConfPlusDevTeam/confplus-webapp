@@ -8,7 +8,10 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 export default function ReviewPaper() {
   const router = useRouter();
+  const { id } = router.query;
+
   const user = JSON.parse(localStorage.getItem("user"));
+
   useEffect(() => {
     if (!user) {
       router.push("/signin");
@@ -22,11 +25,5 @@ export default function ReviewPaper() {
     }
   }, []);
 
-  return (
-    <div className={styles.profile}>
-      <ContentContainer variant={2} className={styles}>
-        <ReviewPaperForm />
-      </ContentContainer>
-    </div>
-  );
+  return <ReviewPaperForm id={id} />;
 }

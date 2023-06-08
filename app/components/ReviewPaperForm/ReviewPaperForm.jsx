@@ -8,10 +8,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export default function ReviewPaperForm() {
-  router = useRouter();
-  const { id } = router.query;
+export default function ReviewPaperForm(props) {
+  const router = useRouter();
+  const user = JSON.parse(localStorage.getItem("user"));
   const reviewerEmail = JSON.parse(localStorage.getItem("user")).email;
+  const paper = JSON.parse(localStorage.getItem("paper"));
 
   const [reviews, setReviews] = useState([{}]);
 
@@ -19,8 +20,6 @@ export default function ReviewPaperForm() {
   const [contribution, setContribution] = useState("");
   const [strengths, setStrengths] = useState("");
   const [weaknesses, setWeaknesses] = useState("");
-
-  const router = useRouter();
 
   const handleEvaluationChange = (event) => {
     setEvaluation(event.target.value);
@@ -39,9 +38,9 @@ export default function ReviewPaperForm() {
   };
 
   async function getReviews() {
-    const response = await fetch(`/api/papers/review/${id}`).then((response) =>
-      response.json()
-    );
+    const response = await fetch(
+      `/api/papers/review?paperId=${props.id}?reviewerId=${user.id}`
+    ).then((response) => response.json());
     setReviews(await response);
     return response;
   }
@@ -83,10 +82,10 @@ export default function ReviewPaperForm() {
       <h4 className={styles.paperDetails}>PAPER DETAILS:</h4>
       <div className={styles.labelContainer}>
         <label className={styles.label}>Paper Title:</label>
-        <p className={styles.label}>{paperTitle}</p>
+        <p className={styles.label}>{paper.paperTitle}</p>
       </div>
 
-      <Link href={fileLink} className={styles.downloadFileContainer}>
+      <Link href={paper.fileLink} className={styles.downloadFileContainer}>
         <Image
           className={styles.loadImg}
           src="/assets/downloadPaper.png"
