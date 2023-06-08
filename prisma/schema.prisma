@@ -18,8 +18,8 @@ model User {
   email             String         @unique
   password          String
   role              String
-  institution       Institution    @relation(fields: [institutionName], references: [name])
-  institutionName   String
+  institution       Institution?   @relation(fields: [institutionName], references: [name])
+  institutionName   String?
   papers            PaperAuthors[]
   papersAsPresenter Paper[]
   reviews           Review[]
@@ -94,7 +94,7 @@ model Paper {
 model Review {
   id           Int    @id @default(autoincrement())
   paperId      Int
-  reviewerId   Int 
+  reviewerId   Int
   paper        Paper  @relation(fields: [paperId], references: [id], onDelete: Cascade)
   reviewer     User   @relation(fields: [reviewerId], references: [id], onDelete: Cascade)
   evaluation   Int    @default(0)

@@ -15,7 +15,7 @@ export default function Schdeule() {
     })
       .then((res) => res.json())
       .then((schedule) => {
-        setSchedule(schedule);
+        setSchedule(schedule[0].scheduleDates);
       });
   };
   useEffect(() => {
@@ -113,6 +113,5 @@ export default function Schdeule() {
   //     ],
   //   },
   // ];
-
   return <FullSchedule schedule={schedule} />;
 }

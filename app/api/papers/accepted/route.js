@@ -1,6 +1,7 @@
 import * as papersRepo from "../papers-repo";
 
 //get accepted papers
+
 export async function GET(request, { params }) {
   try {
     const papers = await papersRepo.getAcceptedPapers();

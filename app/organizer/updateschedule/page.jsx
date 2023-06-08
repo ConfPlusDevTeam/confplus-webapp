@@ -97,21 +97,29 @@ export default function UpdateSchedule() {
   };
 
   const getDates = async () => {
-    const response = await fetch("/api/schedule/dates").then((response) =>
-      response.json()
-    );
-    setDates(await response);
+    const response = await fetch("/api/schedule/")
+      .then((response) => response.json())
+      .then((data) => {
+        setDates(
+          data[0].scheduleDates.map((day) =>
+            new Date(day.date).toLocaleDateString()
+          )
+        );
+      });
   };
 
   const getSessions = async (date) => {
     const response = await fetch(`/api/schedule`)
       .then((response) => response.json())
       .then((data) => {
-        setSchedule(data);
-        return data.find((day) => day.name == date);
+        setSchedule(data[0].scheduleDates);
+        return data[0].scheduleDates.find(
+          (day) =>
+            new Date(day.date).toLocaleDateString() ==
+            new Date(date).toLocaleDateString()
+        );
       })
       .then((data) => {
-        console.log(data);
         return data.sessions;
       });
 
