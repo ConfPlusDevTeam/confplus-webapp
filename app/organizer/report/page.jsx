@@ -18,8 +18,8 @@ import {
 } from "@tremor/react";
 import {
   getPapersCount,
-  averageAuthorsinPapers,
-  averagePresentationsinSessions,
+  getAverageAuthorsinPapers,
+  getAveragePresentationsinSessions,
   getSessionsCount,
 } from "@/app/actions/actions";
 
@@ -27,55 +27,79 @@ export default function Authors() {
   const router = useRouter();
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const [papersCount, setPapersCount] = useState({
-    accepted: 3,
-    rejected: 2,
-    pending: 3,
-  });
+  const [papersCountAccepted, setPapersCountAccepted] = useState(0);
+  const [papersCountRejected, setPapersCountRejected] = useState(0);
+  const [papersCountPending, setPapersCountPending] = useState(0);
+
+  const [averageAuthorsinPapers, setAverageAuthorsinPapers] = useState(0);
+  const [sessionsCount, setSessionsCount] = useState(0);
+  const [averagePresentationsinSessions, setAveragePresentationsinSessions] =
+    useState(0);
 
   const papers = [
     {
       name: "Accepted",
-      count: papersCount.accepted,
+      count: papersCountAccepted,
     },
     {
       name: "Rejected",
-      count: papersCount.rejected,
+      count: papersCountRejected,
     },
     {
       name: "Pending",
-      count: papersCount.pending,
+      count: papersCountPending,
     },
   ];
 
   const data = [
     {
       name: "Average No. of authors/paper",
-      value: 456,
+      value: averageAuthorsinPapers,
     },
     {
       name: "No. of conference sessions ",
-      value: 351,
+      value: sessionsCount,
     },
     {
       name: "Average No. of presentations/session",
-      value: 271,
+      value: averagePresentationsinSessions,
     },
   ];
 
-  //   useEffect(() => {
-  //     if (!user) {
-  //       router.push("/signin");
-  //       return;
-  //     } else {
-  //       const userRole = user.role;
-  //       if (userRole !== "author") {
-  //         router.push("/signin");
-  //         return;
-  //       } else {
-  //       }
-  //     }
-  //   }, []);
+  useEffect(() => {
+    if (!user) {
+      router.push("/signin");
+      return;
+    } else {
+      const userRole = user.role;
+      if (userRole !== "organizer") {
+        router.push("/signin");
+        return;
+      } else {
+        getPapersCount("Accepted").then((res) => {
+          setPapersCountAccepted(parseInt(res));
+        });
+
+        getPapersCount("Rejected").then((res) => {
+          setPapersCountRejected(parseInt(res));
+        });
+
+        getPapersCount("Pending").then((res) => {
+          setPapersCountPending(parseInt(res));
+        });
+
+        getAverageAuthorsinPapers().then((res) => {
+          setAverageAuthorsinPapers(parseInt(res));
+        });
+        getSessionsCount().then((res) => {
+          setSessionsCount(parseInt(res));
+        });
+        getAveragePresentationsinSessions().then((res) => {
+          setAveragePresentationsinSessions(parseInt(res));
+        });
+      }
+    }
+  }, []);
 
   const links = [
     {
@@ -97,9 +121,7 @@ export default function Authors() {
         <Tabs links={links} className={styles} />
         <main className="w-full">
           <Title className="text-white">Statistics Report</Title>
-          <Text className="text-slate-300">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
-          </Text>
+          <Text className="text-slate-300"></Text>
 
           <Grid numColsLg={6} className="gap-6 mt-6 ">
             <Col numColSpanLg={3}>
@@ -110,7 +132,7 @@ export default function Authors() {
                   data={papers}
                   category="count"
                   index="name"
-                  colors={["green", "red"]}
+                  colors={["green", "red", "yellow"]}
                 />
               </Card>
             </Col>
