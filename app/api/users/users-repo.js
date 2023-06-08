@@ -2,8 +2,8 @@
 // import { nanoid } from "nanoid";
 // import path from "path";
 
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 export default class UsersRepo {
   constructor() {
@@ -16,18 +16,26 @@ export default class UsersRepo {
 
   async getUsersByRole(role) {
     // return (await this.getUsers()).filter((user) => user.role === role);
-    return await prisma.user.findMany({ where: { role: role } });  
+    return await prisma.user.findMany({ where: { role: role } });
   }
 
   async validateUser(email, password) {
     // return (await this.getUsers()).find(
     //   (user) => user.email === email && user.password === password
     // );
-    return await prisma.user.findFirst({ where: { email: email, password: password } });
+    return await prisma.user.findFirst({
+      where: { email: email, password: password },
+    });
   }
 
   async getPapersByAuthorId(authorId, status) {
     // return await prisma.papers.findMany({ where: { PaperAuthors: { some: { userId: authorId } }, {status: status} } });
-    return await prisma.paper.findMany({ where: { authors: { some: { userId: Number(authorId) } } , status: status }});
+    return await prisma.paper.findMany({
+      where: {
+        authors: { some: { userId: Number(authorId) } },
+        status: status,
+      },
+      include: { authors: { include: { user: true } } },
+    });
   }
 }

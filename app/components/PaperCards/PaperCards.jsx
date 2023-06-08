@@ -1,30 +1,30 @@
 "use client";
-import React, { use } from "react";
+import React from "react";
 import styles from "./PaperCards.module.scss";
 import ContentContainer from "../ContentContainer/ContentContainer";
 import Link from "next/link";
 import Button from "../Button/Button";
-import { useState } from "react";
-import "./PaperCards.module.scss";
-import { useEffect } from "react";
+import * as papersRepo from "../../api/papers/papers-repo";
+
 import { useRouter } from "next/navigation";
-import { Router } from "next/router";
+
+import "./PaperCards.module.scss";
 
 export default function PaperCards(props, role) {
-  let key = 40;
-  const router = useRouter();
-  const [show, setShow] = useState(false);
+  const router = new useRouter();
 
-  const handleClick = () => {
-    router.push("/reviewer/reviewpaper");
-    router.query = { id: props.id };
+  let key = 40;
+
+  const handleDelete = async (id) => {
+    await papersRepo.deletePaper(id);
+    window.location.reload();
   };
 
   return (
     <div className={styles.paperCards}>
-      <div className="card card-compact md:flex w-auto h-auto bg-purple-800 bg-primary glass shadow-lg card-side hover:shadow-xl ease-in-out transition duration-600">
+      <div className=" card card-compact md:flex w-auto h-auto m-2 bg-purple-800 bg-primary glass shadow-lg card-side hover:shadow-xl ease-in-out transition duration-600 ">
         <figure>
-          <img src={`https://picsum.photos/id/${props.id}/300/330`} />
+          <img src={`https://picsum.photos/id/${props.id}/300/460`} />
         </figure>
         <div className="card-body">
           <h2 className="card-title text-[13px] font-bold">
@@ -33,38 +33,47 @@ export default function PaperCards(props, role) {
           <div className="dropdown ">
             <label
               tabIndex={0}
-              className="btn btn-xs bg-purple-900 normal-case text-[11px]"
+              className="btn btn-primary btn-sm  bg-purple-900 normal-case text-[11px]"
             >
               Abstract
             </label>
             <div
               tabIndex={0}
-              className="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content bg-purple-900"
+              //how to make this dropdown only inside the card
+              className="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content bg-purple-900 absolute right-0 top-full z-10 "
             >
-              <div className="card-body  ">
+              <div className="card-body ">
                 <p className="text-[11px]">{props.abstract}</p>
               </div>
             </div>
           </div>
           <p className="text-[11px]">
-            <p className="font-semibold  ">Co Authors:&nbsp;</p>
-            {props.coAuthors?.map((author) => "" + "(" + author.name + ")")}
+            <p className="font-semibold  ">Authors:&nbsp;</p>
+            {props.authors?.map(
+              (author) =>
+                "" +
+                "(" +
+                author.user.first_name +
+                " " +
+                author.user.last_name +
+                ")"
+            )}
           </p>
 
-          {props.statues == "Pending" && (
+          {props.status == "Pending" && (
             <div className="badge badge-success gap-2 text-[11px] font-semibold bg-amber-600">
               &nbsp;
-              {props.statues}
+              {props.status}
             </div>
           )}
-          {props.statues == "Accepted" && (
+          {props.status == "Accepted" && (
             <div className="badge badge-success gap-2 text-[11px] font-semibold bg-lime-500">
-              {props.statues}
+              {props.status}
             </div>
           )}
-          {props.statues == "Rejected" && (
+          {props.status == "Rejected" && (
             <div className="badge badge-success gap-2 text-[11px] font-semibold bg-red-600">
-              {props.statues}
+              {props.status}
             </div>
           )}
           <div className="card-actions justify-center ">
@@ -76,26 +85,26 @@ export default function PaperCards(props, role) {
                 Review Paper
               </button>
             )}
-            {props.statues == "Rejected" && (
-              <button
+            {props.status == "Rejected" && (
+              <Link
+                href={`/author/rejectedpapers/${props.id}/0`}
                 className="btn btn-primary btn-sm   text-[11px]  bg-purple-900 border-none"
-                onClick={() => handleClick()}
               >
                 View 1st Review
-              </button>
+              </Link>
             )}
-            {props.statues == "Rejected" && (
-              <button
+            {props.status == "Rejected" && (
+              <Link
+                href={`/author/rejectedpapers/${props.id}/1`}
                 className="btn btn-primary btn-sm  text-[11px]  bg-purple-900 border-none"
-                onClick={() => handleClick()}
               >
                 View 2nd Review
-              </button>
+              </Link>
             )}
-            {props.statues == "Rejected" && (
+            {props.status == "Rejected" && (
               <button
                 className="btn btn-primary btn-sm  text-[10px] btn-wide bg-red-600 border-none"
-                onClick={() => handleDelete()}
+                onClick={() => handleDelete(props.id)}
               >
                 Delete
               </button>
