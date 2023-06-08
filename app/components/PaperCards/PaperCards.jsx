@@ -84,6 +84,11 @@ export default function PaperCards(props) {
               {props.status}
             </div>
           )}
+          {props.status == "Submitted" && (
+            <div className="badge badge-success gap-2 text-[11px] font-semibold bg-lime-500">
+              {props.status}
+            </div>
+          )}
           {props.status == "Rejected" && (
             <div className="badge badge-success gap-2 text-[11px] font-semibold bg-red-600">
               {props.status}
@@ -92,10 +97,10 @@ export default function PaperCards(props) {
           <div className="card-actions justify-center ">
             {props.role == "reviewer" && (
               <button
-                className="btn btn-xs bg-purple-900 "
+                className="btn btn-sm bg-purple-900 "
                 onClick={() => handleReview(props.id)}
               >
-                Review Paper
+                {props.status == "Submitted" ? "Update Review" : "Review"}
               </button>
             )}
             {props.status == "Rejected" && (

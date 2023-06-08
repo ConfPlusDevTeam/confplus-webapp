@@ -5,11 +5,11 @@ import ContentContainer from "@/app/components/ContentContainer/ContentContainer
 import Tabs from "@/app/components/Tabs/Tabs";
 import WelcomeMessage from "@/app/components/WelcomeMessage/WelcomeMessage";
 import styles from "./page.module.scss";
-import PaperCards from "../components/PaperCards/PaperCards";
+import PaperCards from "../../components/PaperCards/PaperCards";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { getPapersForReviewer } from "../api/papers/papers-repo";
-import { getPendingPapersForReviewer } from "../api/papers/papers-repo";
+
+import { getSubmittedPapersForReviewer } from "@/app/api/papers/papers-repo";
 
 export default function Reviewer() {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function Reviewer() {
         return;
       } else {
         const getPapers = async () => {
-          const response = await getPendingPapersForReviewer(user.id);
+          const response = await getSubmittedPapersForReviewer(user.id);
           setPapers(await response);
         };
         getPapers();
@@ -55,7 +55,7 @@ export default function Reviewer() {
           paperTitle={paper.paperTitle}
           authors={paper.authors}
           abstract={paper.abstract}
-          status={"Pending"}
+          status={"Submitted"}
           role={user.role}
           fileLink={paper.fileLink}
         />
